@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   Search,
@@ -18,6 +18,8 @@ import {
   Heart,
   LayoutDashboard,
   HelpCircle,
+  ArrowRight,
+  TrendingUp,
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/redux-hook";
@@ -27,8 +29,37 @@ import {
 } from "@/redux/features/cart/cartSlice";
 import { useCurrentUser, logOut } from "@/redux/features/auth/authSlice";
 import { toast } from "sonner";
-import { NAV_SUB_ITEMS as subNavItems } from "@/data/shopData";
+import { NAV_SUB_ITEMS as subNavItems, MOCK_PRODUCTS } from "@/data/shopData";
 import shobNowLogo from "@/assets/Logo/shobnow-logo.jpg";
+
+const TRENDING_SEARCHES = [
+  "Centella Sunscreen",
+  "Niacinamide Serum",
+  "COSRX Snail Mucin",
+  "Heartleaf Toner",
+  "Lip Sleeping Mask",
+  "Cleansing Foam",
+];
+
+const POPULAR_BRANDS = [
+  "COSRX",
+  "Anua",
+  "Beauty of Joseon",
+  "SKIN1004",
+  "Tirtir",
+  "Laneige",
+];
+
+const POPULAR_CATEGORIES = [
+  { name: "Skin Care", slug: "skin-care" },
+  { name: "Makeup", slug: "makeup" },
+  { name: "Lip Care", slug: "lip-care" },
+  { name: "Hair Care", slug: "hair-care" },
+  { name: "Personal Care", slug: "personal-care" },
+  { name: "Fragrance", slug: "fragrance" },
+  { name: "Food & Supps", slug: "food-supps" },
+  { name: "Combo Set", slug: "combo-set" },
+];
 
 const NavBar: React.FC = () => {
   const navigate = useNavigate();
@@ -37,12 +68,15 @@ const NavBar: React.FC = () => {
   const currentUser = useAppSelector(useCurrentUser);
 
   const [searchQuery, setSearchQuery] = useState("");
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme, resolvedTheme } = useTheme();
 
   const userMenuRef = useRef<HTMLDivElement>(null);
+  const searchContainerRef = useRef<HTMLDivElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -51,22 +85,35 @@ const NavBar: React.FC = () => {
   const isDark = mounted ? theme === "dark" || resolvedTheme === "dark" : false;
   const cartCount = useAppSelector(selectCartTotalCount);
 
-  // Close user dropdown on outside click or escape
+  // Sync search input with URL search param
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const q = params.get("search");
+    if (q) {
+      setSearchQuery(q);
+    }
+  }, [location.search]);
+
+  // Close menus & search dropdown on outside click or escape
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        userMenuRef.current &&
-        !userMenuRef.current.contains(event.target as Node)
-      ) {
+      const target = event.target as Node;
+      if (userMenuRef.current && !userMenuRef.current.contains(target)) {
         setIsUserMenuOpen(false);
       }
+      if (searchContainerRef.current && !searchContainerRef.current.contains(target)) {
+        setIsSearchFocused(false);
+      }
     };
+
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setIsUserMenuOpen(false);
+        setIsSearchFocused(false);
         setIsMobileMenuOpen(false);
       }
     };
+
     document.addEventListener("mousedown", handleClickOutside);
     document.addEventListener("keydown", handleKeyDown);
     return () => {
@@ -78,8 +125,45 @@ const NavBar: React.FC = () => {
   // Close menus on route change
   useEffect(() => {
     setIsUserMenuOpen(false);
+    setIsSearchFocused(false);
     setIsMobileMenuOpen(false);
   }, [location.pathname, location.search]);
+
+  // Live predictive search results with multi-token fuzzy matching
+  const liveSearchResults = useMemo(() => {
+    if (!searchQuery.trim()) return [];
+    const terms = searchQuery.toLowerCase().trim().split(/\s+/).filter(Boolean);
+    if (terms.length === 0) return [];
+
+    return MOCK_PRODUCTS.filter((product) => {
+      const searchableText = `${product.name} ${product.brand} ${product.category} ${
+        product.subcategory || ""
+      } ${product.tags?.join(" ") || ""} ${product.description || ""}`.toLowerCase();
+      return terms.every((term) => searchableText.includes(term));
+    });
+  }, [searchQuery]);
+
+  // Top 5 live products to show in quick dropdown
+  const topSuggestedProducts = useMemo(() => {
+    return liveSearchResults.slice(0, 5);
+  }, [liveSearchResults]);
+
+  // Live matching brands
+  const matchingBrands = useMemo(() => {
+    if (!searchQuery.trim() || searchQuery.trim().length < 2) return [];
+    const q = searchQuery.toLowerCase().trim();
+    const brands = Array.from(new Set(MOCK_PRODUCTS.map((p) => p.brand)));
+    return brands.filter((b) => b.toLowerCase().includes(q)).slice(0, 3);
+  }, [searchQuery]);
+
+  // Live matching categories
+  const matchingCategories = useMemo(() => {
+    if (!searchQuery.trim() || searchQuery.trim().length < 2) return [];
+    const q = searchQuery.toLowerCase().trim();
+    return POPULAR_CATEGORIES.filter(
+      (c) => c.name.toLowerCase().includes(q) || c.slug.toLowerCase().includes(q)
+    ).slice(0, 2);
+  }, [searchQuery]);
 
   const handleLogout = () => {
     dispatch(logOut());
@@ -88,41 +172,57 @@ const NavBar: React.FC = () => {
     navigate("/");
   };
 
+  const handleSearchSubmit = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    const trimmed = searchQuery.trim();
+    if (trimmed) {
+      navigate(`/shop?search=${encodeURIComponent(trimmed)}`);
+      setIsSearchFocused(false);
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  const handleSelectTrending = (term: string) => {
+    setSearchQuery(term);
+    navigate(`/shop?search=${encodeURIComponent(term)}`);
+    setIsSearchFocused(false);
+    setIsMobileMenuOpen(false);
+  };
+
+  const handleSelectBrand = (brand: string) => {
+    navigate(`/shop?brand=${encodeURIComponent(brand)}`);
+    setIsSearchFocused(false);
+    setIsMobileMenuOpen(false);
+  };
+
+  const handleSelectCategory = (slug: string) => {
+    navigate(`/shop?category=${encodeURIComponent(slug)}`);
+    setIsSearchFocused(false);
+    setIsMobileMenuOpen(false);
+  };
+
   // Precision active item check so only the targeted category is active at one time
   const isNavItemActive = (itemPath: string) => {
     const { pathname, search, hash } = location;
 
-    // 1. Top Selling
     if (itemPath === "/top-selling") {
       return pathname === "/top-selling" || search.includes("sort=bestselling");
     }
-
-    // 2. New Arrivals
     if (itemPath.includes("newest")) {
       return search.includes("sort=newest");
     }
-
-    // 3. Featured Products
     if (itemPath.includes("featured")) {
       return search.includes("filter=featured");
     }
-
-    // 4. Brands
     if (itemPath === "/brands") {
       return pathname === "/brands" || search.includes("filter=brands");
     }
-
-    // 5. Order Tracking
     if (itemPath === "/track-order") {
       return pathname === "/track-order";
     }
-
-    // 6. All Categories
     if (itemPath === "/#categories" || itemPath === "/categories") {
       return pathname === "/categories" || hash === "#categories";
     }
-
-    // 7. Shop: ONLY active when specifically on /shop and NOT on any specific sub-filter
     if (itemPath === "/shop") {
       return (
         (pathname === "/shop" || pathname === "/products") &&
@@ -133,14 +233,6 @@ const NavBar: React.FC = () => {
     }
 
     return pathname === itemPath;
-  };
-
-  const handleSearchSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      navigate(`/shop?search=${encodeURIComponent(searchQuery.trim())}`);
-      setIsMobileMenuOpen(false);
-    }
   };
 
   return (
@@ -208,42 +300,216 @@ const NavBar: React.FC = () => {
             </div>
           </Link>
 
-          {/* Centered Command-Style Search Box */}
-          <form
-            onSubmit={handleSearchSubmit}
-            className="flex-1 max-w-2xl hidden md:flex items-center"
+          {/* ========================================================================= */}
+          {/* PROFESSIONAL LIVE PREDICTIVE SEARCH BAR (DESKTOP)                         */}
+          {/* ========================================================================= */}
+          <div
+            ref={searchContainerRef}
+            className="flex-1 max-w-2xl hidden md:block relative z-50"
           >
-            <div className="w-full flex items-center bg-slate-100/90 hover:bg-slate-150/90 dark:bg-slate-800/80 dark:hover:bg-slate-800 rounded-full pl-4 pr-1.5 py-1.5 gap-2.5 transition-all duration-200 border border-slate-200/90 dark:border-slate-700/80 focus-within:bg-white dark:focus-within:bg-[#0B1020] focus-within:border-primary dark:focus-within:border-primary-dark focus-within:ring-2 focus-within:ring-primary/15 shadow-2xs group">
-              <Search
-                size={18}
-                className="text-slate-400 group-focus-within:text-primary dark:group-focus-within:text-primary-dark shrink-0 transition-colors"
-              />
-              <input
-                type="text"
-                placeholder="Search authentic skincare, makeup, serums, sunscreen..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-transparent text-sm text-slate-800 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none transition-colors"
-              />
-              {searchQuery ? (
-                <button
-                  type="button"
-                  onClick={() => setSearchQuery("")}
-                  className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer p-1"
-                  title="Clear search"
-                >
-                  <X size={16} />
-                </button>
-              ) : (
+            <form onSubmit={handleSearchSubmit} className="w-full">
+              <div
+                className={`w-full flex items-center bg-slate-100/90 dark:bg-slate-800/80 hover:bg-slate-150/90 dark:hover:bg-slate-800 rounded-full pl-4 pr-1.5 py-1.5 gap-2.5 transition-all duration-200 border ${
+                  isSearchFocused
+                    ? "bg-white dark:bg-[#0B1020] border-primary dark:border-primary-dark ring-2 ring-primary/15 shadow-md"
+                    : "border-slate-200/90 dark:border-slate-700/80 shadow-2xs"
+                } group`}
+              >
+                <Search
+                  size={18}
+                  className={`shrink-0 transition-colors ${
+                    isSearchFocused
+                      ? "text-primary dark:text-primary-dark"
+                      : "text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300"
+                  }`}
+                />
+                <input
+                  ref={searchInputRef}
+                  type="text"
+                  placeholder="Search authentic skincare, makeup, serums, sunscreen, brands..."
+                  value={searchQuery}
+                  onFocus={() => setIsSearchFocused(true)}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                    if (!isSearchFocused) setIsSearchFocused(true);
+                  }}
+                  className="w-full bg-transparent text-sm text-slate-800 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none transition-colors"
+                />
+                {searchQuery ? (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSearchQuery("");
+                      searchInputRef.current?.focus();
+                    }}
+                    className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer p-1 rounded-full hover:bg-slate-200/60 dark:hover:bg-slate-700 transition-colors"
+                    title="Clear search"
+                  >
+                    <X size={16} />
+                  </button>
+                ) : null}
+
                 <button
                   type="submit"
                   className="px-4 py-1.5 bg-[#F85606] hover:bg-[#D94400] text-white text-xs font-bold rounded-full shadow-xs cursor-pointer transition-all active:scale-95 shrink-0"
                 >
                   Search
                 </button>
-              )}
-            </div>
-          </form>
+              </div>
+            </form>
+
+            {/* Instant Predictive Autocomplete Dropdown Popup */}
+            {isSearchFocused && (
+              <div className="absolute left-0 right-0 top-full mt-2 bg-white dark:bg-[#111726] rounded-2xl shadow-2xl border border-slate-200/90 dark:border-slate-800 p-3 z-50 animate-in fade-in zoom-in-95 duration-150 overflow-hidden max-h-[460px] overflow-y-auto no-scrollbar">
+                {searchQuery.trim().length > 0 ? (
+                  <>
+                    {/* Matching Brands / Categories Quick Jump */}
+                    {(matchingBrands.length > 0 || matchingCategories.length > 0) && (
+                      <div className="flex flex-wrap items-center gap-1.5 pb-2.5 mb-2.5 border-b border-slate-100 dark:border-slate-800/80">
+                        <span className="text-[11px] font-semibold text-slate-400">Quick Jump:</span>
+                        {matchingBrands.map((b) => (
+                          <button
+                            key={b}
+                            type="button"
+                            onClick={() => handleSelectBrand(b)}
+                            className="px-2.5 py-1 text-xs font-bold rounded-lg bg-primary-soft dark:bg-primary/20 text-primary dark:text-primary-dark hover:bg-primary hover:text-white transition-colors cursor-pointer"
+                          >
+                            Brand: {b}
+                          </button>
+                        ))}
+                        {matchingCategories.map((c) => (
+                          <button
+                            key={c.slug}
+                            type="button"
+                            onClick={() => handleSelectCategory(c.slug)}
+                            className="px-2.5 py-1 text-xs font-bold rounded-lg bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 hover:bg-amber-500 hover:text-white transition-colors cursor-pointer"
+                          >
+                            Category: {c.name}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Matching Products List */}
+                    {topSuggestedProducts.length > 0 ? (
+                      <div className="space-y-1">
+                        <div className="flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-2 pb-1">
+                          <span>Matching Products</span>
+                          <span>{liveSearchResults.length} found</span>
+                        </div>
+
+                        {topSuggestedProducts.map((p) => (
+                          <Link
+                            key={p.id}
+                            to={`/product/${p.slug}`}
+                            onClick={() => setIsSearchFocused(false)}
+                            className="flex items-center gap-3 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/70 transition-colors group"
+                          >
+                            <img
+                              src={p.image}
+                              alt={p.name}
+                              className="w-12 h-12 rounded-lg object-contain bg-slate-50 dark:bg-slate-900 border border-slate-150 dark:border-slate-800 shrink-0"
+                            />
+                            <div className="min-w-0 flex-1">
+                              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block">
+                                {p.brand}
+                              </span>
+                              <p className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 group-hover:text-primary dark:group-hover:text-primary-dark truncate transition-colors">
+                                {p.name}
+                              </p>
+                              <div className="flex items-center gap-2 mt-0.5">
+                                <span className="text-xs font-bold text-[#F85606]">
+                                  ৳{p.price.toLocaleString()}
+                                </span>
+                                {p.originalPrice && (
+                                  <span className="text-[11px] text-slate-400 line-through">
+                                    ৳{p.originalPrice.toLocaleString()}
+                                  </span>
+                                )}
+                                {p.inStock ? (
+                                  <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium ml-auto">
+                                    In Stock
+                                  </span>
+                                ) : (
+                                  <span className="text-[10px] text-rose-500 font-medium ml-auto">
+                                    Out of Stock
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                          </Link>
+                        ))}
+
+                        {/* View All Matches CTA Button */}
+                        <button
+                          type="button"
+                          onClick={() => handleSearchSubmit()}
+                          className="w-full mt-2 py-2.5 px-3 bg-slate-50 hover:bg-primary-soft dark:bg-slate-800/60 dark:hover:bg-primary/20 text-primary dark:text-primary-dark rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition-colors cursor-pointer border border-slate-200/60 dark:border-slate-700"
+                        >
+                          <span>View all {liveSearchResults.length} results for "{searchQuery}"</span>
+                          <ArrowRight size={14} />
+                        </button>
+                      </div>
+                    ) : (
+                      /* Zero Match State */
+                      <div className="p-5 text-center">
+                        <div className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center mx-auto mb-2 text-slate-400">
+                          <Search size={18} />
+                        </div>
+                        <p className="text-xs font-bold text-slate-700 dark:text-slate-200">
+                          No products found for "{searchQuery}"
+                        </p>
+                        <p className="text-[11px] text-slate-400 mt-1 max-w-xs mx-auto">
+                          Try searching by generic name like "Serum", "Toner", "Cream", or brand name like "COSRX", "Anua".
+                        </p>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  /* Initial State: Trending Searches & Popular Brands */
+                  <div className="p-2 space-y-3.5">
+                    <div>
+                      <div className="flex items-center gap-1.5 text-xs font-bold text-slate-700 dark:text-slate-200 mb-2">
+                        <TrendingUp size={14} className="text-[#F85606]" />
+                        <span>Trending Searches</span>
+                      </div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {TRENDING_SEARCHES.map((term) => (
+                          <button
+                            key={term}
+                            type="button"
+                            onClick={() => handleSelectTrending(term)}
+                            className="px-2.5 py-1.5 text-xs rounded-full bg-slate-100 hover:bg-primary-soft text-slate-700 hover:text-primary dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-200 transition-colors cursor-pointer font-medium"
+                          >
+                            {term}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
+                      <div className="flex items-center gap-1.5 text-xs font-bold text-slate-700 dark:text-slate-200 mb-2">
+                        <Sparkles size={14} className="text-primary dark:text-primary-dark" />
+                        <span>Top Brands</span>
+                      </div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {POPULAR_BRANDS.map((brand) => (
+                          <button
+                            key={brand}
+                            type="button"
+                            onClick={() => handleSelectBrand(brand)}
+                            className="px-2.5 py-1 text-xs font-bold rounded-lg bg-slate-100 hover:bg-primary hover:text-white text-slate-700 dark:bg-slate-800 dark:text-slate-200 transition-all cursor-pointer"
+                          >
+                            {brand}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
 
           {/* Right Action Items: Cart, User Icon with Dropdown, Theme Toggle */}
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
@@ -586,7 +852,7 @@ const NavBar: React.FC = () => {
       {/* 4. MOBILE DRAWER MENU                                                     */}
       {/* ========================================================================= */}
       {isMobileMenuOpen && (
-        <div className="md:hidden w-full bg-white dark:bg-[#0E1322] border-b border-slate-200 dark:border-slate-800 px-4 py-5 space-y-4 animate-in slide-in-from-top-2 transition-colors duration-200 shadow-xl">
+        <div className="md:hidden w-full bg-white dark:bg-[#0E1322] border-b border-slate-200 dark:border-slate-800 px-4 py-5 space-y-4 animate-in slide-in-from-top-2 transition-colors duration-200 shadow-xl max-h-[85vh] overflow-y-auto">
           {/* Mobile User Section */}
           <div className="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-2xl flex items-center justify-between gap-3">
             {currentUser ? (
@@ -636,28 +902,67 @@ const NavBar: React.FC = () => {
             )}
           </div>
 
-          {/* Mobile Search Input */}
-          <form onSubmit={handleSearchSubmit} className="w-full">
-            <div className="w-full flex items-center bg-slate-100 dark:bg-slate-800 rounded-full px-4 py-2.5 gap-2.5 border border-slate-200 dark:border-slate-700">
-              <Search size={16} className="text-slate-400" />
-              <input
-                type="text"
-                placeholder="Search products, brands, categories..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-transparent text-sm text-slate-800 dark:text-slate-100 placeholder:text-slate-400 outline-none"
-              />
-              {searchQuery && (
+          {/* Mobile Search Input with Predictive Suggestions */}
+          <div className="w-full">
+            <form onSubmit={handleSearchSubmit} className="w-full">
+              <div className="w-full flex items-center bg-slate-100 dark:bg-slate-800 rounded-full pl-4 pr-1.5 py-1.5 gap-2 border border-slate-200 dark:border-slate-700">
+                <Search size={16} className="text-slate-400 shrink-0" />
+                <input
+                  type="text"
+                  placeholder="Search products, brands, categories..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full bg-transparent text-sm text-slate-800 dark:text-slate-100 placeholder:text-slate-400 outline-none"
+                />
+                {searchQuery && (
+                  <button
+                    type="button"
+                    onClick={() => setSearchQuery("")}
+                    className="text-slate-400 hover:text-slate-600 p-1"
+                  >
+                    <X size={15} />
+                  </button>
+                )}
                 <button
-                  type="button"
-                  onClick={() => setSearchQuery("")}
-                  className="text-slate-400 hover:text-slate-600"
+                  type="submit"
+                  className="px-3.5 py-1.5 bg-[#F85606] text-white text-xs font-bold rounded-full shrink-0"
                 >
-                  <X size={15} />
+                  Search
                 </button>
-              )}
-            </div>
-          </form>
+              </div>
+            </form>
+
+            {/* Mobile Quick Results Preview if searching */}
+            {searchQuery.trim().length > 0 && topSuggestedProducts.length > 0 && (
+              <div className="mt-2 p-2 bg-slate-50 dark:bg-slate-800/80 rounded-xl space-y-1.5 border border-slate-200/80 dark:border-slate-700">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-1">
+                  Live Matches ({liveSearchResults.length})
+                </span>
+                {topSuggestedProducts.slice(0, 3).map((p) => (
+                  <Link
+                    key={p.id}
+                    to={`/product/${p.slug}`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center gap-2.5 p-1.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800"
+                  >
+                    <img
+                      src={p.image}
+                      alt={p.name}
+                      className="w-9 h-9 rounded object-contain bg-slate-50 dark:bg-slate-800"
+                    />
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs font-semibold text-slate-800 dark:text-slate-200 truncate">
+                        {p.name}
+                      </p>
+                      <span className="text-xs font-bold text-[#F85606]">
+                        ৳{p.price.toLocaleString()}
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
 
           {/* Category List */}
           <div className="space-y-1 pt-1">

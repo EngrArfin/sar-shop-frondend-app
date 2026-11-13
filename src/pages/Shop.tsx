@@ -11,7 +11,7 @@ import FigmaShopSidebar from "@/components/Shop/FigmaShopSidebar";
 import FigmaShopProductCard from "@/components/Shop/FigmaShopProductCard";
 import ProductQuickViewModal from "@/components/Shop/ProductQuickViewModal";
 import NewsletterVIP from "@/components/Home/LandingPage/NewsletterVIP";
-import { ChevronLeft, ChevronRight, PackageSearch, SlidersHorizontal } from "lucide-react";
+import { ChevronLeft, ChevronRight, PackageSearch, SlidersHorizontal, Search, X } from "lucide-react";
 import { toast } from "sonner";
 
 export const Shop: React.FC = () => {
@@ -65,7 +65,7 @@ export const Shop: React.FC = () => {
       ...prev,
       category: cat,
       subcategory: sub,
-      selectedBrands: brand ? [brand] : prev.selectedBrands,
+      selectedBrands: brand ? [brand] : [],
       search: q,
     }));
     setCurrentPage(1);
@@ -120,15 +120,14 @@ export const Shop: React.FC = () => {
   // Filter & Sort Products
   const filteredProducts = useMemo(() => {
     return MOCK_PRODUCTS.filter((product) => {
-      // 1. Keyword search
+      // 1. Keyword search (Professional Multi-Token Matching)
       if (filters.search) {
-        const query = filters.search.toLowerCase();
-        const matchesName = product.name.toLowerCase().includes(query);
-        const matchesBrand = product.brand.toLowerCase().includes(query);
-        const matchesTags = product.tags?.some((t) =>
-          t.toLowerCase().includes(query)
-        );
-        if (!matchesName && !matchesBrand && !matchesTags) return false;
+        const terms = filters.search.toLowerCase().trim().split(/\s+/).filter(Boolean);
+        if (terms.length > 0) {
+          const searchableText = `${product.name} ${product.brand} ${product.category} ${product.subcategory || ""} ${product.tags?.join(" ") || ""} ${product.description || ""}`.toLowerCase();
+          const matches = terms.every((term) => searchableText.includes(term));
+          if (!matches) return false;
+        }
       }
 
       // 2. Category & Subcategory
@@ -272,6 +271,33 @@ export const Shop: React.FC = () => {
 
           {/* Right Section: 4-Column Product Grid (Exact Figma: width 1015, left 625, top 498) */}
           <div className="flex-1 w-full min-w-0 flex flex-col justify-between">
+            {/* Search Results Banner */}
+            {filters.search && (
+              <div className="mb-5 p-4 bg-surface-card dark:bg-[#111622] rounded-2xl border border-black/[0.08] dark:border-gray-800 shadow-2xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-9 h-9 rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-dark flex items-center justify-center shrink-0">
+                    <Search size={16} />
+                  </div>
+                  <div>
+                    <h2 className="text-base sm:text-lg font-bold font-inter text-gray-900 dark:text-white leading-tight">
+                      Search results for <span className="text-primary dark:text-primary-dark">"{filters.search}"</span>
+                    </h2>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                      Found {filteredProducts.length} authentic item{filteredProducts.length !== 1 ? "s" : ""}
+                    </p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => handleFilterChange({ search: "" })}
+                  className="px-3 py-1.5 rounded-xl text-xs font-semibold text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/40 border border-rose-200 dark:border-rose-900 flex items-center gap-1.5 transition-colors cursor-pointer"
+                >
+                  <X size={14} />
+                  <span>Clear Search</span>
+                </button>
+              </div>
+            )}
+
             {/* Product Grid: 4 columns on large screens, 3 on md, 2 on sm */}
             {paginatedProducts.length > 0 ? (
               <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
