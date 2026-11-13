@@ -30,18 +30,18 @@ const Home = () => {
   };
 
   return (
-    <div className="w-full bg-[#FFFCFE] dark:bg-[#090D14] transition-colors duration-200 overflow-hidden">
-      {/* 1. Main Hero 5-Card Banner Grid (Figma: top: 158, height: 898, #FFF9FB) */}
+    <div className="w-full bg-surface-page dark:bg-[#090D14] transition-colors duration-200 overflow-hidden">
+      {/* 1. Main Hero 5-Card Banner Grid */}
       <Hero />
 
-      {/* 2. Brand Capsule Marquee directly beneath Hero (Figma) */}
+      {/* 2. Brand Capsule Marquee directly beneath Hero */}
       <BrandMarquee />
 
-      {/* 3. Section 1: Jewellery & Accessories Category Stadium Pills (Figma: top: 1056, height: 998, #FDFDFD) */}
+      {/* 3. Section 1: Jewellery & Accessories Category Stadium Pills */}
       <BrandCategories title="Jewellery & Accessories" />
 
-      {/* 4. Section 2: Beauty & Personal Care Category Stadium Pills (Figma: top: 2054, height: 998, #FDFDFD) */}
-      <BrandCategories title="Beauty & Personal Care" className="border-t border-[#F6E7ED]" />
+      {/* 4. Section 2: Beauty & Personal Care Category Stadium Pills */}
+      <BrandCategories title="Beauty & Personal Care" className="border-t border-primary-border dark:border-gray-800" />
 
       {/* 5. Section 3: New Arrival 5-Col x 2-Row Product Grid + See All (Figma: top: 3052, height: 1171, white) */}
       <NewArrivalsSection

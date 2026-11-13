@@ -18,10 +18,10 @@ export const NewsletterVIP: React.FC = () => {
   };
 
   return (
-    <section className="w-full bg-[#FFFCFE] dark:bg-[#090D14] py-8 sm:py-12 transition-colors duration-200">
+    <section className="w-full bg-surface-page dark:bg-[#090D14] py-8 sm:py-12 transition-colors duration-200">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-8">
-        {/* Exact Figma Container: background #FEEAF1, borderRadius 12, padding 48px */}
-        <div className="w-full bg-[#FEEAF1] dark:bg-[#1C141B] rounded-xl py-12 px-6 sm:px-10 lg:px-14 shadow-2xs border border-pink-200/50 dark:border-pink-900/40 transition-colors duration-200">
+        {/* VIP Container */}
+        <div className="w-full bg-primary-light dark:bg-[#0E1E1C] rounded-xl py-12 px-6 sm:px-10 lg:px-14 shadow-2xs border border-primary-border dark:border-[#1D3B37] transition-colors duration-200">
           <div className="max-w-[1280px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
             {/* Left Content */}
             <div className="flex-1 max-w-2xl text-center lg:text-left">
@@ -45,12 +45,12 @@ export const NewsletterVIP: React.FC = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
                   required
-                  className="w-full px-3.5 py-2.5 bg-[#FDFDFD] dark:bg-gray-800 text-[#1B1E23] dark:text-white placeholder-[#717680] dark:placeholder-gray-400 text-base font-inter rounded-lg border border-[#D5D7DA] dark:border-gray-700 focus:outline-none focus:border-[#930D45] dark:focus:border-[#FF4D82] shadow-xs"
+                  className="w-full px-3.5 py-2.5 bg-surface-card dark:bg-gray-800 text-[#1B1E23] dark:text-white placeholder-[#717680] dark:placeholder-gray-400 text-base font-inter rounded-lg border border-primary-border dark:border-gray-700 focus:outline-none focus:border-primary dark:focus:border-primary-dark shadow-xs"
                 />
               </div>
               <button
                 type="submit"
-                className="w-full sm:w-auto px-5 py-2.5 bg-[#FFE2FF] hover:bg-[#ffd1ff] text-[#500624] font-inter font-bold text-lg leading-[23.4px] rounded-lg transition-colors cursor-pointer shrink-0 shadow-xs"
+                className="w-full sm:w-auto px-5 py-2.5 bg-primary hover:bg-primary-hover text-white font-inter font-bold text-lg leading-[23.4px] rounded-lg transition-colors cursor-pointer shrink-0 shadow-xs"
               >
                 Subscribe
               </button>

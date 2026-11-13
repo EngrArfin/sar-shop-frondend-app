@@ -4,7 +4,7 @@ import augustBannerImg from "@/assets/banners/banner-august-deals.jpg";
 
 export const AugustBeautyBanner: React.FC = () => {
   return (
-    <section className="w-full bg-[#FFF9FB] dark:bg-[#090D14] pt-14 sm:pt-20 pb-4 transition-colors duration-200">
+    <section className="w-full bg-surface-tint dark:bg-[#090D14] pt-14 sm:pt-20 pb-4 transition-colors duration-200">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-8">
         <Link
           to="/shop?category=skin-care"

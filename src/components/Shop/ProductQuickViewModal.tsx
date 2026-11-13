@@ -87,7 +87,7 @@ export const ProductQuickViewModal: React.FC<ProductQuickViewModalProps> = ({
                 className="w-full h-full object-cover transition-all duration-300"
               />
               {product.discountPercent && (
-                <span className="absolute top-3 left-3 bg-pink-800 text-white text-xs font-bold px-2.5 py-1 rounded shadow-xs">
+                <span className="absolute top-3 left-3 bg-[#F85606] text-white text-xs font-extrabold px-2.5 py-1 rounded shadow-xs">
                   -{product.discountPercent}% OFF
                 </span>
               )}
@@ -100,7 +100,7 @@ export const ProductQuickViewModal: React.FC<ProductQuickViewModalProps> = ({
                   onClick={() => setSelectedImage(product.image)}
                   className={`w-16 h-16 rounded-xl overflow-hidden cursor-pointer transition-all ${
                     currentImage === product.image
-                      ? "ring-2 ring-pink-800 scale-102"
+                      ? "ring-2 ring-primary scale-102"
                       : "opacity-70 hover:opacity-100 shadow-2xs"
                   }`}
                 >
@@ -114,7 +114,7 @@ export const ProductQuickViewModal: React.FC<ProductQuickViewModalProps> = ({
                   onClick={() => setSelectedImage(product.hoverImage!)}
                   className={`w-16 h-16 rounded-xl overflow-hidden cursor-pointer transition-all ${
                     currentImage === product.hoverImage
-                      ? "ring-2 ring-pink-800 scale-102"
+                      ? "ring-2 ring-primary scale-102"
                       : "opacity-70 hover:opacity-100 shadow-2xs"
                   }`}
                 >
@@ -130,15 +130,15 @@ export const ProductQuickViewModal: React.FC<ProductQuickViewModalProps> = ({
             {/* Quick Guarantees */}
             <div className="grid grid-cols-3 gap-2 pt-3 text-center text-[11px] text-gray-500 dark:text-gray-400">
               <div className="flex flex-col items-center gap-1">
-                <ShieldCheck size={18} className="text-pink-800 dark:text-[#FF4D82]" />
+                <ShieldCheck size={18} className="text-primary dark:text-primary-dark" />
                 <span>100% Authentic</span>
               </div>
               <div className="flex flex-col items-center gap-1">
-                <Truck size={18} className="text-pink-800 dark:text-[#FF4D82]" />
+                <Truck size={18} className="text-primary dark:text-primary-dark" />
                 <span>Fast Delivery</span>
               </div>
               <div className="flex flex-col items-center gap-1">
-                <RefreshCw size={18} className="text-pink-800 dark:text-[#FF4D82]" />
+                <RefreshCw size={18} className="text-primary dark:text-primary-dark" />
                 <span>Easy Return</span>
               </div>
             </div>
@@ -148,7 +148,7 @@ export const ProductQuickViewModal: React.FC<ProductQuickViewModalProps> = ({
           <div className="flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between gap-2 mb-1">
-                <span className="text-xs font-bold uppercase tracking-wider text-pink-800 dark:text-[#FF4D82]">
+                <span className="text-xs font-bold uppercase tracking-wider text-primary dark:text-primary-dark">
                   {product.brand}
                 </span>
                 <span
@@ -189,7 +189,7 @@ export const ProductQuickViewModal: React.FC<ProductQuickViewModalProps> = ({
 
               {/* Price */}
               <div className="flex items-baseline gap-3 my-3">
-                <span className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white">
+                <span className="text-2xl sm:text-3xl font-extrabold text-[#F85606]">
                   ৳{product.price.toLocaleString()}
                 </span>
                 {product.originalPrice && (
@@ -214,7 +214,7 @@ export const ProductQuickViewModal: React.FC<ProductQuickViewModalProps> = ({
                     {product.skinConcern.map((c) => (
                       <span
                         key={c}
-                        className="text-[11px] font-medium bg-pink-50 dark:bg-pink-950/40 text-pink-800 dark:text-[#FF4D82] px-2.5 py-0.5 rounded-md"
+                        className="text-[11px] font-medium bg-primary-light dark:bg-[#182552]/60 text-primary dark:text-primary-dark px-2.5 py-0.5 rounded-md"
                       >
                         {c}
                       </span>
@@ -257,7 +257,7 @@ export const ProductQuickViewModal: React.FC<ProductQuickViewModalProps> = ({
                       ? "bg-gray-150 dark:bg-gray-800 text-gray-400 cursor-not-allowed"
                       : added
                       ? "bg-emerald-600 text-white shadow-md scale-102"
-                      : "bg-pink-800 text-white hover:bg-pink-900 hover:shadow-md active:scale-98"
+                      : "bg-primary text-white hover:bg-primary-hover hover:shadow-md active:scale-98"
                   }`}
                 >
                   {added ? (
@@ -280,8 +280,8 @@ export const ProductQuickViewModal: React.FC<ProductQuickViewModalProps> = ({
                     aria-label="Wishlist"
                     className={`w-11 h-11 rounded-xl flex items-center justify-center shadow-xs transition-all cursor-pointer ${
                       isWishlisted
-                        ? "bg-pink-800 text-white"
-                        : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:text-pink-800 dark:hover:text-[#FF4D82]"
+                        ? "bg-primary text-white"
+                        : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary-dark"
                     }`}
                   >
                     <Heart size={20} fill={isWishlisted ? "currentColor" : "none"} />
@@ -294,7 +294,7 @@ export const ProductQuickViewModal: React.FC<ProductQuickViewModalProps> = ({
                 <Link
                   to={`/product/${product.slug}`}
                   onClick={onClose}
-                  className="text-xs font-semibold text-pink-800 dark:text-[#FF4D82] hover:underline"
+                  className="text-xs font-semibold text-primary dark:text-primary-dark hover:underline"
                 >
                   View full product specifications →
                 </Link>

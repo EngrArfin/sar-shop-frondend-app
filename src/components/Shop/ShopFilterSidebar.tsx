@@ -273,7 +273,7 @@ export const ShopFilterSidebar: React.FC<ShopFilterSidebarProps> = ({
                           <span className="truncate">{sub.name}</span>
                           <span
                             className={
-                              isSubSelected ? "text-indigo-100" : "text-gray-400"
+                              isSubSelected ? "text-primary-soft" : "text-gray-400"
                             }
                           >
                             {sub.count}

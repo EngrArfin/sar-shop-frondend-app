@@ -15,7 +15,7 @@ export const FeaturedProductsCarousel: React.FC = () => {
   };
 
   return (
-    <section className="w-full bg-[#F6E7ED] dark:bg-[#0E131F] py-16 sm:py-20 overflow-hidden select-none transition-colors duration-200">
+    <section className="w-full bg-surface-tint dark:bg-[#0E131F] py-16 sm:py-20 overflow-hidden select-none transition-colors duration-200">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-8">
         {/* Heading */}
         <div className="text-center mb-12 sm:mb-16">
@@ -106,14 +106,14 @@ export const FeaturedProductsCarousel: React.FC = () => {
                   />
 
                   {/* Top Floating Glass Circle Button */}
-                  <div className="self-center mt-auto mb-auto w-[66px] h-[66px] rounded-full bg-[rgba(254,234,241,0.25)] backdrop-blur-[3px] flex items-center justify-center shadow-xs">
+                  <div className="self-center mt-auto mb-auto w-[66px] h-[66px] rounded-full bg-[rgba(227,242,239,0.28)] backdrop-blur-[3px] flex items-center justify-center shadow-xs">
                     <div className="w-6 h-6 flex items-center justify-center text-white">
                       <ShoppingBag size={20} />
                     </div>
                   </div>
 
                   {/* Bottom Product Info Card */}
-                  <div className="relative z-10 w-full bg-[#FFFDFD] dark:bg-gray-900/95 rounded-[12px] p-2 flex items-center gap-2 shadow-sm border border-transparent dark:border-gray-800">
+                  <div className="relative z-10 w-full bg-surface-card dark:bg-gray-900/95 rounded-[12px] p-2 flex items-center gap-2 shadow-md border border-black/[0.06] dark:border-gray-800">
                     <img
                       src={item.thumb}
                       alt={item.title}
@@ -123,7 +123,7 @@ export const FeaturedProductsCarousel: React.FC = () => {
                       <h4 className="text-base sm:text-lg font-faustina font-semibold text-black dark:text-white truncate leading-snug">
                         {item.title}
                       </h4>
-                      <p className="text-sm sm:text-base font-faustina font-semibold text-[#5F6674] dark:text-gray-300">
+                      <p className="text-sm sm:text-base font-faustina font-bold text-[#F85606]">
                         {item.price}
                       </p>
                     </div>
@@ -147,7 +147,7 @@ export const FeaturedProductsCarousel: React.FC = () => {
         <div className="text-center mt-12">
           <Link
             to="/shop?filter=featured"
-            className="inline-flex items-center justify-center h-10 px-4 py-2.5 rounded-[8px] border-[1.5px] border-[#A20E4C] dark:border-[#FF4D82] text-[#A20E4C] dark:text-[#FF4D82] hover:bg-[#A20E4C] dark:hover:bg-[#FF4D82] hover:text-white font-inter font-semibold text-base transition-all duration-200"
+            className="inline-flex items-center justify-center h-10 px-4 py-2.5 rounded-[8px] border-[1.5px] border-primary dark:border-primary-dark text-primary dark:text-primary-dark hover:bg-primary dark:hover:bg-primary-dark hover:text-white dark:hover:text-gray-950 font-inter font-semibold text-base transition-all duration-200"
           >
             See all
           </Link>

@@ -54,12 +54,12 @@ export const ActiveFilters: React.FC<ActiveFiltersProps> = ({
   if (!hasAnyFilter) return null;
 
   return (
-    <div className="flex flex-wrap items-center gap-2 mb-6 p-3 bg-primary-light/50 rounded-xl border border-indigo-100">
+    <div className="flex flex-wrap items-center gap-2 mb-6 p-3 bg-primary-light/60 rounded-xl border border-primary-border">
       <span className="text-xs font-bold text-gray-700 mr-1">Active Filters:</span>
 
       {/* Category Pill */}
       {filters.category && (
-        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-white text-primary border border-indigo-200 shadow-2xs">
+        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-white text-primary border border-primary-soft-border shadow-2xs">
           <span>Category: {activeCategory?.name || filters.category}</span>
           <button
             onClick={onRemoveCategory}
@@ -73,7 +73,7 @@ export const ActiveFilters: React.FC<ActiveFiltersProps> = ({
 
       {/* Subcategory Pill */}
       {filters.subcategory && (
-        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-white text-primary border border-indigo-200 shadow-2xs">
+        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-white text-primary border border-primary-soft-border shadow-2xs">
           <span>Subcategory: {activeSubcategory?.name || filters.subcategory}</span>
           <button
             onClick={onRemoveSubcategory}
@@ -148,7 +148,7 @@ export const ActiveFilters: React.FC<ActiveFiltersProps> = ({
 
       {/* On Sale Pill */}
       {filters.onSaleOnly && (
-        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-white text-primary border border-indigo-200 shadow-2xs">
+        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-white text-primary border border-primary-soft-border shadow-2xs">
           <span>On Sale</span>
           <button
             onClick={onToggleOnSale}
@@ -162,7 +162,7 @@ export const ActiveFilters: React.FC<ActiveFiltersProps> = ({
 
       {/* Skin Concern Pill */}
       {filters.skinConcern && filters.skinConcern !== "All Concerns" && (
-        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-white text-purple-700 border border-purple-200 shadow-2xs">
+        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-white text-primary border border-primary-soft-border shadow-2xs">
           <span>Concern: {filters.skinConcern}</span>
           <button
             onClick={onRemoveConcern}

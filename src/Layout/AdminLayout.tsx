@@ -71,10 +71,10 @@ const AdminLayout = () => {
   };
 
   return (
-    <div className="flex h-screen overflow-hidden bg-gradient-to-r from-[#052318] via-[#0A1C19] to-[#0F131B]">
+    <div className="flex h-screen overflow-hidden bg-gradient-to-r from-[#0C142A] via-[#121D3D] to-[#1C2C5E]">
       {/* Sidebar - Fixed on Desktop */}
       {!shouldHideSidebar() && (
-        <div className="hidden lg:flex w-72 flex-col fixed inset-y-0 z-30  bg-[#052218]">
+        <div className="hidden lg:flex w-72 flex-col fixed inset-y-0 z-30 bg-[#0C142A]">
           <AdminSidebar />
         </div>
       )}
@@ -87,7 +87,7 @@ const AdminLayout = () => {
       >
         {/* Navbar */}
         {!shouldHideNavbar && (
-          <div className="fixed top-0 left-0 right-0 z-20 bg-white ">
+          <div className="fixed top-0 left-0 right-0 z-20 bg-surface-page dark:bg-[#101B19] shadow-xs">
             <AdminDashboardNavBar
               onMobileMenuToggle={handleMobileMenuToggle}
               notificationCount={3}
@@ -108,7 +108,7 @@ const AdminLayout = () => {
 
         {/* Scrollable Page Content */}
         <main
-          className={`flex-1 overflow-y-auto mt-16 text-black bg-[#EBE8E3] ${
+          className={`flex-1 overflow-y-auto mt-16 text-gray-900 dark:text-gray-100 bg-surface-page dark:bg-[#090D14] ${
             isSidebarOpen ? "pt-4 md:pt-10" : "p-4 md:p-10"
           }`}
         >

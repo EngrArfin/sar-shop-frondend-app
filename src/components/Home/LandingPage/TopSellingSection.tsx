@@ -9,7 +9,7 @@ export const TopSellingSection: React.FC<{
   const topSelling = MOCK_PRODUCTS.slice(5, 15);
 
   return (
-    <section className="w-full bg-[#FFF9FB] dark:bg-[#090D14] py-12 sm:py-16 transition-colors duration-200">
+    <section className="w-full bg-surface-tint dark:bg-[#090D14] py-12 sm:py-16 transition-colors duration-200">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-8">
         {/* Section Heading */}
         <div className="text-center mb-10 sm:mb-12">
@@ -33,7 +33,7 @@ export const TopSellingSection: React.FC<{
         <div className="text-center">
           <Link
             to="/top-selling"
-            className="inline-flex items-center justify-center h-10 px-6 sm:px-8 rounded-[8px] bg-[#FFE2FF] hover:bg-[#ffd1ff] text-[#500624] font-inter font-bold text-sm sm:text-base transition-all duration-200 cursor-pointer shadow-2xs"
+            className="inline-flex items-center justify-center h-10 px-6 sm:px-8 rounded-[8px] bg-primary-soft hover:bg-primary-soft-hover dark:bg-[#182552] dark:hover:bg-[#1E2D63] text-primary-ink dark:text-[#93C5FD] border border-primary-soft-border/60 dark:border-[#22336B] font-inter font-bold text-sm sm:text-base transition-all duration-200 cursor-pointer shadow-2xs"
           >
             See all
           </Link>

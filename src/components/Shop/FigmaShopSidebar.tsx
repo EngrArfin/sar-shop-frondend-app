@@ -51,21 +51,21 @@ export const FigmaShopSidebar: React.FC<FigmaShopSidebarProps> = ({
 
   return (
     <aside
-      className={`w-full lg:w-[325px] shrink-0 p-4 bg-[#FFFCFE] dark:bg-[#111622] rounded-[16px] border border-[#F6E7ED] dark:border-gray-800 flex flex-col gap-8 select-none transition-colors duration-200 ${className}`}
+      className={`w-full lg:w-[325px] shrink-0 p-4 bg-surface-card dark:bg-[#111622] rounded-[16px] border border-black/[0.08] dark:border-gray-800 shadow-sm flex flex-col gap-8 select-none transition-colors duration-200 ${className}`}
     >
-      {/* 1. FILTER BY PRICE (Exact Figma Slider) */}
+      {/* 1. FILTER BY PRICE */}
       <div className="w-full flex flex-col gap-10">
-        <h3 className="text-base font-inter font-semibold text-[#A20E4C] dark:text-[#FF4D82] leading-6">
+        <h3 className="text-base font-inter font-semibold text-primary dark:text-primary-dark leading-6">
           Filter By Price
         </h3>
 
         {/* Dual Range Slider with Tooltips */}
         <div className="relative w-full px-2 py-4">
-          {/* Base Background Track (Figma: background: #F6E7ED, height: 8px) */}
-          <div className="relative w-full h-2 bg-[#F6E7ED] dark:bg-gray-800 rounded-full">
-            {/* Active Pink Fill Track (Figma: background: #D490AD) */}
+          {/* Base Background Track */}
+          <div className="relative w-full h-2 bg-primary-border dark:bg-gray-800 rounded-full">
+            {/* Active Fill Track */}
             <div
-              className="absolute h-2 bg-[#D490AD] dark:bg-[#FF4D82] rounded-full"
+              className="absolute h-2 bg-primary-muted dark:bg-primary-dark rounded-full"
               style={{
                 left: `${minPercent}%`,
                 width: `${maxPercent - minPercent}%`,
@@ -105,7 +105,7 @@ export const FigmaShopSidebar: React.FC<FigmaShopSidebarProps> = ({
             style={{ left: `calc(${minPercent}% + 8px)` }}
           >
             {/* Circular Handle */}
-            <div className="w-6 h-6 rounded-full bg-white dark:bg-gray-900 border-2 border-[#B53E70] dark:border-[#FF4D82] shadow-xs" />
+            <div className="w-6 h-6 rounded-full bg-white dark:bg-gray-900 border-2 border-primary dark:border-primary-dark shadow-xs" />
             {/* Floating Tooltip Box */}
             <div className="absolute -top-10 px-3 py-1 bg-white dark:bg-gray-800 rounded-lg border border-black/10 dark:border-gray-700 shadow-md">
               <span className="text-[12px] font-manrope font-semibold text-[#414651] dark:text-gray-200 whitespace-nowrap">
@@ -120,7 +120,7 @@ export const FigmaShopSidebar: React.FC<FigmaShopSidebarProps> = ({
             style={{ left: `calc(${maxPercent}% + 8px)` }}
           >
             {/* Circular Handle */}
-            <div className="w-6 h-6 rounded-full bg-white dark:bg-gray-900 border-2 border-[#B53E70] dark:border-[#FF4D82] shadow-xs" />
+            <div className="w-6 h-6 rounded-full bg-white dark:bg-gray-900 border-2 border-primary dark:border-primary-dark shadow-xs" />
             {/* Floating Tooltip Box */}
             <div className="absolute -top-10 px-3 py-1 bg-white dark:bg-gray-800 rounded-lg border border-black/10 dark:border-gray-700 shadow-md">
               <span className="text-[12px] font-manrope font-semibold text-[#414651] dark:text-gray-200 whitespace-nowrap">
@@ -132,17 +132,17 @@ export const FigmaShopSidebar: React.FC<FigmaShopSidebarProps> = ({
       </div>
 
       {/* Divider */}
-      <div className="w-full h-px bg-[#F6E7ED] dark:bg-gray-800" />
+      <div className="w-full h-px bg-primary-border dark:bg-gray-800" />
 
       {/* 2. ALL CATEGORIES ACCORDION */}
       <div className="w-full flex flex-col gap-4">
-        <h3 className="text-base font-inter font-semibold text-[#A20E4C] dark:text-[#FF4D82] leading-6">
+        <h3 className="text-base font-inter font-semibold text-primary dark:text-primary-dark leading-6">
           All Categories
         </h3>
 
         <div className="flex flex-col gap-2">
           {/* Category Item 1: Jewellery & Accessories */}
-          <div className="rounded-lg overflow-hidden border border-[#F6E7ED]/60 dark:border-gray-800 bg-white dark:bg-[#161C2C]">
+          <div className="rounded-lg overflow-hidden border border-primary-border/80 dark:border-gray-800 bg-white dark:bg-[#161C2C]">
             <button
               type="button"
               onClick={() => toggleCategory("jewellery")}
@@ -161,7 +161,7 @@ export const FigmaShopSidebar: React.FC<FigmaShopSidebarProps> = ({
             </button>
 
             {openCategory === "jewellery" && (
-              <div className="flex flex-col border-t border-[#F6E7ED] dark:border-gray-800">
+              <div className="flex flex-col border-t border-primary-border dark:border-gray-800">
                 {[
                   "Earrings",
                   "Nose Rings & Pins",
@@ -178,12 +178,12 @@ export const FigmaShopSidebar: React.FC<FigmaShopSidebarProps> = ({
                         subcategory: sub.toLowerCase(),
                       })
                     }
-                    className="w-full h-12 px-4 flex items-center justify-between hover:bg-pink-50/30 dark:hover:bg-gray-800/50 transition-colors cursor-pointer group"
+                    className="w-full h-12 px-4 flex items-center justify-between hover:bg-primary-light/60 dark:hover:bg-gray-800/50 transition-colors cursor-pointer group"
                   >
-                    <span className="text-sm font-inter text-[#33373F] dark:text-gray-300 group-hover:text-[#A20E4C] dark:group-hover:text-[#FF4D82]">
+                    <span className="text-sm font-inter text-[#33373F] dark:text-gray-300 group-hover:text-primary dark:group-hover:text-primary-dark">
                       {sub}
                     </span>
-                    <span className="w-6 h-6 rounded-[20px] bg-[#E9EBEE] dark:bg-gray-800 border border-[#D4D7DE] dark:border-gray-700 text-[10px] font-inter font-medium text-[#3F444E] dark:text-gray-300 flex items-center justify-center">
+                    <span className="w-6 h-6 rounded-[20px] bg-primary-soft/50 dark:bg-gray-800 border border-primary-soft-border dark:border-gray-700 text-[10px] font-inter font-medium text-primary dark:text-gray-300 flex items-center justify-center">
                       50
                     </span>
                   </button>
@@ -193,7 +193,7 @@ export const FigmaShopSidebar: React.FC<FigmaShopSidebarProps> = ({
           </div>
 
           {/* Category Item 2: Beauty & Personal Care */}
-          <div className="rounded-lg overflow-hidden border border-[#F6E7ED]/60 dark:border-gray-800 bg-white dark:bg-[#161C2C]">
+          <div className="rounded-lg overflow-hidden border border-primary-border/80 dark:border-gray-800 bg-white dark:bg-[#161C2C]">
             <button
               type="button"
               onClick={() => toggleCategory("beauty")}
@@ -212,7 +212,7 @@ export const FigmaShopSidebar: React.FC<FigmaShopSidebarProps> = ({
             </button>
 
             {openCategory === "beauty" && (
-              <div className="flex flex-col border-t border-[#F6E7ED] dark:border-gray-800">
+              <div className="flex flex-col border-t border-primary-border dark:border-gray-800">
                 {[
                   "Skin Care",
                   "Personal Care",
@@ -230,12 +230,12 @@ export const FigmaShopSidebar: React.FC<FigmaShopSidebarProps> = ({
                         subcategory: sub.toLowerCase(),
                       })
                     }
-                    className="w-full h-12 px-4 flex items-center justify-between hover:bg-pink-50/30 dark:hover:bg-gray-800/50 transition-colors cursor-pointer group"
+                    className="w-full h-12 px-4 flex items-center justify-between hover:bg-primary-light/60 dark:hover:bg-gray-800/50 transition-colors cursor-pointer group"
                   >
-                    <span className="text-sm font-inter text-[#33373F] dark:text-gray-300 group-hover:text-[#A20E4C] dark:group-hover:text-[#FF4D82]">
+                    <span className="text-sm font-inter text-[#33373F] dark:text-gray-300 group-hover:text-primary dark:group-hover:text-primary-dark">
                       {sub}
                     </span>
-                    <span className="w-6 h-6 rounded-[20px] bg-[#E9EBEE] dark:bg-gray-800 border border-[#D4D7DE] dark:border-gray-700 text-[10px] font-inter font-medium text-[#3F444E] dark:text-gray-300 flex items-center justify-center">
+                    <span className="w-6 h-6 rounded-[20px] bg-primary-soft/50 dark:bg-gray-800 border border-primary-soft-border dark:border-gray-700 text-[10px] font-inter font-medium text-primary dark:text-gray-300 flex items-center justify-center">
                       50
                     </span>
                   </button>
@@ -247,16 +247,16 @@ export const FigmaShopSidebar: React.FC<FigmaShopSidebarProps> = ({
       </div>
 
       {/* Divider */}
-      <div className="w-full h-px bg-[#F6E7ED] dark:bg-gray-800" />
+      <div className="w-full h-px bg-primary-border dark:bg-gray-800" />
 
       {/* 3. BY BRAND (Search + Scrollable Radio List) */}
       <div className="w-full flex flex-col gap-4">
         <div className="flex flex-col gap-2">
-          <h3 className="text-base font-inter font-semibold text-[#A20E4C] dark:text-[#FF4D82] leading-6">
+          <h3 className="text-base font-inter font-semibold text-primary dark:text-primary-dark leading-6">
             By Brand
           </h3>
           {/* Brand Search Bar */}
-          <div className="w-full px-3.5 py-2.5 bg-[#FDFDFD] dark:bg-gray-800/90 rounded-lg border border-[#F6E7ED] dark:border-gray-700 flex items-center gap-2">
+          <div className="w-full px-3.5 py-2.5 bg-[#FDFDFD] dark:bg-gray-800/90 rounded-lg border border-primary-border dark:border-gray-700 flex items-center gap-2 focus-within:border-primary dark:focus-within:border-primary-dark transition-colors">
             <Search size={18} className="text-[#80899C] dark:text-gray-400" />
             <input
               type="text"
@@ -277,15 +277,15 @@ export const FigmaShopSidebar: React.FC<FigmaShopSidebarProps> = ({
                 key={brand.id}
                 type="button"
                 onClick={() => handleBrandSelect(brand.name)}
-                className="w-full py-2 px-3 flex items-center justify-between hover:bg-pink-50/20 dark:hover:bg-gray-800/50 rounded-lg transition-colors cursor-pointer"
+                className="w-full py-2 px-3 flex items-center justify-between hover:bg-primary-light/50 dark:hover:bg-gray-800/50 rounded-lg transition-colors cursor-pointer"
               >
                 <div className="flex items-center gap-3">
                   {/* Custom Radio Button */}
                   <div
                     className={`w-6 h-6 rounded-full flex items-center justify-center transition-all bg-[#FDFDFD] dark:bg-gray-900 ${
                       isSelected
-                        ? "border-4 border-[#A20E4C] dark:border-[#FF4D82]"
-                        : "border-2 border-[#F6E7ED] dark:border-gray-700"
+                        ? "border-4 border-primary dark:border-primary-dark"
+                        : "border-2 border-primary-border dark:border-gray-700"
                     }`}
                   />
                   {/* Brand Logo Thumbnail */}
@@ -299,7 +299,7 @@ export const FigmaShopSidebar: React.FC<FigmaShopSidebarProps> = ({
                   </span>
                 </div>
                 {/* Count Badge */}
-                <span className="w-6 h-6 rounded-[20px] bg-[#E9EBEE] dark:bg-gray-800 border border-[#D4D7DE] dark:border-gray-700 text-[10px] font-inter font-medium text-[#3F444E] dark:text-gray-300 flex items-center justify-center">
+                <span className="w-6 h-6 rounded-[20px] bg-primary-soft/50 dark:bg-gray-800 border border-primary-soft-border dark:border-gray-700 text-[10px] font-inter font-medium text-primary dark:text-gray-300 flex items-center justify-center">
                   {brand.count}
                 </span>
               </button>
@@ -309,11 +309,11 @@ export const FigmaShopSidebar: React.FC<FigmaShopSidebarProps> = ({
       </div>
 
       {/* Divider */}
-      <div className="w-full h-px bg-[#F6E7ED] dark:bg-gray-800" />
+      <div className="w-full h-px bg-primary-border dark:bg-gray-800" />
 
       {/* 4. FILTER BY STATUS */}
       <div className="w-full flex flex-col gap-4">
-        <h3 className="text-base font-inter font-semibold text-[#A20E4C] dark:text-[#FF4D82] leading-6">
+        <h3 className="text-base font-inter font-semibold text-primary dark:text-primary-dark leading-6">
           Filter By Status
         </h3>
         <div className="flex flex-col gap-1">
@@ -321,19 +321,19 @@ export const FigmaShopSidebar: React.FC<FigmaShopSidebarProps> = ({
           <button
             type="button"
             onClick={() => onFilterChange({ onSaleOnly: !filters.onSaleOnly })}
-            className="w-full py-2 px-3 flex items-center gap-3 hover:bg-pink-50/20 dark:hover:bg-gray-800/50 rounded-lg transition-colors cursor-pointer"
+            className="w-full py-2 px-3 flex items-center gap-3 hover:bg-primary-light/50 dark:hover:bg-gray-800/50 rounded-lg transition-colors cursor-pointer"
           >
             <div
               className={`w-6 h-6 rounded-full flex items-center justify-center transition-all bg-[#FDFDFD] dark:bg-gray-900 ${
                 filters.onSaleOnly
-                  ? "border-4 border-[#A20E4C] dark:border-[#FF4D82]"
-                  : "border-2 border-[#F6E7ED] dark:border-gray-700"
+                  ? "border-4 border-primary dark:border-primary-dark"
+                  : "border-2 border-primary-border dark:border-gray-700"
               }`}
             />
             <span
               className={`text-base font-inter ${
                 filters.onSaleOnly
-                  ? "font-semibold text-[#A20E4C] dark:text-[#FF4D82]"
+                  ? "font-semibold text-primary dark:text-primary-dark"
                   : "font-normal text-[#1B1E23] dark:text-gray-200"
               }`}
             >
@@ -345,19 +345,19 @@ export const FigmaShopSidebar: React.FC<FigmaShopSidebarProps> = ({
           <button
             type="button"
             onClick={() => onFilterChange({ inStockOnly: !filters.inStockOnly })}
-            className="w-full py-2 px-3 flex items-center gap-3 hover:bg-pink-50/20 dark:hover:bg-gray-800/50 rounded-lg transition-colors cursor-pointer"
+            className="w-full py-2 px-3 flex items-center gap-3 hover:bg-primary-light/50 dark:hover:bg-gray-800/50 rounded-lg transition-colors cursor-pointer"
           >
             <div
               className={`w-6 h-6 rounded-full flex items-center justify-center transition-all bg-[#FDFDFD] dark:bg-gray-900 ${
                 filters.inStockOnly
-                  ? "border-4 border-[#A20E4C] dark:border-[#FF4D82]"
-                  : "border-2 border-[#F6E7ED] dark:border-gray-700"
+                  ? "border-4 border-primary dark:border-primary-dark"
+                  : "border-2 border-primary-border dark:border-gray-700"
               }`}
             />
             <span
               className={`text-base font-inter ${
                 filters.inStockOnly
-                  ? "font-semibold text-[#A20E4C] dark:text-[#FF4D82]"
+                  ? "font-semibold text-primary dark:text-primary-dark"
                   : "font-normal text-[#1B1E23] dark:text-gray-200"
               }`}
             >
@@ -368,11 +368,11 @@ export const FigmaShopSidebar: React.FC<FigmaShopSidebarProps> = ({
       </div>
 
       {/* Divider */}
-      <div className="w-full h-px bg-[#F6E7ED] dark:bg-gray-800" />
+      <div className="w-full h-px bg-primary-border dark:bg-gray-800" />
 
       {/* 5. SORT BY */}
       <div className="w-full flex flex-col gap-4">
-        <h3 className="text-base font-inter font-semibold text-[#A20E4C] dark:text-[#FF4D82] leading-6">
+        <h3 className="text-base font-inter font-semibold text-primary dark:text-primary-dark leading-6">
           Sort By
         </h3>
         <div className="flex flex-col gap-1">
@@ -389,19 +389,19 @@ export const FigmaShopSidebar: React.FC<FigmaShopSidebarProps> = ({
                 key={item.id}
                 type="button"
                 onClick={() => onFilterChange({ sortBy: item.id })}
-                className="w-full py-2 px-3 flex items-center gap-3 hover:bg-pink-50/20 dark:hover:bg-gray-800/50 rounded-lg transition-colors cursor-pointer"
+                className="w-full py-2 px-3 flex items-center gap-3 hover:bg-primary-light/50 dark:hover:bg-gray-800/50 rounded-lg transition-colors cursor-pointer"
               >
                 <div
                   className={`w-6 h-6 rounded-full flex items-center justify-center transition-all bg-[#FDFDFD] dark:bg-gray-900 ${
                     isSelected
-                      ? "border-4 border-[#500624] dark:border-[#FFE2FF] bg-[#FFE2FF]"
-                      : "border-2 border-[#F6E7ED] dark:border-gray-700"
+                      ? "border-4 border-primary dark:border-primary-dark bg-primary-soft/50"
+                      : "border-2 border-primary-border dark:border-gray-700"
                   }`}
                 />
                 <span
                   className={`text-base font-inter ${
                     isSelected
-                      ? "font-bold text-[#500624] dark:text-[#FFE2FF]"
+                      ? "font-bold text-primary-ink dark:text-primary-dark"
                       : "font-normal text-[#1B1E23] dark:text-gray-200"
                   }`}
                 >

@@ -86,15 +86,15 @@ export const Cart: React.FC = () => {
   const recommendedProducts = MOCK_PRODUCTS.slice(0, 4);
 
   return (
-    <div className="min-h-screen bg-[#fdfbf9] dark:bg-[#090D14] text-gray-800 dark:text-gray-100 py-6 sm:py-10 transition-colors duration-200">
+    <div className="min-h-screen bg-surface-page dark:bg-[#090D14] text-gray-800 dark:text-gray-100 py-6 sm:py-10 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mb-6">
-          <Link to="/" className="hover:text-pink-800 dark:hover:text-[#FF4D82] transition-colors">
+          <Link to="/" className="hover:text-primary dark:hover:text-primary-dark transition-colors">
             Home
           </Link>
           <ChevronRight size={12} />
-          <Link to="/shop" className="hover:text-pink-800 dark:hover:text-[#FF4D82] transition-colors">
+          <Link to="/shop" className="hover:text-primary dark:hover:text-primary-dark transition-colors">
             Shop
           </Link>
           <ChevronRight size={12} />
@@ -146,7 +146,7 @@ export const Cart: React.FC = () => {
 
               <Link
                 to="/shop"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#FFE2FF] hover:bg-[#ffd1ff] text-[#500624] font-bold text-sm shadow-sm hover:shadow transition-all duration-200"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-primary-soft hover:bg-primary-soft-hover dark:bg-[#182552] dark:hover:bg-[#1E2D63] text-primary-ink dark:text-[#93C5FD] font-bold text-sm shadow-sm hover:shadow transition-all duration-200"
               >
                 <ShoppingBag size={17} />
                 <span>Explore Best Sellers</span>
@@ -161,7 +161,7 @@ export const Cart: React.FC = () => {
               {/* Free Shipping Progress bar */}
               <div className="bg-white dark:bg-[#111622] rounded-2xl p-4 sm:p-5 shadow-xs border border-gray-100/70 dark:border-gray-800">
                 <div className="flex items-center justify-between text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                  <span className="flex items-center gap-1.5 text-pink-800 dark:text-pink-400">
+                  <span className="flex items-center gap-1.5 text-primary dark:text-primary-dark">
                     <Sparkles size={16} />
                     {isFreeShipping ? (
                       <span className="text-emerald-600 dark:text-emerald-400 font-bold">
@@ -179,7 +179,7 @@ export const Cart: React.FC = () => {
                 </div>
                 <div className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-pink-800 to-[#FF4D82] rounded-full transition-all duration-500"
+                    className="h-full bg-gradient-to-r from-primary to-primary-dark rounded-full transition-all duration-500"
                     style={{
                       width: `${Math.min(100, (subtotal / freeShippingThreshold) * 100)}%`,
                     }}
@@ -225,7 +225,7 @@ export const Cart: React.FC = () => {
                           )}
                           <Link
                             to={`/product/${item.slug}`}
-                            className="text-xs sm:text-sm font-bold text-gray-800 dark:text-gray-100 hover:text-pink-800 dark:hover:text-[#FF4D82] transition-colors line-clamp-2 leading-snug"
+                            className="text-xs sm:text-sm font-bold text-gray-800 dark:text-gray-100 hover:text-primary dark:hover:text-primary-dark transition-colors line-clamp-2 leading-snug"
                           >
                             {item.name}
                           </Link>
@@ -308,7 +308,7 @@ export const Cart: React.FC = () => {
                       <div className="w-full sm:w-auto sm:col-span-2 flex justify-between sm:justify-end items-center gap-3">
                         <span className="sm:hidden text-xs text-gray-400">Subtotal:</span>
                         <div className="flex items-center gap-3">
-                          <span className="text-xs sm:text-sm font-bold text-gray-900 dark:text-white">
+                          <span className="text-xs sm:text-sm font-bold text-[#F85606]">
                             ৳{(item.price * item.quantity).toLocaleString()}
                           </span>
                           <button
@@ -336,7 +336,7 @@ export const Cart: React.FC = () => {
                 <div className="p-4 sm:p-5 bg-gray-50/70 dark:bg-[#0E131F] border-t border-gray-100 dark:border-gray-800 flex items-center justify-between">
                   <Link
                     to="/shop"
-                    className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-pink-800 dark:text-pink-400 hover:text-pink-900 dark:hover:text-pink-300 transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-primary dark:text-primary-dark hover:text-primary-hover dark:hover:text-teal-300 transition-colors"
                   >
                     <span>← Continue Shopping</span>
                   </Link>
@@ -393,7 +393,7 @@ export const Cart: React.FC = () => {
                         onClick={() => setShippingOption("inside")}
                         className={`p-2.5 rounded-xl border text-center transition-all cursor-pointer ${
                           shippingOption === "inside"
-                            ? "border-[#500624] bg-[#FFE2FF] text-[#500624] font-bold shadow-xs"
+                            ? "border-primary dark:border-primary-dark bg-primary-soft dark:bg-[#182552] text-primary-ink dark:text-[#93C5FD] font-bold shadow-xs"
                             : "border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-gray-300 dark:hover:border-gray-600"
                         }`}
                       >
@@ -408,7 +408,7 @@ export const Cart: React.FC = () => {
                         onClick={() => setShippingOption("outside")}
                         className={`p-2.5 rounded-xl border text-center transition-all cursor-pointer ${
                           shippingOption === "outside"
-                            ? "border-[#500624] bg-[#FFE2FF] text-[#500624] font-bold shadow-xs"
+                            ? "border-primary dark:border-primary-dark bg-primary-soft dark:bg-[#182552] text-primary-ink dark:text-[#93C5FD] font-bold shadow-xs"
                             : "border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-gray-300 dark:hover:border-gray-600"
                         }`}
                       >
@@ -423,7 +423,7 @@ export const Cart: React.FC = () => {
                   {/* Grand Total */}
                   <div className="flex items-center justify-between text-base sm:text-lg font-bold text-gray-900 dark:text-white pt-3 border-t border-gray-100 dark:border-gray-800">
                     <span>Grand Total</span>
-                    <span className="text-pink-800 dark:text-[#FF4D82] text-xl sm:text-2xl font-black">
+                    <span className="text-[#F85606] text-xl sm:text-2xl font-black">
                       ৳{finalOrderTotal.toLocaleString()}
                     </span>
                   </div>
@@ -452,11 +452,11 @@ export const Cart: React.FC = () => {
                           placeholder="Coupon code (e.g. CHOICE10)"
                           value={couponCode}
                           onChange={(e) => setCouponCode(e.target.value)}
-                          className="flex-1 px-3 py-2 text-xs rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:border-pink-800 dark:focus:border-pink-500 focus:ring-1 focus:ring-pink-800 outline-none uppercase"
+                          className="flex-1 px-3 py-2 text-xs rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:border-primary dark:focus:border-primary-dark focus:ring-1 focus:ring-primary outline-none uppercase"
                         />
                         <button
                           type="submit"
-                          className="px-4 py-2 rounded-xl bg-[#FFE2FF] hover:bg-[#ffd1ff] text-[#500624] text-xs font-bold transition-colors cursor-pointer border border-[#f3c8f3] dark:border-transparent"
+                          className="px-4 py-2 rounded-xl bg-primary-soft hover:bg-primary-soft-hover dark:bg-[#182552] dark:hover:bg-[#1E2D63] text-primary-ink dark:text-[#93C5FD] text-xs font-bold transition-colors cursor-pointer border border-primary-soft-border dark:border-[#22336B]"
                         >
                           Apply
                         </button>
@@ -480,7 +480,7 @@ export const Cart: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => navigate("/payment")}
-                  className="w-full py-3.5 rounded-xl bg-[#FFE2FF] hover:bg-[#ffd1ff] text-[#500624] font-bold text-sm sm:text-base shadow-sm hover:shadow transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+                  className="w-full py-3.5 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-sm sm:text-base shadow-sm hover:shadow transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer active:scale-98"
                 >
                   <span>Proceed to Checkout</span>
                   <ArrowRight size={18} />
@@ -493,7 +493,7 @@ export const Cart: React.FC = () => {
                     <span>100% Authentic Korean Products Guarantee</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Truck size={15} className="text-pink-800 dark:text-pink-400 shrink-0" />
+                    <Truck size={15} className="text-primary dark:text-primary-dark shrink-0" />
                     <span>Fast Delivery (2-3 days Dhaka, 3-5 days outside)</span>
                   </div>
                   <div className="flex items-center gap-2">
@@ -510,7 +510,7 @@ export const Cart: React.FC = () => {
         <section className="mt-14 sm:mt-18 pt-10 border-t border-gray-200/80 dark:border-gray-800">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <span className="text-[11px] font-bold uppercase tracking-wider text-pink-800 dark:text-pink-400">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-primary dark:text-primary-dark">
                 Curated For You
               </span>
               <h2 className="text-xl sm:text-2xl font-serif font-bold text-gray-900 dark:text-white">
@@ -519,7 +519,7 @@ export const Cart: React.FC = () => {
             </div>
             <Link
               to="/shop"
-              className="text-xs sm:text-sm font-semibold text-pink-800 dark:text-pink-400 hover:underline"
+              className="text-xs sm:text-sm font-semibold text-primary dark:text-primary-dark hover:underline"
             >
               View All Products →
             </Link>

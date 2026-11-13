@@ -98,10 +98,10 @@ export const CuratedCollections: React.FC<CuratedCollectionsProps> = ({
                 <span>{tab.label}</span>
                 {tab.badge && (
                   <span
-                    className={`px-1.5 py-0.2 rounded-full text-[9px] uppercase font-black ${
+                    className={`px-1.5 py-0.5 rounded-full text-[9px] uppercase font-black ${
                       isActive
-                        ? "bg-white/20 text-white"
-                        : "bg-amber-100 text-amber-800"
+                        ? "bg-white/25 text-white"
+                        : "bg-[#F85606] text-white"
                     }`}
                   >
                     {tab.badge}

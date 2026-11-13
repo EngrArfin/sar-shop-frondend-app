@@ -59,12 +59,12 @@ export const TopSelling: React.FC = () => {
   };
 
   return (
-    <div className="w-full bg-white dark:bg-[#090D14] text-gray-900 dark:text-gray-100 transition-colors duration-200 select-none overflow-hidden pb-16">
+    <div className="w-full bg-surface-page dark:bg-[#090D14] text-gray-900 dark:text-gray-100 transition-colors duration-200 select-none overflow-hidden pb-16">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-8">
         {/* ========================================================================= */}
         {/* 1. HERO CAROUSEL BANNER (Figma: w-[1360px] h-80 rounded-3xl with 4 dots)  */}
         {/* ========================================================================= */}
-        <div className="relative w-full h-64 sm:h-76 md:h-80 rounded-3xl overflow-hidden shadow-sm my-6 sm:my-10 bg-[#1E0F14]">
+        <div className="relative w-full h-64 sm:h-76 md:h-80 rounded-3xl overflow-hidden shadow-sm my-6 sm:my-10 bg-[#111918]">
           <img
             src={banners[activeBannerIndex]}
             alt="Top Selling Special"
@@ -116,7 +116,7 @@ export const TopSelling: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
 
                 {/* Center Glassmorphism Play Button */}
-                <div className="size-16 p-1 bg-pink-100/20 rounded-full backdrop-blur-[3px] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 inline-flex justify-center items-center shadow-lg group-hover:scale-115 transition-transform duration-300">
+                <div className="size-16 p-1 bg-primary-soft/25 rounded-full backdrop-blur-[3px] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 inline-flex justify-center items-center shadow-lg group-hover:scale-115 transition-transform duration-300">
                   <div className="size-7 flex items-center justify-center">
                     <Play className="w-5 h-5 text-white fill-white ml-0.5 drop-shadow-sm" />
                   </div>
@@ -134,7 +134,7 @@ export const TopSelling: React.FC = () => {
                     <div className="self-stretch text-black dark:text-white text-base sm:text-lg font-semibold font-faustina font-['Faustina'] leading-tight line-clamp-1">
                       {reel.name}
                     </div>
-                    <div className="self-stretch text-gray-500 dark:text-gray-300 text-sm sm:text-base font-semibold font-faustina font-['Faustina'] leading-tight">
+                    <div className="self-stretch text-[#F85606] text-sm sm:text-base font-bold font-faustina font-['Faustina'] leading-tight">
                       {reel.price}
                     </div>
                   </div>
@@ -154,7 +154,7 @@ export const TopSelling: React.FC = () => {
                   toast.info("Showing all top-selling products.");
                 }
               }}
-              className="h-10 px-6 py-2 bg-[#E9EBEE] dark:bg-gray-800 hover:bg-[#A20E4C] hover:text-white rounded-lg inline-flex justify-center items-center gap-1.5 text-slate-600 dark:text-gray-200 text-base font-semibold font-['Inter'] leading-5 transition-colors cursor-pointer"
+              className="h-10 px-6 py-2 bg-primary-soft dark:bg-gray-800 hover:bg-primary hover:text-white border border-primary-soft-border/80 dark:border-gray-700 rounded-lg inline-flex justify-center items-center gap-1.5 text-primary-ink dark:text-gray-200 text-base font-semibold font-['Inter'] leading-5 transition-colors cursor-pointer shadow-2xs"
             >
               See more
             </button>
@@ -184,7 +184,7 @@ export const TopSelling: React.FC = () => {
           <div className="w-full flex justify-center">
             <Link
               to="/shop?sort=newest"
-              className="h-10 px-6 py-2 bg-[#E9EBEE] dark:bg-gray-800 hover:bg-[#A20E4C] hover:text-white rounded-lg inline-flex justify-center items-center gap-1.5 text-slate-600 dark:text-gray-200 text-base font-semibold font-['Inter'] leading-5 transition-colors"
+              className="h-10 px-6 py-2 bg-primary-soft dark:bg-gray-800 hover:bg-primary hover:text-white border border-primary-soft-border/80 dark:border-gray-700 rounded-lg inline-flex justify-center items-center gap-1.5 text-primary-ink dark:text-gray-200 text-base font-semibold font-['Inter'] leading-5 transition-colors shadow-2xs"
             >
               See all
             </Link>

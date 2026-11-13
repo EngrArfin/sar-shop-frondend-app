@@ -10,12 +10,12 @@ export const Hero: React.FC = () => {
   const [activeDot, setActiveDot] = useState(0);
 
   return (
-    <section className="w-full bg-[#FFF9FB] dark:bg-[#090D14] pt-4 sm:pt-6 pb-2 select-none transition-colors duration-200">
+    <section className="w-full bg-surface-tint dark:bg-[#090D14] pt-4 sm:pt-6 pb-2 select-none transition-colors duration-200">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-8">
         {/* TOP ROW: 2 Cards (Large Featured Spray Carousel + Black Friday Banner) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 mb-5">
           {/* 1. Large Spray Collection Card (~65% width) */}
-          <div className="lg:col-span-8 group relative rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 h-[380px] sm:h-[440px] lg:h-[480px] bg-[#1E0F14]">
+          <div className="lg:col-span-8 group relative rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 h-[380px] sm:h-[440px] lg:h-[480px] bg-[#111918]">
             {/* Background Image */}
             <img
               src={sprayBannerImg}
@@ -66,7 +66,7 @@ export const Hero: React.FC = () => {
           </div>
 
           {/* 2. Black Friday Cyber Monday Card (~35% width) */}
-          <div className="lg:col-span-4 group relative rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 h-[380px] sm:h-[440px] lg:h-[480px] bg-gradient-to-b from-[#13072B] via-[#1E093D] to-[#2E0B5B] flex flex-col justify-between p-6 sm:p-7 text-white">
+          <div className="lg:col-span-4 group relative rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 h-[380px] sm:h-[440px] lg:h-[480px] bg-gradient-to-b from-[#071C19] via-[#0B2D28] to-[#11423B] flex flex-col justify-between p-6 sm:p-7 text-white">
             {/* Top Text Content */}
             <div className="relative z-10 text-center flex flex-col items-center">
               <span className="text-xs sm:text-sm font-semibold tracking-wide text-white/90">
@@ -74,7 +74,7 @@ export const Hero: React.FC = () => {
               </span>
 
               {/* Date Pill Tag */}
-              <div className="inline-block mt-2 px-3.5 py-0.5 rounded-full text-[11px] font-bold bg-[#381368] text-[#E0C6FF] border border-[#6B2BB8] shadow-sm">
+              <div className="inline-block mt-2 px-3.5 py-0.5 rounded-full text-[11px] font-bold bg-[#0F5E56] text-[#A7F3D0] border border-[#2DD4BF]/40 shadow-sm">
                 20 Nov - 1 Dec
               </div>
 

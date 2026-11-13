@@ -17,14 +17,14 @@ export const ShowNowLogo: React.FC<ShowNowLogoProps> = ({
       ? "text-white"
       : variant === "dark"
       ? "text-gray-900"
-      : "text-[#4338ca]";
+      : "text-primary";
 
   const subColor =
     variant === "white"
-      ? "text-indigo-200/90"
+      ? "text-teal-200/90"
       : variant === "dark"
       ? "text-gray-500"
-      : "text-[#4338ca]/80";
+      : "text-primary/80";
 
   const sizeClasses = {
     sm: {

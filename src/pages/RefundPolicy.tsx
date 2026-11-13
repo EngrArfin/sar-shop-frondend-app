@@ -17,11 +17,11 @@ import {
 
 const RefundPolicy: React.FC = () => {
   return (
-    <div className="bg-[#fdfbf9] dark:bg-[#090D14] min-h-screen py-8 sm:py-12 transition-colors duration-300">
+    <div className="bg-surface-page dark:bg-[#090D14] min-h-screen py-8 sm:py-12 transition-colors duration-300">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mb-6">
-          <Link to="/" className="hover:text-pink-800 dark:hover:text-[#FF4D82] transition-colors">
+          <Link to="/" className="hover:text-primary dark:hover:text-primary-dark transition-colors">
             Home
           </Link>
           <span>/</span>
@@ -40,7 +40,7 @@ const RefundPolicy: React.FC = () => {
                 to={tab.path}
                 className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
                   isActive
-                    ? "bg-pink-800 dark:bg-pink-700 text-white shadow-xs"
+                    ? "bg-primary text-white shadow-xs"
                     : "bg-white dark:bg-[#111622] text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 border border-gray-200 dark:border-gray-800"
                 }`}
               >
@@ -51,10 +51,10 @@ const RefundPolicy: React.FC = () => {
         </div>
 
         {/* Content Card */}
-        <div className="bg-white dark:bg-[#111622] rounded-3xl p-6 sm:p-10 lg:p-12 border border-pink-100/80 dark:border-gray-800 shadow-xs">
+        <div className="bg-white dark:bg-[#111622] rounded-3xl p-6 sm:p-10 lg:p-12 border border-primary-border dark:border-gray-800 shadow-xs">
           {/* Header */}
           <div className="border-b border-gray-100 dark:border-gray-800 pb-6 mb-8">
-            <div className="flex items-center gap-2 text-xs font-bold text-pink-800 dark:text-[#FF4D82] uppercase tracking-wider mb-2">
+            <div className="flex items-center gap-2 text-xs font-bold text-primary dark:text-primary-dark uppercase tracking-wider mb-2">
               <RotateCcw size={16} />
               7-DAY SATISFACTION GUARANTEE
             </div>
@@ -91,7 +91,7 @@ const RefundPolicy: React.FC = () => {
                   className="p-5 rounded-2xl bg-gray-50/70 dark:bg-gray-900/40 border border-gray-100 dark:border-gray-800 flex flex-col justify-between"
                 >
                   <div>
-                    <span className="text-xs font-black text-pink-800 dark:text-[#FF4D82] bg-pink-50 dark:bg-pink-950/40 px-2.5 py-1 rounded-lg">
+                    <span className="text-xs font-black text-primary dark:text-primary-dark bg-primary-light dark:bg-[#182552]/60 px-2.5 py-1 rounded-lg">
                       STEP {s.step}
                     </span>
                     <h3 className="text-sm font-bold font-['Faustina'] text-gray-900 dark:text-white mt-3 mb-1.5">{s.title}</h3>
@@ -165,7 +165,7 @@ const RefundPolicy: React.FC = () => {
           {/* Refund Timelines Table */}
           <div className="mb-12">
             <h2 className="text-lg font-bold font-['Faustina'] text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <Clock size={18} className="text-pink-800 dark:text-[#FF4D82]" />
+              <Clock size={18} className="text-primary dark:text-primary-dark" />
               Refund Processing Timelines
             </h2>
             <div className="overflow-x-auto rounded-2xl border border-gray-100 dark:border-gray-800">
@@ -191,7 +191,7 @@ const RefundPolicy: React.FC = () => {
           </div>
 
           {/* Bottom Action Section */}
-          <div className="bg-gradient-to-r from-pink-50 dark:from-pink-950/30 via-white dark:via-[#111622] to-amber-50/50 dark:to-amber-950/20 rounded-2xl p-6 sm:p-8 border border-pink-200 dark:border-pink-900/40 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="bg-gradient-to-r from-primary-light dark:from-[#0E1E1C] via-white dark:via-[#111622] to-amber-50/50 dark:to-amber-950/20 rounded-2xl p-6 sm:p-8 border border-primary-soft-border dark:border-[#1D3B37] flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
               <h3 className="text-base font-bold font-['Faustina'] text-gray-900 dark:text-white">
                 Need to request a return or exchange?
@@ -202,7 +202,7 @@ const RefundPolicy: React.FC = () => {
             </div>
             <Link
               to="/contact"
-              className="px-6 py-3 rounded-xl bg-pink-800 hover:bg-pink-900 text-white text-xs font-bold transition-all shadow-md flex items-center gap-2 whitespace-nowrap"
+              className="px-6 py-3 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs font-bold transition-all shadow-md flex items-center gap-2 whitespace-nowrap"
             >
               Contact Support <ArrowRight size={14} />
             </Link>

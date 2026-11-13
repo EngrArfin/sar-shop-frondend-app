@@ -19,7 +19,7 @@ export const TopBrands: React.FC<TopBrandsProps> = ({
   className = "",
 }) => {
   return (
-    <section className={`w-full bg-[#fdfbf9] py-8 sm:py-12 lg:py-14 ${className}`}>
+    <section className={`w-full bg-surface-page py-8 sm:py-12 lg:py-14 ${className}`}>
       <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex items-center justify-between gap-3 mb-4 sm:mb-6 lg:mb-7">
@@ -29,7 +29,7 @@ export const TopBrands: React.FC<TopBrandsProps> = ({
 
           <Link
             to={allBrandsLink}
-            className="inline-flex items-center gap-1 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-[#e8f1fd] hover:bg-[#d8e6fd] text-[#2b72ee] hover:text-[#1c5fdb] text-xs sm:text-sm font-semibold transition-all duration-200 group shadow-2xs shrink-0"
+            className="inline-flex items-center gap-1 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-primary-soft hover:bg-primary-soft-hover text-primary-ink hover:text-primary-hover text-xs sm:text-sm font-semibold transition-all duration-200 group shadow-2xs shrink-0"
           >
             <span>{allBrandsText}</span>
             <ChevronRight

@@ -133,7 +133,7 @@ export const FlashDealsSection: React.FC<FlashDealsProps> = ({ onQuickView }) =>
               >
                 {/* Discount Badge */}
                 <div className="absolute top-3 left-3 z-10">
-                  <span className="px-2.5 py-1 text-xs font-black uppercase tracking-wider bg-red-600 text-white rounded-xl shadow-md">
+                  <span className="px-2.5 py-1 text-xs font-black uppercase tracking-wider bg-[#F85606] text-white rounded-xl shadow-md">
                     -{product.discountPercent}% OFF
                   </span>
                 </div>
@@ -193,7 +193,7 @@ export const FlashDealsSection: React.FC<FlashDealsProps> = ({ onQuickView }) =>
 
                   {/* Price */}
                   <div className="flex items-baseline gap-2 mb-3">
-                    <span className="text-lg font-black text-gray-900">
+                    <span className="text-lg font-black text-[#F85606]">
                       ৳{product.price.toLocaleString()}
                     </span>
                     {product.originalPrice && (
@@ -207,11 +207,11 @@ export const FlashDealsSection: React.FC<FlashDealsProps> = ({ onQuickView }) =>
                   <div className="mb-3">
                     <div className="flex justify-between text-[11px] font-semibold text-gray-500 mb-1">
                       <span>Claimed: {soldPercent}%</span>
-                      <span className="text-red-500 font-bold">Almost Sold Out</span>
+                      <span className="text-[#F85606] font-bold">Almost Sold Out</span>
                     </div>
                     <div className="w-full h-2 rounded-full bg-gray-100 overflow-hidden">
                       <div
-                        className="h-full bg-gradient-to-r from-amber-500 to-red-500 rounded-full"
+                        className="h-full bg-gradient-to-r from-amber-500 to-[#F85606] rounded-full"
                         style={{ width: `${soldPercent}%` }}
                       />
                     </div>
@@ -222,7 +222,7 @@ export const FlashDealsSection: React.FC<FlashDealsProps> = ({ onQuickView }) =>
                 <button
                   type="button"
                   onClick={(e) => handleAddToCart(e, product)}
-                  className="w-full py-2.5 px-4 rounded-xl font-bold text-xs uppercase tracking-wider bg-gray-900 hover:bg-primary text-white transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer shadow-md hover:shadow-primary/30"
+                  className="w-full py-2.5 px-4 rounded-xl font-bold text-xs uppercase tracking-wider bg-primary hover:bg-primary-hover text-white transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer shadow-md hover:shadow-primary/30 active:scale-98"
                 >
                   <ShoppingCart className="w-4 h-4" />
                   <span>Add To Cart</span>

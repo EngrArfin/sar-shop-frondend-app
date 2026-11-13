@@ -5,7 +5,7 @@ import yellowBanner from "@/assets/banners/promo-yellow-prime.jpg";
 
 export const DualPromoBanners: React.FC = () => {
   return (
-    <section className="w-full bg-[#FFF9FB] dark:bg-[#090D14] pt-4 pb-14 sm:pb-20 transition-colors duration-200">
+    <section className="w-full bg-surface-tint dark:bg-[#090D14] pt-4 pb-14 sm:pb-20 transition-colors duration-200">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {/* Banner 1: Pink Skincare (Figma: width 670, height 234, borderRadius 24) */}

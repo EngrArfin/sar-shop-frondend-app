@@ -42,9 +42,9 @@ export const FigmaProductCard: React.FC<ProductCardProps> = ({
   };
 
   return (
-    <div className="group w-full max-w-[258px] bg-[#FDFDFD] dark:bg-[#111622] rounded-[16px] overflow-hidden border border-gray-100 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 hover:shadow-lg transition-all duration-300 flex flex-col justify-between mx-auto">
-      {/* Product Image Container (Figma: width: 258, height: 250) */}
-      <div className="relative w-full h-48 sm:h-56 md:h-[250px] overflow-hidden bg-[#F7F8FA] dark:bg-gray-800/50">
+    <div className="group w-full max-w-[258px] bg-surface-card dark:bg-[#111622] rounded-[16px] overflow-hidden border border-black/[0.08] dark:border-gray-800 hover:border-primary/50 dark:hover:border-gray-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between mx-auto">
+      {/* Product Image Container */}
+      <div className="relative w-full h-48 sm:h-56 md:h-[250px] overflow-hidden bg-white dark:bg-gray-800/40">
         <Link to={`/product/${product.slug}`} className="block w-full h-full">
           <img
             src={product.image}
@@ -62,7 +62,7 @@ export const FigmaProductCard: React.FC<ProductCardProps> = ({
               e.stopPropagation();
               onQuickView(product);
             }}
-            className="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-white/90 dark:bg-gray-800/90 text-gray-700 dark:text-gray-200 hover:text-[#A20E4C] dark:hover:text-[#FF4D82] hover:bg-white dark:hover:bg-gray-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-xs cursor-pointer"
+            className="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-white/90 dark:bg-gray-800/90 text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary-dark hover:bg-white dark:hover:bg-gray-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-xs cursor-pointer"
             title="Quick view"
           >
             <Eye size={15} />
@@ -75,13 +75,13 @@ export const FigmaProductCard: React.FC<ProductCardProps> = ({
         <div>
           {/* Product Name */}
           <Link to={`/product/${product.slug}`}>
-            <h3 className="text-base sm:text-lg font-faustina font-semibold text-black dark:text-white group-hover:text-[#A20E4C] dark:group-hover:text-[#FF4D82] transition-colors line-clamp-1 leading-snug">
+            <h3 className="text-base sm:text-lg font-faustina font-semibold text-black dark:text-white group-hover:text-primary dark:group-hover:text-primary-dark transition-colors line-clamp-1 leading-snug">
               {product.name}
             </h3>
           </Link>
 
           {/* Price */}
-          <div className="text-sm sm:text-base font-faustina font-semibold text-black dark:text-gray-100 mt-1">
+          <div className="text-sm sm:text-base font-faustina font-bold text-[#F85606] mt-1">
             ৳{product.price.toLocaleString()}
           </div>
 
@@ -96,7 +96,7 @@ export const FigmaProductCard: React.FC<ProductCardProps> = ({
         {/* Shop Now Button */}
         <button
           onClick={handleAddToCart}
-          className="w-full py-2 px-3.5 rounded-[8px] bg-[#FFE2FF] hover:bg-[#ffd1ff] text-[#500624] text-xs sm:text-sm font-inter font-bold transition-all duration-200 flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs"
+          className="w-full py-2 px-3.5 rounded-[10px] bg-primary hover:bg-primary-hover text-white text-xs sm:text-sm font-inter font-semibold transition-all duration-200 flex items-center justify-center gap-1.5 cursor-pointer shadow-xs active:scale-95"
         >
           <ShoppingBag size={14} />
           <span>Shop Now</span>
@@ -112,7 +112,7 @@ export const NewArrivalsSection: React.FC<{
   const newArrivals = MOCK_PRODUCTS.slice(0, 10);
 
   return (
-    <section className="w-full bg-white dark:bg-[#090D14] py-16 sm:py-20 md:py-24 transition-colors duration-200">
+    <section className="w-full bg-surface-page dark:bg-[#090D14] py-16 sm:py-20 md:py-24 transition-colors duration-200">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-8">
         {/* Section Heading */}
         <div className="text-center mb-10 sm:mb-12">
@@ -136,7 +136,7 @@ export const NewArrivalsSection: React.FC<{
         <div className="text-center">
           <Link
             to="/shop?sort=newest"
-            className="inline-flex items-center justify-center h-10 px-6 sm:px-8 rounded-[8px] bg-[#FFE2FF] hover:bg-[#ffd1ff] text-[#500624] font-inter font-bold text-sm sm:text-base transition-all duration-200 shadow-2xs"
+            className="inline-flex items-center justify-center h-10 px-6 sm:px-8 rounded-[8px] bg-primary-soft hover:bg-primary-soft-hover dark:bg-[#182552] dark:hover:bg-[#1E2D63] text-primary-ink dark:text-[#93C5FD] border border-primary-soft-border/60 dark:border-[#22336B] font-inter font-bold text-sm sm:text-base transition-all duration-200 shadow-2xs"
           >
             See all
           </Link>

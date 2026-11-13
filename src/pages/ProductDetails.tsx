@@ -166,7 +166,7 @@ export const ProductDetails: React.FC = () => {
   };
 
   return (
-    <div className="w-full min-h-screen bg-[#FDFBF9] dark:bg-[#090D14] text-[#1B1E23] dark:text-gray-100 overflow-x-hidden font-['Inter'] transition-colors duration-200">
+    <div className="w-full min-h-screen bg-surface-page dark:bg-[#090D14] text-[#1B1E23] dark:text-gray-100 overflow-x-hidden font-['Inter'] transition-colors duration-200">
       {/* =========================================================================
           SECTION 1: MAIN PRODUCT SHOWCASE (Figma top: 158px, height: 880px)
          ========================================================================= */}
@@ -196,8 +196,8 @@ export const ProductDetails: React.FC = () => {
                 }}
                 className={`p-2 rounded-lg border transition-colors cursor-pointer ${
                   isWishlisted
-                    ? "bg-pink-50 dark:bg-pink-950/40 border-pink-800 dark:border-pink-500 text-pink-800 dark:text-pink-400"
-                    : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-slate-500 dark:text-gray-300 hover:text-pink-800 dark:hover:text-pink-400"
+                    ? "bg-primary-light dark:bg-[#182552]/60 border-primary dark:border-primary-dark text-primary dark:text-primary-dark"
+                    : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-slate-500 dark:text-gray-300 hover:text-primary dark:hover:text-primary-dark"
                 }`}
                 title="Wishlist"
               >
@@ -234,7 +234,7 @@ export const ProductDetails: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setIsLightboxOpen(true)}
-                  className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 p-2 sm:p-2.5 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-full text-gray-700 dark:text-gray-200 hover:text-pink-800 dark:hover:text-pink-400 shadow-sm transition-all opacity-0 group-hover:opacity-100 cursor-pointer"
+                  className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 p-2 sm:p-2.5 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-full text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary-dark shadow-sm transition-all opacity-0 group-hover:opacity-100 cursor-pointer"
                   title="Enlarge image"
                 >
                   <ZoomIn size={18} />
@@ -253,7 +253,7 @@ export const ProductDetails: React.FC = () => {
                       onClick={() => setActiveImageIndex(idx)}
                       className={`relative aspect-square rounded-xl overflow-hidden border-2 transition-all cursor-pointer bg-white dark:bg-gray-800 group ${
                         isActive
-                          ? "border-[#500624] dark:border-[#FFE2FF] ring-2 ring-[#FFE2FF] shadow-xs"
+                          ? "border-primary dark:border-primary-dark ring-2 ring-primary-soft dark:ring-primary/40 shadow-xs"
                           : "border-gray-200 dark:border-gray-700 hover:border-slate-500"
                       }`}
                     >
@@ -376,7 +376,7 @@ export const ProductDetails: React.FC = () => {
                   </div>
 
                   {/* Price */}
-                  <div className="text-pink-800 dark:text-[#FF4D82] text-3xl sm:text-4xl font-semibold font-['Faustina'] leading-10">
+                  <div className="text-[#F85606] text-3xl sm:text-4xl font-bold font-['Faustina'] leading-10">
                     ${(123 * quantity).toFixed(2)}
                   </div>
                 </div>
@@ -386,14 +386,14 @@ export const ProductDetails: React.FC = () => {
                   <button
                     type="button"
                     onClick={handleAddToCart}
-                    className="w-full sm:flex-1 h-12 px-5 py-3 bg-white dark:bg-gray-800 hover:bg-[#FFE2FF]/30 border-2 border-[#FFE2FF] rounded-lg flex justify-center items-center gap-1.5 text-[#500624] dark:text-[#FFE2FF] font-bold text-base sm:text-lg font-['Inter'] leading-6 transition-all duration-200 cursor-pointer shadow-2xs active:scale-[0.98]"
+                    className="w-full sm:flex-1 h-12 px-5 py-3 bg-white dark:bg-gray-800 hover:bg-primary/5 border-2 border-primary text-primary dark:text-blue-400 dark:border-blue-400/60 rounded-xl flex justify-center items-center gap-1.5 font-bold text-base sm:text-lg font-['Inter'] leading-6 transition-all duration-200 cursor-pointer shadow-xs active:scale-[0.98]"
                   >
                     Add to Cart
                   </button>
                   <button
                     type="button"
                     onClick={handleBuyNow}
-                    className="w-full sm:flex-1 h-12 px-5 py-3 bg-[#FFE2FF] hover:bg-[#ffd1ff] rounded-lg flex justify-center items-center gap-1.5 text-[#500624] font-bold text-base sm:text-lg font-['Inter'] leading-6 transition-all duration-200 cursor-pointer shadow-xs active:scale-[0.98]"
+                    className="w-full sm:flex-1 h-12 px-5 py-3 bg-primary hover:bg-primary-hover rounded-xl flex justify-center items-center gap-1.5 text-white font-bold text-base sm:text-lg font-['Inter'] leading-6 transition-all duration-200 cursor-pointer shadow-md active:scale-[0.98]"
                   >
                     Buy Now
                   </button>
@@ -401,7 +401,7 @@ export const ProductDetails: React.FC = () => {
               </div>
 
               {/* Trust Badges Card */}
-              <div className="w-full p-5 sm:p-7 bg-neutral-50 dark:bg-[#111622] rounded-xl outline outline-1 outline-offset-[-1px] outline-pink-100 dark:outline-gray-800 flex flex-col gap-5 mt-2 shadow-2xs">
+              <div className="w-full p-5 sm:p-7 bg-neutral-50 dark:bg-[#111622] rounded-xl outline outline-1 outline-offset-[-1px] outline-primary-border dark:outline-gray-800 flex flex-col gap-5 mt-2 shadow-2xs">
                 <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   {/* Discount */}
                   <div className="flex justify-start items-start gap-3">
@@ -480,7 +480,7 @@ export const ProductDetails: React.FC = () => {
       {/* =========================================================================
           SECTION 2: RATING & REVIEWS (Figma top: 1038px, height: 984px)
          ========================================================================= */}
-      <section className="w-full py-12 sm:py-16 lg:py-20 border-t border-pink-100/60 dark:border-gray-800 bg-white dark:bg-[#090D14] transition-colors duration-200">
+      <section className="w-full py-12 sm:py-16 lg:py-20 border-t border-primary-border dark:border-gray-800 bg-surface-tint dark:bg-[#090D14] transition-colors duration-200">
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Heading */}
           <h2 className="text-black dark:text-white text-3xl sm:text-4xl lg:text-5xl font-bold font-['Faustina'] leading-tight mb-8">
@@ -517,7 +517,7 @@ export const ProductDetails: React.FC = () => {
                   </span>
                   <div className="flex-1 h-3.5 sm:h-4 bg-gray-200 dark:bg-gray-800 rounded-[20px] overflow-hidden relative">
                     <div
-                      className="h-full bg-gray-700 dark:bg-pink-600 rounded-[20px] transition-all duration-700"
+                      className="h-full bg-primary dark:bg-primary-dark rounded-[20px] transition-all duration-700"
                       style={{ width: item.fillPercent }}
                     />
                   </div>
@@ -526,7 +526,7 @@ export const ProductDetails: React.FC = () => {
             </div>
 
             {/* Right Card: "Review this product" (Responsive width up to 384px) */}
-            <div className="w-full xl:w-96 min-h-[192px] p-5 sm:p-7 bg-white dark:bg-[#111622] rounded-3xl outline outline-1 outline-offset-[-1px] outline-gray-200 dark:outline-gray-800 flex flex-col justify-between items-center text-center shadow-xs">
+            <div className="w-full xl:w-96 min-h-[192px] p-5 sm:p-7 bg-surface-card dark:bg-[#111622] rounded-3xl outline outline-1 outline-offset-[-1px] outline-primary-border dark:outline-gray-800 flex flex-col justify-between items-center text-center shadow-xs">
               <div className="flex flex-col items-center gap-1.5 sm:gap-2">
                 <h3 className="text-zinc-900 dark:text-white text-xl sm:text-2xl font-semibold font-['Faustina'] leading-7">
                   Review this product
@@ -540,7 +540,7 @@ export const ProductDetails: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsReviewModalOpen(true)}
-                className="w-full h-11 sm:h-12 px-5 py-2.5 sm:py-3 bg-gray-200 dark:bg-gray-800 hover:bg-pink-800 hover:text-white rounded-lg flex justify-center items-center text-slate-500 dark:text-gray-200 font-semibold text-base sm:text-lg font-['Inter'] leading-6 transition-colors cursor-pointer mt-3 active:scale-95 shadow-2xs"
+                className="w-full h-11 sm:h-12 px-5 py-2.5 sm:py-3 bg-gray-200 dark:bg-gray-800 hover:bg-primary hover:text-white rounded-lg flex justify-center items-center text-slate-600 dark:text-gray-200 font-semibold text-base sm:text-lg font-['Inter'] leading-6 transition-colors cursor-pointer mt-3 active:scale-95 shadow-2xs"
               >
                 Write a Review
               </button>
@@ -686,7 +686,7 @@ export const ProductDetails: React.FC = () => {
       {/* =========================================================================
           SECTION 3: YOU MIGHT ALSO LIKE (Figma top: 2022px, height: 694px)
          ========================================================================= */}
-      <section className="w-full py-12 sm:py-16 lg:py-20 bg-white dark:bg-[#090D14] border-t border-pink-100/60 dark:border-gray-800 transition-colors duration-200">
+      <section className="w-full py-12 sm:py-16 lg:py-20 bg-surface-page dark:bg-[#090D14] border-t border-primary-border dark:border-gray-800 transition-colors duration-200">
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
           {/* Title: You Might Also Like (Faustina 48px font-bold text-center) */}
           <h2 className="text-black dark:text-white text-3xl sm:text-4xl lg:text-5xl font-bold font-['Faustina'] leading-tight text-center mb-8 sm:mb-10">
@@ -710,13 +710,13 @@ export const ProductDetails: React.FC = () => {
             {RELATED_PRODUCTS_MOCK.map((item) => (
               <div
                 key={item.id}
-                className="w-[230px] sm:w-64 shrink-0 bg-white dark:bg-[#111622] rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-2xs hover:shadow-md hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-start items-end gap-[5px] select-none"
+                className="w-[230px] sm:w-64 shrink-0 bg-surface-card dark:bg-[#111622] rounded-2xl overflow-hidden border border-black/[0.08] dark:border-gray-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-start items-end gap-[5px] select-none"
                 style={{ scrollSnapAlign: "start" }}
               >
                 {/* Product Image: Responsive height */}
                 <Link
                   to={`/product/${item.slug}`}
-                  className="w-full h-52 sm:h-64 relative overflow-hidden block bg-neutral-50 dark:bg-gray-800/40"
+                  className="w-full h-52 sm:h-64 relative overflow-hidden block bg-white dark:bg-gray-800/40"
                 >
                   <img
                     src={item.image}
@@ -730,13 +730,13 @@ export const ProductDetails: React.FC = () => {
                   {/* Name of the product */}
                   <Link
                     to={`/product/${item.slug}`}
-                    className="self-stretch justify-center text-black dark:text-white text-base sm:text-lg font-semibold font-['Faustina'] leading-snug hover:text-pink-800 dark:hover:text-[#FF4D82] transition-colors line-clamp-1"
+                    className="self-stretch justify-center text-black dark:text-white text-base sm:text-lg font-semibold font-['Faustina'] leading-snug hover:text-primary dark:hover:text-primary-dark transition-colors line-clamp-1"
                   >
                     {item.name}
                   </Link>
 
                   {/* Price: $123.00 */}
-                  <div className="self-stretch justify-center text-black dark:text-white text-sm sm:text-base font-semibold font-['Faustina'] leading-5">
+                  <div className="self-stretch justify-center text-[#F85606] text-sm sm:text-base font-bold font-['Faustina'] leading-5">
                     {item.priceStr}
                   </div>
 
@@ -754,9 +754,9 @@ export const ProductDetails: React.FC = () => {
                   {/* Shop Now Button */}
                   <Link
                     to={`/product/${item.slug}`}
-                    className="self-stretch px-3.5 py-2 bg-gray-200 dark:bg-gray-800 group-hover:bg-pink-800 group-hover:text-white rounded-lg inline-flex justify-center items-center gap-1.5 transition-colors cursor-pointer"
+                    className="self-stretch px-3.5 py-2 bg-primary hover:bg-primary-hover text-white rounded-xl inline-flex justify-center items-center gap-1.5 transition-colors cursor-pointer shadow-xs"
                   >
-                    <span className="flex-1 text-center justify-center text-slate-500 dark:text-gray-300 group-hover:text-white text-xs sm:text-sm font-semibold font-['Inter'] leading-5 transition-colors">
+                    <span className="flex-1 text-center justify-center text-white text-xs sm:text-sm font-semibold font-['Inter'] leading-5">
                       Shop Now
                     </span>
                   </Link>
@@ -805,7 +805,7 @@ export const ProductDetails: React.FC = () => {
           <div className="w-full max-w-2xl bg-white dark:bg-[#111622] rounded-2xl shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-800 max-h-[90vh] flex flex-col">
             <div className="p-4 sm:p-6 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between bg-neutral-50 dark:bg-[#0D121D]">
               <div>
-                <span className="text-xs font-semibold text-pink-800 dark:text-pink-400 uppercase tracking-wider font-['Inter']">
+                <span className="text-xs font-semibold text-primary dark:text-primary-dark uppercase tracking-wider font-['Inter']">
                   Specifications &amp; Authenticity
                 </span>
                 <h3 className="text-xl sm:text-2xl font-bold font-['Faustina'] text-zinc-900 dark:text-white mt-0.5">
@@ -891,7 +891,7 @@ export const ProductDetails: React.FC = () => {
           <div className="w-full max-w-lg bg-white dark:bg-[#111622] rounded-2xl shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-800">
             <div className="p-6 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between bg-neutral-50 dark:bg-[#0D121D]">
               <div>
-                <span className="text-xs font-semibold text-pink-800 dark:text-pink-400 uppercase tracking-wider font-['Inter']">
+                <span className="text-xs font-semibold text-primary dark:text-primary-dark uppercase tracking-wider font-['Inter']">
                   Community Feedback
                 </span>
                 <h3 className="text-2xl font-bold font-['Faustina'] text-zinc-900 dark:text-white mt-0.5">
@@ -945,7 +945,7 @@ export const ProductDetails: React.FC = () => {
                   value={reviewName}
                   onChange={(e) => setReviewName(e.target.value)}
                   placeholder="Paula Oxford"
-                  className="w-full px-3.5 py-2.5 bg-white dark:bg-gray-800 text-zinc-900 dark:text-white text-sm rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:border-pink-800 dark:focus:border-pink-500"
+                  className="w-full px-3.5 py-2.5 bg-white dark:bg-gray-800 text-zinc-900 dark:text-white text-sm rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:border-primary dark:focus:border-primary-dark"
                 />
               </div>
 
@@ -959,7 +959,7 @@ export const ProductDetails: React.FC = () => {
                   value={reviewComment}
                   onChange={(e) => setReviewComment(e.target.value)}
                   placeholder="Share your thoughts with other customers..."
-                  className="w-full px-3.5 py-2.5 bg-white dark:bg-gray-800 text-zinc-900 dark:text-white text-sm rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:border-pink-800 dark:focus:border-pink-500"
+                  className="w-full px-3.5 py-2.5 bg-white dark:bg-gray-800 text-zinc-900 dark:text-white text-sm rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:border-primary dark:focus:border-primary-dark"
                 />
               </div>
 
@@ -973,7 +973,7 @@ export const ProductDetails: React.FC = () => {
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2.5 bg-pink-800 hover:bg-pink-900 text-white font-semibold text-sm rounded-lg transition-colors cursor-pointer shadow-sm"
+                  className="px-6 py-2.5 bg-primary hover:bg-primary-hover text-white font-semibold text-sm rounded-lg transition-colors cursor-pointer shadow-sm"
                 >
                   Submit Review
                 </button>

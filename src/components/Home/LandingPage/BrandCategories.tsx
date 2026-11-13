@@ -95,7 +95,7 @@ export const FigmaCategoryCapsule: React.FC<FigmaCategoryCapsuleProps> = ({
       </div>
 
       {/* Category Name below pill */}
-      <div className="w-full text-center text-black dark:text-gray-100 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-semibold font-faustina font-['Faustina'] leading-tight sm:leading-6 group-hover:text-[#A20E4C] dark:group-hover:text-[#FF4D82] transition-colors line-clamp-1 mt-1 px-1">
+      <div className="w-full text-center text-black dark:text-gray-100 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-semibold font-faustina font-['Faustina'] leading-tight sm:leading-6 group-hover:text-primary dark:group-hover:text-primary-dark transition-colors line-clamp-1 mt-1 px-1">
         {finalTitle}
       </div>
     </Link>
@@ -112,7 +112,7 @@ export default function BrandCategories({
   const displayTitle = title.replace(/&amp;/g, "&");
 
   return (
-    <section className={`w-full bg-[#FDFDFD] dark:bg-[#090D14] py-10 sm:py-14 md:py-18 transition-colors duration-200 ${className}`}>
+    <section className={`w-full bg-surface-page dark:bg-[#090D14] py-10 sm:py-14 md:py-18 transition-colors duration-200 ${className}`}>
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
         <div className="text-center mb-8 sm:mb-12">

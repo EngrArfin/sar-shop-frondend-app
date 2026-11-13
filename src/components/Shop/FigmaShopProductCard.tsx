@@ -55,9 +55,9 @@ export const FigmaShopProductCard: React.FC<FigmaShopProductCardProps> = ({
   const discountPercent = product.discountPercent || 10;
 
   return (
-    <div className="group relative w-full bg-[#FDFDFD] dark:bg-[#111622] rounded-[16px] overflow-hidden border border-[#F6E7ED] dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 hover:shadow-md transition-all duration-300 flex flex-col justify-between select-none">
-      {/* 1. Image Container (Figma: width 242, height 250) */}
-      <div className="relative w-full h-[220px] sm:h-[250px] overflow-hidden bg-[#F7F8FA] dark:bg-gray-800/50">
+    <div className="group relative w-full bg-surface-card dark:bg-[#111622] rounded-[16px] overflow-hidden border border-black/[0.08] dark:border-gray-800 hover:border-primary/50 dark:hover:border-gray-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between select-none">
+      {/* 1. Image Container */}
+      <div className="relative w-full h-[220px] sm:h-[250px] overflow-hidden bg-white dark:bg-gray-800/40">
         <Link to={`/product/${product.slug}`} className="block w-full h-full">
           <img
             src={product.image}
@@ -67,20 +67,20 @@ export const FigmaShopProductCard: React.FC<FigmaShopProductCardProps> = ({
           />
         </Link>
 
-        {/* Top Floating Badges (Figma: left: 12, top: 12, width: 218) */}
+        {/* Top Floating Badges */}
         <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none z-10">
-          {/* Discount Badge (Figma: background: #9F7CF0, borderRadius: 20, text: -10%) */}
-          <span className="px-2 py-0.5 rounded-full bg-[#9F7CF0] text-white text-[11px] sm:text-[12px] font-inter font-semibold tracking-tight shadow-xs">
+          {/* Discount Badge */}
+          <span className="px-2 py-0.5 rounded-full bg-[#F85606] text-white text-[11px] sm:text-[12px] font-inter font-bold tracking-tight shadow-xs">
             -{discountPercent}%
           </span>
 
-          {/* Wishlist Button (Figma: background: rgba(0, 0, 0, 0.20), borderRadius: 40) */}
+          {/* Wishlist Button */}
           <button
             type="button"
             onClick={handleWishlistClick}
             className={`pointer-events-auto w-7 h-7 rounded-full flex items-center justify-center transition-all cursor-pointer backdrop-blur-xs ${
               isWishlisted
-                ? "bg-[#A20E4C] text-white shadow-xs"
+                ? "bg-primary text-white shadow-xs"
                 : "bg-black/25 hover:bg-black/40 text-white"
             }`}
             aria-label="Add to wishlist"
@@ -102,7 +102,7 @@ export const FigmaShopProductCard: React.FC<FigmaShopProductCardProps> = ({
               e.stopPropagation();
               onQuickView(product);
             }}
-            className="absolute bottom-2.5 right-2.5 w-8 h-8 rounded-full bg-white/90 dark:bg-gray-800/90 text-gray-700 dark:text-gray-200 hover:text-[#A20E4C] dark:hover:text-[#FF4D82] hover:bg-white dark:hover:bg-gray-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-xs cursor-pointer z-10"
+            className="absolute bottom-2.5 right-2.5 w-8 h-8 rounded-full bg-white/90 dark:bg-gray-800/90 text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary-dark hover:bg-white dark:hover:bg-gray-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-xs cursor-pointer z-10"
             title="Quick view"
           >
             <Eye size={15} />
@@ -115,14 +115,21 @@ export const FigmaShopProductCard: React.FC<FigmaShopProductCardProps> = ({
         <div>
           {/* Product Name */}
           <Link to={`/product/${product.slug}`}>
-            <h3 className="text-base sm:text-[18px] font-faustina font-semibold text-black dark:text-white group-hover:text-[#A20E4C] dark:group-hover:text-[#FF4D82] transition-colors leading-[21.6px] line-clamp-1">
+            <h3 className="text-base sm:text-[18px] font-faustina font-semibold text-black dark:text-white group-hover:text-primary dark:group-hover:text-primary-dark transition-colors leading-[21.6px] line-clamp-1">
               {product.name}
             </h3>
           </Link>
 
           {/* Price */}
-          <div className="text-sm sm:text-[16px] font-faustina font-semibold text-black dark:text-gray-100 mt-1 leading-[19.2px]">
-            ৳{product.price.toLocaleString()}
+          <div className="flex items-baseline gap-2 mt-1">
+            <span className="text-base sm:text-[18px] font-faustina font-bold text-[#F85606] leading-tight">
+              ৳{product.price.toLocaleString()}
+            </span>
+            {product.originalPrice && (
+              <span className="text-xs text-gray-400 dark:text-gray-500 line-through font-inter">
+                ৳{product.originalPrice.toLocaleString()}
+              </span>
+            )}
           </div>
 
           {/* Stock Status Badge */}
@@ -137,7 +144,7 @@ export const FigmaShopProductCard: React.FC<FigmaShopProductCardProps> = ({
         <button
           type="button"
           onClick={handleAddToCart}
-          className="w-full py-2 px-3.5 rounded-[8px] bg-[#FFE2FF] hover:bg-[#ffd1ff] text-[#500624] text-xs sm:text-[14px] font-inter font-bold transition-all duration-200 flex items-center justify-center gap-1.5 cursor-pointer leading-[18.2px] shadow-2xs"
+          className="w-full py-2.5 px-3.5 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs sm:text-[14px] font-inter font-semibold transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer shadow-xs hover:shadow-md active:scale-[0.98]"
         >
           <ShoppingBag size={14} />
           <span>Shop Now</span>

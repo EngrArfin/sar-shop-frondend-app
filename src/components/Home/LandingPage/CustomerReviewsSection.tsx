@@ -44,7 +44,7 @@ export const CustomerReviewsSection: React.FC = () => {
   };
 
   return (
-    <section className="w-full bg-white dark:bg-[#090D14] py-14 sm:py-20 overflow-hidden transition-colors duration-200">
+    <section className="w-full bg-surface-page dark:bg-[#090D14] py-14 sm:py-20 overflow-hidden transition-colors duration-200">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-8">
         {/* Section Header with Left/Right Controls */}
         <div className="flex items-center justify-between mb-8 sm:mb-10">
@@ -55,7 +55,7 @@ export const CustomerReviewsSection: React.FC = () => {
           <div className="flex items-center gap-2">
             <button
               onClick={() => scroll("left")}
-              className="w-9 h-9 rounded-full bg-[#1B1E23] dark:bg-gray-800 text-white dark:text-gray-200 flex items-center justify-center hover:bg-[#A20E4C] dark:hover:bg-[#A20E4C] transition-colors shadow-xs cursor-pointer active:scale-90"
+              className="w-9 h-9 rounded-full bg-[#1B1E23] dark:bg-gray-800 text-white dark:text-gray-200 flex items-center justify-center hover:bg-primary dark:hover:bg-primary transition-colors shadow-xs cursor-pointer active:scale-90"
               title="Previous Reviews"
               aria-label="Previous Reviews"
             >
@@ -63,7 +63,7 @@ export const CustomerReviewsSection: React.FC = () => {
             </button>
             <button
               onClick={() => scroll("right")}
-              className="w-9 h-9 rounded-full bg-[#1B1E23] dark:bg-gray-800 text-white dark:text-gray-200 flex items-center justify-center hover:bg-[#A20E4C] dark:hover:bg-[#A20E4C] transition-colors shadow-xs cursor-pointer active:scale-90"
+              className="w-9 h-9 rounded-full bg-[#1B1E23] dark:bg-gray-800 text-white dark:text-gray-200 flex items-center justify-center hover:bg-primary dark:hover:bg-primary transition-colors shadow-xs cursor-pointer active:scale-90"
               title="Next Reviews"
               aria-label="Next Reviews"
             >

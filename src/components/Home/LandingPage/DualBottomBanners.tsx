@@ -5,7 +5,7 @@ import redHotdeal from "@/assets/banners/promo-red-hotdeal.jpg";
 
 export const DualBottomBanners: React.FC = () => {
   return (
-    <section className="w-full bg-[#FAF8F7] py-6 sm:py-8 md:py-10">
+    <section className="w-full bg-surface-page dark:bg-[#090D14] py-6 sm:py-8 md:py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-7">
           {/* Banner 1: Blue Stock Up */}

@@ -78,7 +78,7 @@ const ClientSidebar: React.FC<SidebarProps> = ({
 
   return (
     <div
-      className="flex flex-col h-full bg-[#29424C]"
+      className="flex flex-col h-full bg-[#0C142A]"
       style={{ boxShadow: "3px 4px 42.3px 0px #0000001A" }}
     >
       {/* Logo */}
@@ -127,16 +127,16 @@ const ClientSidebar: React.FC<SidebarProps> = ({
                     onClick={() => toggleMenu(item.label)}
                     className={`group flex items-center justify-between w-full px-3 py-2 text-sm font-normal transition-all duration-300 ease-in-out cursor-pointer ${
                       isActive
-                        ? "text-[#3A5CFF] bg-[#1C1D28] rounded-xl shadow-md"
-                        : "text-white hover:text-[#3A5CFF] hover:bg-[#1C1D28]/80 hover:rounded-xl hover:shadow-md"
+                        ? "text-[#60A5FA] bg-[#141E3D] rounded-xl shadow-md"
+                        : "text-white hover:text-[#60A5FA] hover:bg-[#141E3D]/80 hover:rounded-xl hover:shadow-md"
                     }`}
                   >
                     <div className="flex items-center space-x-2 md:text-lg">
                       <item.icon
                         className={`w-5 h-5 transition-all duration-300 ${
                           isActive
-                            ? "text-[#3A5CFF]"
-                            : "text-white group-hover:text-[#3A5CFF]"
+                            ? "text-[#60A5FA]"
+                            : "text-white group-hover:text-[#60A5FA]"
                         }`}
                       />
                       <span>{item.label}</span>
@@ -153,7 +153,7 @@ const ClientSidebar: React.FC<SidebarProps> = ({
                     {item.badge && (
                       <Badge
                         variant="secondary"
-                        className="text-xs bg-[#3A5CFF]/10 text-[#3A5CFF] border border-[#3A5CFF]/30"
+                        className="text-xs bg-[#60A5FA]/15 text-[#60A5FA] border border-[#60A5FA]/30"
                       >
                         {item.badge}
                       </Badge>
@@ -172,8 +172,8 @@ const ClientSidebar: React.FC<SidebarProps> = ({
                           onClick={onItemClick}
                           className={`group block px-3 py-2 text-sm rounded-lg transition-all ${
                             childActive
-                              ? "text-[#3A5CFF] bg-[#1C1D28]"
-                              : "text-gray-300 hover:text-[#3A5CFF] hover:bg-[#1C1D28]/70"
+                              ? "text-[#60A5FA] bg-[#141E3D]"
+                              : "text-gray-300 hover:text-[#60A5FA] hover:bg-[#141E3D]/70"
                           }`}
                         >
                           {child.label}
@@ -195,7 +195,7 @@ const ClientSidebar: React.FC<SidebarProps> = ({
         </div>
         <Link
           to="/client-dashboard/help-support"
-          className="flex items-center justify-center space-x-3 text-white hover:text-[#3A5BF8] transition-colors"
+          className="flex items-center justify-center space-x-3 text-white hover:text-[#60A5FA] transition-colors"
         >
           <span className="text-sm font-medium">Help & Support</span>
           <RiShareBoxLine className="w-5 h-5 text-gray-300" />

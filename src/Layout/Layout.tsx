@@ -18,9 +18,9 @@ const Layout: React.FC = () => {
   const shouldHideLayout = hideLayoutRoutes.includes(location.pathname);
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#FDFBF9] dark:bg-[#090D14] text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="flex flex-col min-h-screen bg-surface-page dark:bg-[#090D14] text-gray-900 dark:text-gray-100 transition-colors duration-200">
       {!shouldHideLayout && <NavBar />}
-      <main className="flex-1 w-full bg-[#FDFBF9] dark:bg-[#090D14] transition-colors duration-200">
+      <main className="flex-1 w-full bg-surface-page dark:bg-[#090D14] transition-colors duration-200">
         <Outlet />
       </main>
       {!shouldHideLayout && <Footer />}

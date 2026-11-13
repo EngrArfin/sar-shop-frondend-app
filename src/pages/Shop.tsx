@@ -214,7 +214,7 @@ export const Shop: React.FC = () => {
   );
 
   return (
-    <div className="w-full bg-[#FDFBF9] dark:bg-[#090D14] text-gray-900 dark:text-gray-100 min-h-screen transition-colors duration-200">
+    <div className="w-full bg-surface-page dark:bg-[#090D14] text-gray-900 dark:text-gray-100 min-h-screen transition-colors duration-200">
       {/* 1. TOP CAROUSEL BANNER (Exact Figma: width 1360, height 234, borderRadius: 24, 4 dots) */}
       <section className="w-full pt-6 sm:pt-8 pb-4">
         <div className="max-w-[1360px] mx-auto px-4 sm:px-8">
@@ -251,7 +251,7 @@ export const Shop: React.FC = () => {
         <button
           type="button"
           onClick={() => setIsMobileFiltersOpen(true)}
-          className="w-full py-2.5 px-4 bg-[#FFFCFE] dark:bg-[#111622] border border-[#F6E7ED] dark:border-gray-800 rounded-xl flex items-center justify-center gap-2 text-sm font-inter font-semibold text-[#A20E4C] dark:text-[#FF4D82] shadow-2xs cursor-pointer"
+          className="w-full py-2.5 px-4 bg-surface-card dark:bg-[#111622] border border-black/[0.08] dark:border-gray-800 rounded-xl flex items-center justify-center gap-2 text-sm font-inter font-semibold text-primary dark:text-primary-dark shadow-xs cursor-pointer"
         >
           <SlidersHorizontal size={16} />
           <span>Filter Products &amp; Brands</span>
@@ -287,8 +287,8 @@ export const Shop: React.FC = () => {
               </div>
             ) : (
               /* Empty State */
-              <div className="bg-[#FFFCFE] dark:bg-[#111622] rounded-2xl p-12 text-center flex flex-col items-center justify-center my-8 border border-[#F6E7ED] dark:border-gray-800">
-                <div className="w-16 h-16 rounded-full bg-pink-50 dark:bg-pink-950/40 text-[#A20E4C] dark:text-[#FF4D82] flex items-center justify-center mb-4">
+              <div className="bg-surface-card dark:bg-[#111622] rounded-2xl p-12 text-center flex flex-col items-center justify-center my-8 border border-black/[0.08] dark:border-gray-800 shadow-sm">
+                <div className="w-16 h-16 rounded-full bg-primary-light dark:bg-[#182552] text-primary dark:text-primary-dark flex items-center justify-center mb-4">
                   <PackageSearch size={32} />
                 </div>
                 <h3 className="text-xl font-bold font-faustina text-gray-900 dark:text-white mb-2">
@@ -300,7 +300,7 @@ export const Shop: React.FC = () => {
                 <button
                   type="button"
                   onClick={handleResetFilters}
-                  className="px-6 py-2.5 bg-[#A20E4C] hover:bg-[#8e0c42] text-white text-sm font-semibold rounded-lg transition-colors cursor-pointer shadow-xs"
+                  className="px-6 py-2.5 bg-primary hover:bg-primary-hover text-white text-sm font-semibold rounded-lg transition-colors cursor-pointer shadow-xs"
                 >
                   Clear All Filters
                 </button>
@@ -309,12 +309,12 @@ export const Shop: React.FC = () => {
 
             {/* Pagination Controls */}
             {totalPages > 1 && (
-              <div className="mt-12 flex items-center justify-between border-t border-[#F6E7ED] dark:border-gray-800 pt-6 px-2">
+              <div className="mt-12 flex items-center justify-between border-t border-primary-border dark:border-gray-800 pt-6 px-2">
                 <button
                   type="button"
                   onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                   disabled={currentPage === 1}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-inter font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 border border-[#F6E7ED] dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-inter font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 border border-primary-border dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
                 >
                   <ChevronLeft size={16} />
                   <span>Previous</span>
@@ -330,8 +330,8 @@ export const Shop: React.FC = () => {
                         onClick={() => setCurrentPage(pageNum)}
                         className={`w-9 h-9 rounded-lg text-sm font-inter font-semibold transition-all cursor-pointer ${
                           currentPage === pageNum
-                            ? "bg-[#FFE2FF] text-[#500624] font-bold shadow-xs border border-[#500624]/20"
-                            : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border border-[#F6E7ED] dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
+                            ? "bg-primary-soft dark:bg-[#182552] text-primary-ink dark:text-[#93C5FD] font-bold shadow-xs border border-primary-soft-border dark:border-[#22336B]"
+                            : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border border-primary-border dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
                         }`}
                       >
                         {pageNum}
@@ -344,7 +344,7 @@ export const Shop: React.FC = () => {
                   type="button"
                   onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                   disabled={currentPage === totalPages}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-inter font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 border border-[#F6E7ED] dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-inter font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 border border-primary-border dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
                 >
                   <span>Next</span>
                   <ChevronRight size={16} />

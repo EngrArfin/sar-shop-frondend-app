@@ -93,15 +93,15 @@ export const Payment: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#FDFBF9] dark:bg-[#090D14] py-8 sm:py-12 transition-colors duration-200 font-['Inter']">
+    <div className="min-h-screen bg-surface-page dark:bg-[#090D14] py-8 sm:py-12 transition-colors duration-200 font-['Inter']">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb Navigation */}
         <nav className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mb-6">
-          <Link to="/" className="hover:text-pink-800 dark:hover:text-[#FFE2FF] transition-colors">
+          <Link to="/" className="hover:text-primary dark:hover:text-primary-dark transition-colors">
             Home
           </Link>
           <ChevronRight size={13} />
-          <Link to="/cart" className="hover:text-pink-800 dark:hover:text-[#FFE2FF] transition-colors">
+          <Link to="/cart" className="hover:text-primary dark:hover:text-primary-dark transition-colors">
             Cart
           </Link>
           <ChevronRight size={13} />
@@ -118,14 +118,14 @@ export const Payment: React.FC = () => {
               </span>
               <span className="text-gray-700 dark:text-gray-300 font-medium hidden sm:inline">1. Cart</span>
             </div>
-            <div className="flex-1 h-0.5 mx-3 bg-[#FFE2FF] dark:bg-[#FFE2FF]/30" />
+            <div className="flex-1 h-0.5 mx-3 bg-primary-soft dark:bg-[#22336B]" />
 
-            {/* Step 2 (Active with #FFE2FF) */}
+            {/* Step 2 (Active) */}
             <div className="flex items-center gap-2">
-              <span className="w-8 h-8 rounded-full bg-[#FFE2FF] text-[#500624] font-black flex items-center justify-center text-xs shadow-sm ring-4 ring-[#FFE2FF]/40">
+              <span className="w-8 h-8 rounded-full bg-primary-soft dark:bg-[#182552] text-primary-ink dark:text-[#93C5FD] font-black flex items-center justify-center text-xs shadow-sm ring-4 ring-primary-soft/60 dark:ring-primary/30">
                 2
               </span>
-              <span className="text-[#500624] dark:text-[#FFE2FF] font-bold">2. Payment</span>
+              <span className="text-primary-ink dark:text-primary-dark font-bold">2. Payment</span>
             </div>
             <div className="flex-1 h-0.5 mx-3 bg-gray-200 dark:bg-gray-800" />
 
@@ -147,7 +147,7 @@ export const Payment: React.FC = () => {
               {/* SECTION A: Shipping Details */}
               <div className="bg-white dark:bg-[#111622] rounded-3xl p-6 sm:p-8 border border-gray-100 dark:border-gray-800 shadow-xs">
                 <div className="flex items-center gap-2.5 pb-4 mb-6 border-b border-gray-100 dark:border-gray-800">
-                  <div className="w-9 h-9 rounded-xl bg-[#FFE2FF] text-[#500624] flex items-center justify-center">
+                  <div className="w-9 h-9 rounded-xl bg-primary-soft dark:bg-[#182552] text-primary-ink dark:text-[#93C5FD] flex items-center justify-center">
                     <Truck size={18} />
                   </div>
                   <div>
@@ -164,7 +164,7 @@ export const Payment: React.FC = () => {
                   {/* Full Name */}
                   <div className="sm:col-span-2">
                     <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase mb-1.5 flex items-center gap-1.5">
-                      <User size={13} className="text-[#500624] dark:text-[#FFE2FF]" />
+                      <User size={13} className="text-primary dark:text-primary-dark" />
                       Full Recipient Name <span className="text-rose-500">*</span>
                     </label>
                     <input
@@ -174,14 +174,14 @@ export const Payment: React.FC = () => {
                       value={formData.fullName}
                       onChange={handleInputChange}
                       placeholder="e.g. Farhana Akter"
-                      className="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm focus:ring-2 focus:ring-[#FFE2FF] focus:border-[#500624] outline-none transition-colors"
+                      className="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary dark:focus:border-primary-dark outline-none transition-colors"
                     />
                   </div>
 
                   {/* Phone */}
                   <div>
                     <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase mb-1.5 flex items-center gap-1.5">
-                      <Phone size={13} className="text-[#500624] dark:text-[#FFE2FF]" />
+                      <Phone size={13} className="text-primary dark:text-primary-dark" />
                       Phone Number (For Courier SMS) <span className="text-rose-500">*</span>
                     </label>
                     <input
@@ -191,7 +191,7 @@ export const Payment: React.FC = () => {
                       value={formData.phone}
                       onChange={handleInputChange}
                       placeholder="017XX-XXXXXX"
-                      className="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm focus:ring-2 focus:ring-[#FFE2FF] focus:border-[#500624] outline-none transition-colors"
+                      className="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary dark:focus:border-primary-dark outline-none transition-colors"
                     />
                   </div>
 
@@ -206,7 +206,7 @@ export const Payment: React.FC = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder="farhana@example.com"
-                      className="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm focus:ring-2 focus:ring-[#FFE2FF] focus:border-[#500624] outline-none transition-colors"
+                      className="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary dark:focus:border-primary-dark outline-none transition-colors"
                     />
                   </div>
 
@@ -224,7 +224,7 @@ export const Payment: React.FC = () => {
                         }}
                         className={`py-2.5 px-3 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
                           deliveryArea === "inside"
-                            ? "bg-[#FFE2FF] border-[#500624] text-[#500624] shadow-xs"
+                            ? "bg-primary-soft dark:bg-[#182552] border-primary dark:border-primary-dark text-primary-ink dark:text-[#93C5FD] shadow-xs"
                             : "bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:border-gray-300"
                         }`}
                       >
@@ -238,7 +238,7 @@ export const Payment: React.FC = () => {
                         }}
                         className={`py-2.5 px-3 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
                           deliveryArea === "outside"
-                            ? "bg-[#FFE2FF] border-[#500624] text-[#500624] shadow-xs"
+                            ? "bg-primary-soft dark:bg-[#182552] border-primary dark:border-primary-dark text-primary-ink dark:text-[#93C5FD] shadow-xs"
                             : "bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:border-gray-300"
                         }`}
                       >
@@ -258,14 +258,14 @@ export const Payment: React.FC = () => {
                       value={formData.city}
                       onChange={handleInputChange}
                       placeholder="e.g. Dhanmondi, Dhaka"
-                      className="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm focus:ring-2 focus:ring-[#FFE2FF] focus:border-[#500624] outline-none transition-colors"
+                      className="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary dark:focus:border-primary-dark outline-none transition-colors"
                     />
                   </div>
 
                   {/* Full Detailed Address */}
                   <div className="sm:col-span-2">
                     <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase mb-1.5 flex items-center gap-1.5">
-                      <MapPin size={13} className="text-[#500624] dark:text-[#FFE2FF]" />
+                      <MapPin size={13} className="text-primary dark:text-primary-dark" />
                       Full Street Address <span className="text-rose-500">*</span>
                     </label>
                     <textarea
@@ -275,7 +275,7 @@ export const Payment: React.FC = () => {
                       value={formData.address}
                       onChange={handleInputChange}
                       placeholder="House / Flat No., Road No., Area details"
-                      className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm focus:ring-2 focus:ring-[#FFE2FF] focus:border-[#500624] outline-none transition-colors"
+                      className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary dark:focus:border-primary-dark outline-none transition-colors"
                     />
                   </div>
 
@@ -291,7 +291,7 @@ export const Payment: React.FC = () => {
                       value={formData.orderNote}
                       onChange={handleInputChange}
                       placeholder="e.g. Call before delivery, deliver after 2 PM"
-                      className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm focus:ring-2 focus:ring-[#FFE2FF] focus:border-[#500624] outline-none transition-colors"
+                      className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary dark:focus:border-primary-dark outline-none transition-colors"
                     />
                   </div>
                 </div>
@@ -300,7 +300,7 @@ export const Payment: React.FC = () => {
               {/* SECTION B: Payment Method Selection */}
               <div className="bg-white dark:bg-[#111622] rounded-3xl p-6 sm:p-8 border border-gray-100 dark:border-gray-800 shadow-xs">
                 <div className="flex items-center gap-2.5 pb-4 mb-6 border-b border-gray-100 dark:border-gray-800">
-                  <div className="w-9 h-9 rounded-xl bg-[#FFE2FF] text-[#500624] flex items-center justify-center">
+                  <div className="w-9 h-9 rounded-xl bg-primary-soft dark:bg-[#182552] text-primary-ink dark:text-[#93C5FD] flex items-center justify-center">
                     <CreditCard size={18} />
                   </div>
                   <div>
@@ -319,19 +319,19 @@ export const Payment: React.FC = () => {
                     onClick={() => setPaymentMethod("cod")}
                     className={`p-4 rounded-2xl border-2 transition-all cursor-pointer flex items-start gap-3.5 ${
                       paymentMethod === "cod"
-                        ? "border-[#500624] bg-[#FFE2FF]/30 dark:bg-[#FFE2FF]/10 shadow-xs"
+                        ? "border-primary dark:border-primary-dark bg-primary-soft/35 dark:bg-[#182552]/40 shadow-xs"
                         : "border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/40 hover:border-gray-300"
                     }`}
                   >
                     <div
                       className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mt-0.5 shrink-0 ${
                         paymentMethod === "cod"
-                          ? "border-[#500624] bg-[#FFE2FF]"
+                          ? "border-primary dark:border-primary-dark bg-primary-soft dark:bg-[#182552]"
                           : "border-gray-400"
                       }`}
                     >
                       {paymentMethod === "cod" && (
-                        <div className="w-2.5 h-2.5 rounded-full bg-[#500624]" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-primary dark:bg-primary-dark" />
                       )}
                     </div>
                     <div>
@@ -339,7 +339,7 @@ export const Payment: React.FC = () => {
                         <span className="text-sm font-bold text-gray-900 dark:text-white">
                           Cash On Delivery (COD)
                         </span>
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#FFE2FF] text-[#500624]">
+                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-primary-soft dark:bg-[#182552] text-primary-ink dark:text-[#93C5FD]">
                           Most Popular
                         </span>
                       </div>
@@ -354,19 +354,19 @@ export const Payment: React.FC = () => {
                     onClick={() => setPaymentMethod("bkash")}
                     className={`p-4 rounded-2xl border-2 transition-all cursor-pointer flex items-start gap-3.5 ${
                       paymentMethod === "bkash"
-                        ? "border-[#500624] bg-[#FFE2FF]/30 dark:bg-[#FFE2FF]/10 shadow-xs"
+                        ? "border-primary dark:border-primary-dark bg-primary-soft/35 dark:bg-[#182552]/40 shadow-xs"
                         : "border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/40 hover:border-gray-300"
                     }`}
                   >
                     <div
                       className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mt-0.5 shrink-0 ${
                         paymentMethod === "bkash"
-                          ? "border-[#500624] bg-[#FFE2FF]"
+                          ? "border-primary dark:border-primary-dark bg-primary-soft dark:bg-[#182552]"
                           : "border-gray-400"
                       }`}
                     >
                       {paymentMethod === "bkash" && (
-                        <div className="w-2.5 h-2.5 rounded-full bg-[#500624]" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-primary dark:bg-primary-dark" />
                       )}
                     </div>
                     <div>
@@ -389,19 +389,19 @@ export const Payment: React.FC = () => {
                     onClick={() => setPaymentMethod("card")}
                     className={`p-4 rounded-2xl border-2 transition-all cursor-pointer flex items-start gap-3.5 ${
                       paymentMethod === "card"
-                        ? "border-[#500624] bg-[#FFE2FF]/30 dark:bg-[#FFE2FF]/10 shadow-xs"
+                        ? "border-primary dark:border-primary-dark bg-primary-soft/35 dark:bg-[#182552]/40 shadow-xs"
                         : "border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/40 hover:border-gray-300"
                     }`}
                   >
                     <div
                       className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mt-0.5 shrink-0 ${
                         paymentMethod === "card"
-                          ? "border-[#500624] bg-[#FFE2FF]"
+                          ? "border-primary dark:border-primary-dark bg-primary-soft dark:bg-[#182552]"
                           : "border-gray-400"
                       }`}
                     >
                       {paymentMethod === "card" && (
-                        <div className="w-2.5 h-2.5 rounded-full bg-[#500624]" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-primary dark:bg-primary-dark" />
                       )}
                     </div>
                     <div>
@@ -424,19 +424,19 @@ export const Payment: React.FC = () => {
                     onClick={() => setPaymentMethod("nagad")}
                     className={`p-4 rounded-2xl border-2 transition-all cursor-pointer flex items-start gap-3.5 ${
                       paymentMethod === "nagad"
-                        ? "border-[#500624] bg-[#FFE2FF]/30 dark:bg-[#FFE2FF]/10 shadow-xs"
+                        ? "border-primary dark:border-primary-dark bg-primary-soft/35 dark:bg-[#182552]/40 shadow-xs"
                         : "border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/40 hover:border-gray-300"
                     }`}
                   >
                     <div
                       className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mt-0.5 shrink-0 ${
                         paymentMethod === "nagad"
-                          ? "border-[#500624] bg-[#FFE2FF]"
+                          ? "border-primary dark:border-primary-dark bg-primary-soft dark:bg-[#182552]"
                           : "border-gray-400"
                       }`}
                     >
                       {paymentMethod === "nagad" && (
-                        <div className="w-2.5 h-2.5 rounded-full bg-[#500624]" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-primary dark:bg-primary-dark" />
                       )}
                     </div>
                     <div>
@@ -462,22 +462,22 @@ export const Payment: React.FC = () => {
                     id="checkout-agree"
                     checked={agreeTerms}
                     onChange={(e) => setAgreeTerms(e.target.checked)}
-                    className="mt-0.5 rounded border-gray-300 text-[#500624] focus:ring-[#FFE2FF] cursor-pointer"
+                    className="mt-0.5 rounded border-gray-300 text-primary focus:ring-primary/30 cursor-pointer"
                   />
                   <label
                     htmlFor="checkout-agree"
                     className="text-xs text-gray-600 dark:text-gray-400 cursor-pointer select-none"
                   >
                     I have read and agree to SHOB Now's{" "}
-                    <Link to="/terms" className="text-pink-800 dark:text-[#FFE2FF] underline font-semibold">
+                    <Link to="/terms" className="text-primary dark:text-primary-dark underline font-semibold">
                       Terms &amp; Conditions
                     </Link>
                     ,{" "}
-                    <Link to="/refund-policy" className="text-pink-800 dark:text-[#FFE2FF] underline font-semibold">
+                    <Link to="/refund-policy" className="text-primary dark:text-primary-dark underline font-semibold">
                       Refund Policy
                     </Link>
                     , and{" "}
-                    <Link to="/privacy-policy" className="text-pink-800 dark:text-[#FFE2FF] underline font-semibold">
+                    <Link to="/privacy-policy" className="text-primary dark:text-primary-dark underline font-semibold">
                       Privacy Policy
                     </Link>
                     .
@@ -494,7 +494,7 @@ export const Payment: React.FC = () => {
                 <h3 className="text-lg font-bold font-['Faustina'] text-gray-900 dark:text-white">
                   Order Summary
                 </h3>
-                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-[#FFE2FF] text-[#500624]">
+                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-primary-soft dark:bg-[#182552] text-primary-ink dark:text-[#93C5FD]">
                   {cartItems.length} {cartItems.length === 1 ? "item" : "items"}
                 </span>
               </div>
@@ -557,18 +557,18 @@ export const Payment: React.FC = () => {
 
                 <div className="flex justify-between items-center pt-3 border-t border-gray-100 dark:border-gray-800 text-base sm:text-lg font-bold text-gray-900 dark:text-white">
                   <span>Grand Total</span>
-                  <span className="text-xl sm:text-2xl font-black text-[#500624] dark:text-[#FFE2FF]">
+                  <span className="text-xl sm:text-2xl font-black text-[#F85606]">
                     ৳{grandTotal.toLocaleString()}
                   </span>
                 </div>
               </div>
 
-              {/* Confirm & Place Order Button styled with #FFE2FF */}
+              {/* Confirm & Place Order Button */}
               <button
                 type="submit"
                 form="checkout-form"
                 disabled={isSubmitting || cartItems.length === 0}
-                className="w-full py-4 px-6 rounded-2xl bg-[#FFE2FF] hover:bg-[#ffd1ff] text-[#500624] font-bold text-base shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50 active:scale-98 border border-pink-200/50"
+                className="w-full py-4 px-6 rounded-2xl bg-primary hover:bg-primary-hover text-white font-bold text-base shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50 active:scale-98"
               >
                 {isSubmitting ? (
                   <span>Processing Order...</span>
@@ -587,7 +587,7 @@ export const Payment: React.FC = () => {
                   <span>100% Certified Genuine Korean Beauty Products</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Lock size={15} className="text-[#500624] dark:text-[#FFE2FF] shrink-0" />
+                  <Lock size={15} className="text-primary dark:text-primary-dark shrink-0" />
                   <span>PCI-DSS SSLCOMMERZ 256-bit Encrypted Checkout</span>
                 </div>
               </div>
@@ -599,12 +599,12 @@ export const Payment: React.FC = () => {
       {/* Order Confirmation Modal */}
       {orderSuccess && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-[#111622] rounded-3xl max-w-lg w-full p-8 shadow-2xl border border-pink-100/80 dark:border-gray-800 text-center animate-in zoom-in-95">
-            <div className="w-16 h-16 rounded-full bg-[#FFE2FF] text-[#500624] flex items-center justify-center mx-auto mb-4 shadow-sm">
+          <div className="bg-white dark:bg-[#111622] rounded-3xl max-w-lg w-full p-8 shadow-2xl border border-primary-border dark:border-gray-800 text-center animate-in zoom-in-95">
+            <div className="w-16 h-16 rounded-full bg-primary-soft dark:bg-[#182552] text-primary-ink dark:text-[#93C5FD] flex items-center justify-center mx-auto mb-4 shadow-sm">
               <CheckCircle2 size={36} />
             </div>
 
-            <span className="text-[11px] font-bold uppercase tracking-wider text-[#500624] dark:text-[#FFE2FF] bg-[#FFE2FF]/50 dark:bg-[#FFE2FF]/20 px-3 py-1 rounded-full">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-primary-ink dark:text-[#93C5FD] bg-primary-soft/70 dark:bg-[#182552] px-3 py-1 rounded-full">
               Order Verified &amp; Confirmed
             </span>
 
@@ -627,7 +627,7 @@ export const Payment: React.FC = () => {
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-500">Total Amount:</span>
-                <span className="font-bold text-[#500624] dark:text-[#FFE2FF]">৳{grandTotal.toLocaleString()}</span>
+                <span className="font-bold text-primary dark:text-primary-dark">৳{grandTotal.toLocaleString()}</span>
               </div>
             </div>
 
@@ -635,7 +635,7 @@ export const Payment: React.FC = () => {
               <button
                 type="button"
                 onClick={() => navigate("/")}
-                className="w-full sm:flex-1 py-3 px-5 rounded-xl bg-[#FFE2FF] hover:bg-[#ffd1ff] text-[#500624] font-bold text-xs sm:text-sm shadow-md transition-all cursor-pointer border border-pink-200/50"
+                className="w-full sm:flex-1 py-3 px-5 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-xs sm:text-sm shadow-md transition-all cursor-pointer"
               >
                 Return to Home
               </button>

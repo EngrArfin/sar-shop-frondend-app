@@ -9,11 +9,11 @@ export default function NotificationReuseable({
   onClose,
 }: NotificationPanelProps) {
   return (
-    <div className="w-full max-w-md bg-gradient-to-b from-[#0B1E22] to-[#112B2F] rounded-2xl shadow-2xl border border-[#2F4F4F] overflow-hidden">
+    <div className="w-full max-w-md bg-gradient-to-b from-[#091C19] to-[#0F2B27] rounded-2xl shadow-2xl border border-[#22336B] overflow-hidden">
       {/* Header */}
-      <div className="border-b border-[#3A5CFF]">
+      <div className="border-b border-[#2DD4BF]/40">
         <div className="flex items-center justify-between p-4">
-          <h2 className="text-lg font-semibold text-[#3A5CFF]">
+          <h2 className="text-lg font-semibold text-[#2DD4BF]">
             Notifications
           </h2>
           <button onClick={onClose} className="cursor-pointer">
@@ -30,11 +30,11 @@ export default function NotificationReuseable({
       </div>
 
       {/* Notifications List */}
-      <div className="divide-y divide-[#3A5CFF]/30 max-h-96 overflow-y-auto">
+      <div className="divide-y divide-[#2DD4BF]/20 max-h-96 overflow-y-auto">
         {notifications.map((notif, index) => (
           <div
             key={notif.id}
-            className="px-4 py-3 space-y-1 text-sm hover:bg-[#1A3B44] transition-colors duration-200 rounded-lg"
+            className="px-4 py-3 space-y-1 text-sm hover:bg-[#133832] transition-colors duration-200 rounded-lg"
           >
             <p className="text-white font-medium">
               {index + 1}. {notif.message}

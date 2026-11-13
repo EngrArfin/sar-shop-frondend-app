@@ -70,7 +70,7 @@ const ClientDashboardNavbar: React.FC<NavbarProps> = ({
 
             <DropdownMenuContent
               align="end"
-              className="bg-[#346778] text-white w-60 shadow-2xl rounded-3xl border border-[#3A5CFF]/40 backdrop-blur-md overflow-hidden animate-fadeIn"
+              className="bg-[#0E2B26] text-white w-60 shadow-2xl rounded-3xl border border-[#2DD4BF]/30 backdrop-blur-md overflow-hidden animate-fadeIn"
             >
               <Link to="/admin-dashboard/settings">
                 <DropdownMenuItem className="flex items-center gap-3 px-4 py-2 rounded-3xl hover:bg-[#FEF7ED] hover:text-black transition-colors cursor-pointer">

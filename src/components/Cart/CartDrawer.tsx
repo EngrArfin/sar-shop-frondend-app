@@ -91,7 +91,7 @@ export const CartDrawer: React.FC = () => {
         {/* Header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100 dark:border-gray-800 shrink-0">
           <div className="flex items-center gap-2">
-            <ShoppingBag size={20} className="text-pink-800 dark:text-[#FF4D82]" />
+            <ShoppingBag size={20} className="text-primary dark:text-primary-dark" />
             <h2 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white tracking-tight font-serif">
               Shopping Bag ({totalCount})
             </h2>
@@ -101,7 +101,7 @@ export const CartDrawer: React.FC = () => {
             type="button"
             onClick={handleClose}
             aria-label="Close cart"
-            className="w-8 h-8 rounded-full flex items-center justify-center text-gray-400 dark:text-gray-300 hover:text-pink-800 dark:hover:text-white hover:bg-pink-50 dark:hover:bg-gray-800 transition-colors cursor-pointer"
+            className="w-8 h-8 rounded-full flex items-center justify-center text-gray-400 dark:text-gray-300 hover:text-primary dark:hover:text-white hover:bg-primary-light dark:hover:bg-gray-800 transition-colors cursor-pointer"
           >
             <X size={18} strokeWidth={2.5} />
           </button>
@@ -109,9 +109,9 @@ export const CartDrawer: React.FC = () => {
 
         {/* Free Shipping Banner */}
         {items.length > 0 && (
-          <div className="bg-pink-50/70 dark:bg-pink-950/30 px-5 py-2.5 border-b border-pink-100 dark:border-pink-900/40 shrink-0">
+          <div className="bg-primary-light/80 dark:bg-[#101E1D] px-5 py-2.5 border-b border-primary-border dark:border-[#1D3B37] shrink-0">
             <div className="flex items-center justify-between text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5">
-              <span className="flex items-center gap-1 text-pink-800 dark:text-pink-400">
+              <span className="flex items-center gap-1 text-primary dark:text-primary-dark">
                 <Sparkles size={13} />
                 {remainingForFreeShipping === 0 ? (
                   <span className="font-bold text-emerald-600 dark:text-emerald-400">
@@ -129,7 +129,7 @@ export const CartDrawer: React.FC = () => {
             </div>
             <div className="w-full h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-pink-800 to-[#FF4D82] rounded-full transition-all duration-500"
+                className="h-full bg-gradient-to-r from-primary to-primary-dark rounded-full transition-all duration-500"
                 style={{ width: `${progressPercent}%` }}
               />
             </div>
@@ -156,7 +156,7 @@ export const CartDrawer: React.FC = () => {
               <button
                 type="button"
                 onClick={handleClose}
-                className="px-6 py-2.5 rounded-full bg-[#FFE2FF] hover:bg-[#ffd1ff] text-[#500624] text-sm font-bold transition-all duration-200 shadow-xs cursor-pointer inline-flex items-center gap-1.5"
+                className="px-6 py-2.5 rounded-full bg-primary-soft hover:bg-primary-soft-hover dark:bg-[#182552] dark:hover:bg-[#1E2D63] text-primary-ink dark:text-[#93C5FD] text-sm font-bold transition-all duration-200 shadow-xs cursor-pointer inline-flex items-center gap-1.5"
               >
                 <span>Start Shopping</span>
                 <ArrowRight size={15} />
@@ -192,7 +192,7 @@ export const CartDrawer: React.FC = () => {
                   <Link
                     to={`/product/${item.slug}`}
                     onClick={handleClose}
-                    className="block text-xs sm:text-sm font-semibold text-gray-800 dark:text-gray-100 hover:text-pink-800 dark:hover:text-[#FF4D82] transition-colors line-clamp-2 leading-snug"
+                    className="block text-xs sm:text-sm font-semibold text-gray-800 dark:text-gray-100 hover:text-primary dark:hover:text-primary-dark transition-colors line-clamp-2 leading-snug"
                   >
                     {item.name}
                   </Link>
@@ -246,7 +246,7 @@ export const CartDrawer: React.FC = () => {
 
                     {/* Price */}
                     <div className="flex items-center gap-2">
-                      <span className="text-xs sm:text-sm font-bold text-gray-900 dark:text-white">
+                      <span className="text-xs sm:text-sm font-bold text-[#F85606]">
                         ৳{(item.price * item.quantity).toLocaleString()}
                       </span>
                       <button
@@ -291,7 +291,7 @@ export const CartDrawer: React.FC = () => {
               )}
               <div className="flex items-center justify-between text-sm sm:text-base font-bold text-gray-900 dark:text-white pt-1.5 border-t border-gray-100 dark:border-gray-800">
                 <span>Grand Total</span>
-                <span className="text-pink-800 dark:text-[#FF4D82]">
+                <span className="text-[#F85606] font-extrabold text-base sm:text-lg">
                   ৳{grandTotal.toLocaleString()}
                 </span>
               </div>
@@ -312,7 +312,7 @@ export const CartDrawer: React.FC = () => {
               <button
                 type="button"
                 onClick={handleNavigateToCheckout}
-                className="flex-1 h-11 rounded-xl bg-[#FFE2FF] hover:bg-[#ffd1ff] text-[#500624] text-xs sm:text-sm font-bold shadow-xs transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5"
+                className="flex-1 h-11 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5 active:scale-98"
               >
                 <span>Checkout</span>
                 <ArrowRight size={15} />

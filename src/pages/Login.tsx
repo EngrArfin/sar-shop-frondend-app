@@ -87,25 +87,25 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#FDFBF9] dark:bg-[#090D14] flex items-center justify-center p-4 sm:p-6 lg:p-8 transition-colors duration-200">
-      <div className="max-w-5xl w-full flex flex-col md:flex-row overflow-hidden rounded-3xl bg-white dark:bg-[#111622] border border-pink-100/80 dark:border-gray-800 shadow-[0_20px_60px_-15px_rgba(162,14,76,0.08)] dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.6)]">
-        {/* Left Side - Luxury Beauty Branding Banner */}
-        <div className="hidden md:flex md:w-1/2 bg-gradient-to-br from-[#A20E4C] via-[#7E0B3B] to-[#4A0623] p-8 lg:p-10 text-white relative overflow-hidden flex-col justify-between">
+    <div className="min-h-screen bg-surface-page dark:bg-[#090D14] flex items-center justify-center p-4 sm:p-6 lg:p-8 transition-colors duration-200">
+      <div className="max-w-5xl w-full flex flex-col md:flex-row overflow-hidden rounded-3xl bg-white dark:bg-[#111622] border border-primary-border dark:border-gray-800 shadow-[0_20px_60px_-15px_rgba(15,94,86,0.10)] dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.6)]">
+        {/* Left Side - Luxury Storefront Branding Banner */}
+        <div className="hidden md:flex md:w-1/2 bg-gradient-to-br from-primary via-primary-hover to-primary-deep p-8 lg:p-10 text-white relative overflow-hidden flex-col justify-between">
           {/* Subtle Ambient Decorative Glows */}
-          <div className="absolute -top-24 -left-24 w-72 h-72 bg-pink-400/20 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-rose-300/15 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -top-24 -left-24 w-72 h-72 bg-teal-400/20 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-amber-300/15 rounded-full blur-3xl pointer-events-none" />
 
           {/* Top Brand Tagline */}
           <div className="relative z-10">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md text-xs font-semibold tracking-wider uppercase border border-white/20">
-              <Sparkles size={13} className="text-pink-200" />
+              <Sparkles size={13} className="text-teal-200" />
               <span>SHOB Now • Official Store</span>
             </span>
             <h1 className="text-3xl lg:text-4xl font-bold font-['Faustina'] leading-tight mt-4 text-white">
               Radiant Beauty, <br />
-              <span className="text-pink-200 italic">Authentic Care.</span>
+              <span className="text-teal-200 italic">Authentic Care.</span>
             </h1>
-            <p className="text-pink-100/80 text-xs sm:text-sm mt-2 font-['Inter'] leading-relaxed max-w-sm">
+            <p className="text-teal-50/85 text-xs sm:text-sm mt-2 font-['Inter'] leading-relaxed max-w-sm">
               Discover certified genuine Korean skincare and luxury cosmetics curated for glowing confidence.
             </p>
           </div>
@@ -120,17 +120,17 @@ const Login = () => {
           </div>
 
           {/* Bottom Trust Highlights */}
-          <div className="relative z-10 pt-4 border-t border-white/15 grid grid-cols-3 gap-2 text-center text-[11px] font-['Inter'] text-pink-100/90">
+          <div className="relative z-10 pt-4 border-t border-white/15 grid grid-cols-3 gap-2 text-center text-[11px] font-['Inter'] text-teal-50/90">
             <div className="flex flex-col items-center gap-1">
-              <ShieldCheck size={16} className="text-pink-200" />
+              <ShieldCheck size={16} className="text-teal-200" />
               <span>100% Genuine</span>
             </div>
             <div className="flex flex-col items-center gap-1">
-              <Truck size={16} className="text-pink-200" />
+              <Truck size={16} className="text-teal-200" />
               <span>Fast Shipping</span>
             </div>
             <div className="flex flex-col items-center gap-1">
-              <CheckCircle2 size={16} className="text-pink-200" />
+              <CheckCircle2 size={16} className="text-teal-200" />
               <span>Verified Store</span>
             </div>
           </div>
@@ -139,7 +139,7 @@ const Login = () => {
         {/* Right Side - Form & Role Actions */}
         <div className="w-full md:w-1/2 p-6 sm:p-10 flex flex-col justify-center bg-white dark:bg-[#111622] transition-colors duration-200">
           <div className="mb-6 text-center md:text-left">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold tracking-wider text-pink-800 dark:text-pink-300 uppercase bg-pink-50 dark:bg-pink-950/40 rounded-full border border-pink-200/60 dark:border-pink-900/50 mb-2">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold tracking-wider text-primary dark:text-primary-dark uppercase bg-primary-light dark:bg-[#182552]/70 rounded-full border border-primary-soft-border dark:border-[#22336B] mb-2">
               <ShieldCheck size={13} />
               <span>Secure Access</span>
             </span>
@@ -167,11 +167,11 @@ const Login = () => {
                 }}
                 className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-sm font-medium transition-all duration-200 cursor-pointer ${
                   selectedRole === "admin"
-                    ? "bg-[#FFE2FF] text-[#500624] shadow-xs font-bold"
+                    ? "bg-primary-soft dark:bg-[#182552] text-primary-ink dark:text-[#93C5FD] shadow-xs font-bold"
                     : "text-gray-600 dark:text-gray-400 hover:text-zinc-900 dark:hover:text-white hover:bg-white/60 dark:hover:bg-gray-700/60"
                 }`}
               >
-                <ShieldCheck className="w-4 h-4 text-[#500624] dark:text-[#500624]" />
+                <ShieldCheck className="w-4 h-4 text-current" />
                 <span>Admin</span>
               </button>
               <button
@@ -184,11 +184,11 @@ const Login = () => {
                 }}
                 className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-sm font-medium transition-all duration-200 cursor-pointer ${
                   selectedRole === "client"
-                    ? "bg-[#FFE2FF] text-[#500624] shadow-xs font-bold"
+                    ? "bg-primary-soft dark:bg-[#182552] text-primary-ink dark:text-[#93C5FD] shadow-xs font-bold"
                     : "text-gray-600 dark:text-gray-400 hover:text-zinc-900 dark:hover:text-white hover:bg-white/60 dark:hover:bg-gray-700/60"
                 }`}
               >
-                <UserIcon className="w-4 h-4 text-[#500624] dark:text-[#500624]" />
+                <UserIcon className="w-4 h-4 text-current" />
                 <span>Client</span>
               </button>
             </div>
@@ -198,7 +198,7 @@ const Login = () => {
             {/* Email Field */}
             <div className="flex flex-col">
               <label htmlFor="email" className="text-zinc-800 dark:text-gray-200 text-xs sm:text-sm font-semibold mb-1.5 flex items-center gap-2">
-                <Mail className="w-4 h-4 text-pink-800 dark:text-pink-400" />
+                <Mail className="w-4 h-4 text-primary dark:text-primary-dark" />
                 Email Address
               </label>
               <input
@@ -207,14 +207,14 @@ const Login = () => {
                 placeholder={selectedRole === "admin" ? "admin@shopnow.com" : "client@shopnow.com"}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl bg-gray-50/80 dark:bg-gray-800/60 text-zinc-900 dark:text-white placeholder-gray-400 border border-gray-200 dark:border-gray-700 focus:border-pink-800 dark:focus:border-pink-500 focus:ring-2 focus:ring-pink-800/20 outline-none transition text-sm"
+                className="w-full px-4 py-3 rounded-xl bg-gray-50/80 dark:bg-gray-800/60 text-zinc-900 dark:text-white placeholder-gray-400 border border-gray-200 dark:border-gray-700 focus:border-primary dark:focus:border-primary-dark focus:ring-2 focus:ring-primary/20 outline-none transition text-sm"
               />
             </div>
 
             {/* Password Field */}
             <div className="flex flex-col">
               <label htmlFor="password" className="text-zinc-800 dark:text-gray-200 text-xs sm:text-sm font-semibold mb-1.5 flex items-center gap-2">
-                <Lock className="w-4 h-4 text-pink-800 dark:text-pink-400" />
+                <Lock className="w-4 h-4 text-primary dark:text-primary-dark" />
                 Password
               </label>
 
@@ -225,13 +225,13 @@ const Login = () => {
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-3 pr-12 rounded-xl bg-gray-50/80 dark:bg-gray-800/60 text-zinc-900 dark:text-white placeholder-gray-400 border border-gray-200 dark:border-gray-700 focus:border-pink-800 dark:focus:border-pink-500 focus:ring-2 focus:ring-pink-800/20 outline-none transition shadow-2xs text-sm"
+                  className="w-full px-4 py-3 pr-12 rounded-xl bg-gray-50/80 dark:bg-gray-800/60 text-zinc-900 dark:text-white placeholder-gray-400 border border-gray-200 dark:border-gray-700 focus:border-primary dark:focus:border-primary-dark focus:ring-2 focus:ring-primary/20 outline-none transition shadow-2xs text-sm"
                 />
 
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-3.5 flex items-center text-gray-400 hover:text-pink-800 dark:hover:text-pink-400 transition-colors duration-200 focus:outline-none cursor-pointer"
+                  className="absolute inset-y-0 right-3.5 flex items-center text-gray-400 hover:text-primary dark:hover:text-primary-dark transition-colors duration-200 focus:outline-none cursor-pointer"
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? <AiOutlineEyeInvisible size={20} /> : <AiOutlineEye size={20} />}
@@ -243,7 +243,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-[#FFE2FF] hover:bg-[#ffd1ff] text-[#500624] font-bold py-3 sm:py-3.5 rounded-xl transition-all duration-200 cursor-pointer shadow-xs flex items-center justify-center gap-2 mt-2 disabled:opacity-60 active:scale-[0.99]"
+              className="w-full bg-primary hover:bg-primary-hover text-white font-bold py-3 sm:py-3.5 rounded-xl transition-all duration-200 cursor-pointer shadow-xs flex items-center justify-center gap-2 mt-2 disabled:opacity-60 active:scale-[0.99]"
             >
               <span>{isLoading ? "Signing In..." : `Login as ${selectedRole === "admin" ? "Admin" : "Client"}`}</span>
               <ArrowRight className="w-4 h-4" />
@@ -272,10 +272,10 @@ const Login = () => {
                 type="button"
                 id="btn-client-panel"
                 onClick={() => handleRoleLogin("client")}
-                className="w-full group bg-pink-50/80 dark:bg-pink-950/30 hover:bg-pink-100/80 dark:hover:bg-pink-950/50 border border-pink-200/80 dark:border-pink-800/60 py-2.5 px-3 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer shadow-2xs"
+                className="w-full group bg-primary-light dark:bg-[#182552]/50 hover:bg-primary-soft dark:hover:bg-[#182552] border border-primary-soft-border dark:border-[#22336B] py-2.5 px-3 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer shadow-2xs"
               >
-                <UserIcon className="w-4 h-4 text-pink-700 dark:text-pink-400 group-hover:scale-110 transition-transform" />
-                <span className="text-xs sm:text-sm font-semibold text-pink-800 dark:text-pink-300">Client Panel</span>
+                <UserIcon className="w-4 h-4 text-primary dark:text-primary-dark group-hover:scale-110 transition-transform" />
+                <span className="text-xs sm:text-sm font-semibold text-primary-ink dark:text-[#93C5FD]">Client Panel</span>
               </button>
             </div>
           </div>
@@ -284,13 +284,13 @@ const Login = () => {
             <button
               type="button"
               onClick={() => toast.info("Password reset instructions have been simulated.")}
-              className="text-xs text-pink-800 dark:text-pink-400 hover:underline cursor-pointer font-medium"
+              className="text-xs text-primary dark:text-primary-dark hover:underline cursor-pointer font-medium"
             >
               Forgot Password?
             </button>
             <p className="text-xs text-gray-500 dark:text-gray-400">
               Don’t have an account?
-              <Link to="/signup" className="text-pink-800 dark:text-pink-400 hover:text-pink-900 dark:hover:text-pink-300 ml-1 font-semibold hover:underline">
+              <Link to="/signup" className="text-primary dark:text-primary-dark hover:text-primary-hover dark:hover:text-teal-300 ml-1 font-semibold hover:underline">
                 Register
               </Link>
             </p>
