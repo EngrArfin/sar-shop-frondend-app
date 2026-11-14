@@ -766,7 +766,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "reviewsCount": 310,
     "inStock": true,
     "stockQuantity": 45,
-    "image": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "image": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "hoverImage": "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=700&q=80",
     "description": "Enriched with 96% snail secretion filtrate to deeply repair moisture loss, fade post-breakout scars, and revitalize damaged skin.",
     "volume": "100 ml",
@@ -801,7 +801,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 34,
     "image": "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1556228852-6d35a585d566?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=700&q=80",
     "description": "Lightweight organic sunscreen containing 30% Rice Extract and Grain Fermented Extracts that melts into skin like a rich lotion without white cast.",
     "volume": "50 ml",
     "tags": [
@@ -833,8 +833,8 @@ export const MOCK_PRODUCTS: Product[] = [
     "reviewsCount": 165,
     "inStock": true,
     "stockQuantity": 20,
-    "image": "https://images.unsplash.com/photo-1567928815116-2f080c98f993?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "image": "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Formulated with 77% Houttuynia Cordata Extract to regulate oil-moisture balance and soothe troubled skin.",
     "volume": "250 ml",
     "tags": [
@@ -928,7 +928,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "reviewsCount": 138,
     "inStock": true,
     "stockQuantity": 18,
-    "image": "https://images.unsplash.com/photo-1567928815116-2f080c98f993?auto=format&fit=crop&w=700&q=80",
+    "image": "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=700&q=80",
     "description": "Deep sea water mineral toner that gently exfoliates dead skin cells with Hatching EX-07 enzyme while restoring skin comfort.",
     "volume": "200 ml",
     "tags": [
@@ -992,7 +992,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "reviewsCount": 175,
     "inStock": true,
     "stockQuantity": 30,
-    "image": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "image": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "5% Niacinamide and Rice Bran blend targeting hyperpigmentation, stubborn sun spots, and uneven texture.",
     "volume": "50 ml",
     "tags": [
@@ -2834,7 +2834,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 10,
     "image": "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Complete curated ritual containing Beauty of Joseon Hanbang Trio Serum Discovery Set. Enjoy bundled value and perfectly harmonized skincare steps.",
     "volume": "3 x 30 ml",
     "tags": [
@@ -2865,7 +2865,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 12,
     "image": "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Complete curated ritual containing COSRX All About Snail 4-Step Starter Routine Kit. Enjoy bundled value and perfectly harmonized skincare steps.",
     "volume": "4 Mini Sizes",
     "tags": [
@@ -2896,7 +2896,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 14,
     "image": "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Complete curated ritual containing SKIN1004 Madagascar Centella Travel Kit 5-in-1. Enjoy bundled value and perfectly harmonized skincare steps.",
     "volume": "5 Travel Items",
     "tags": [
@@ -2927,7 +2927,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 16,
     "image": "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Complete curated ritual containing Anua Heartleaf Soothing & Calming Complete Routine Set. Enjoy bundled value and perfectly harmonized skincare steps.",
     "volume": "3 Full Items",
     "tags": [
@@ -2958,7 +2958,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 18,
     "image": "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Complete curated ritual containing TIRTIR Glass Skin Dual Kit (Milk Ampoule 50ml + Mask Fit Cushion). Enjoy bundled value and perfectly harmonized skincare steps.",
     "volume": "2 Full Items",
     "tags": [
@@ -2989,7 +2989,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 20,
     "image": "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Complete curated ritual containing Laneige Best Seller Lip & Water Sleeping Mask Duo. Enjoy bundled value and perfectly harmonized skincare steps.",
     "volume": "2 Full Items",
     "tags": [
@@ -3020,7 +3020,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 22,
     "image": "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Complete curated ritual containing Round Lab Dokdo 3-Step Hydration Bundle. Enjoy bundled value and perfectly harmonized skincare steps.",
     "volume": "3 Full Items",
     "tags": [
@@ -3051,7 +3051,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 24,
     "image": "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Complete curated ritual containing Some By Mi AHA BHA PHA 30 Days Miracle Starter Kit. Enjoy bundled value and perfectly harmonized skincare steps.",
     "volume": "4 Mini Items",
     "tags": [
@@ -3082,7 +3082,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 26,
     "image": "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Complete curated ritual containing Isntree Hyaluronic Acid Hydrating Master Bundle. Enjoy bundled value and perfectly harmonized skincare steps.",
     "volume": "3 Full Items",
     "tags": [
@@ -3113,7 +3113,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 28,
     "image": "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Complete curated ritual containing Dabo Eco Life White Tea Complete Luxury Gift Set. Enjoy bundled value and perfectly harmonized skincare steps.",
     "volume": "5 Full Items",
     "tags": [
@@ -3144,7 +3144,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 22,
     "image": "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Keep whole-body skin velvety soft, brightened, and deeply hydrated with the comforting formula of Dabo Speed Whitening Intensive Body Lotion SPF50+.",
     "volume": "200 ml",
     "tags": [
@@ -3175,7 +3175,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 25,
     "image": "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Keep whole-body skin velvety soft, brightened, and deeply hydrated with the comforting formula of Illiyoon Ceramide Ato Concentrate Body Cream.",
     "volume": "200 ml",
     "tags": [
@@ -3206,7 +3206,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 28,
     "image": "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Keep whole-body skin velvety soft, brightened, and deeply hydrated with the comforting formula of Illiyoon Ceramide Ato Body Wash Pump.",
     "volume": "500 ml",
     "tags": [
@@ -3237,7 +3237,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 31,
     "image": "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Keep whole-body skin velvety soft, brightened, and deeply hydrated with the comforting formula of Kundal Pure Body Wash - Cherry Blossom.",
     "volume": "500 ml",
     "tags": [
@@ -3268,7 +3268,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 34,
     "image": "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Keep whole-body skin velvety soft, brightened, and deeply hydrated with the comforting formula of Nature Skin Aloe Vera 99% Soothing Gel Large Jar.",
     "volume": "300 ml",
     "tags": [
@@ -3299,7 +3299,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 37,
     "image": "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Keep whole-body skin velvety soft, brightened, and deeply hydrated with the comforting formula of Plu Prestige Silk Body Scrub - White Musk.",
     "volume": "180 g",
     "tags": [
@@ -3330,7 +3330,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 40,
     "image": "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Keep whole-body skin velvety soft, brightened, and deeply hydrated with the comforting formula of AROMATICA Comforting Calendula Decoction Body Lotion.",
     "volume": "300 ml",
     "tags": [
@@ -3361,7 +3361,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 43,
     "image": "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Keep whole-body skin velvety soft, brightened, and deeply hydrated with the comforting formula of Pyunkang Yul Intensive Ceramide Body Lotion.",
     "volume": "500 ml",
     "tags": [
@@ -3392,7 +3392,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 46,
     "image": "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Keep whole-body skin velvety soft, brightened, and deeply hydrated with the comforting formula of Innisfree Green Tea Pure Gel Body Cleanser.",
     "volume": "310 ml",
     "tags": [
@@ -3423,7 +3423,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 49,
     "image": "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Keep whole-body skin velvety soft, brightened, and deeply hydrated with the comforting formula of TonyMoly Magic Food Banana Hand Milk & Butter.",
     "volume": "45 ml",
     "tags": [
@@ -3724,7 +3724,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 18,
     "image": "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Pediatrician-tested, tear-free, and hypoallergenic formula of Green Finger Chok Chok Moisture Baby Lotion designed to nurture infant skin gently.",
     "volume": "320 ml",
     "tags": [
@@ -3755,7 +3755,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 20,
     "image": "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Pediatrician-tested, tear-free, and hypoallergenic formula of Green Finger Pure Foaming Baby Head-to-Toe Wash designed to nurture infant skin gently.",
     "volume": "320 ml",
     "tags": [
@@ -3786,7 +3786,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 22,
     "image": "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Pediatrician-tested, tear-free, and hypoallergenic formula of Pyunkang Yul Kids & Baby Ato Body Wash designed to nurture infant skin gently.",
     "volume": "590 ml",
     "tags": [
@@ -3817,7 +3817,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 24,
     "image": "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Pediatrician-tested, tear-free, and hypoallergenic formula of Pyunkang Yul Kids & Baby Soothing Ato Cream designed to nurture infant skin gently.",
     "volume": "200 ml",
     "tags": [
@@ -3848,7 +3848,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 26,
     "image": "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Pediatrician-tested, tear-free, and hypoallergenic formula of B&B Hypoallergenic Baby Fabric Cleanser & Detergent designed to nurture infant skin gently.",
     "volume": "1500 ml",
     "tags": [
@@ -3879,7 +3879,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 28,
     "image": "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Pediatrician-tested, tear-free, and hypoallergenic formula of Sanosan Baby Care Bath & Shampoo Gentle Tear-Free designed to nurture infant skin gently.",
     "volume": "500 ml",
     "tags": [
@@ -3910,7 +3910,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 30,
     "image": "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Pediatrician-tested, tear-free, and hypoallergenic formula of Sebamed Baby Gentle Cleansing Bar Soap designed to nurture infant skin gently.",
     "volume": "100 g",
     "tags": [
@@ -3941,7 +3941,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 32,
     "image": "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Pediatrician-tested, tear-free, and hypoallergenic formula of Green Finger Pure Mineral Baby Sun Cushion SPF50+ designed to nurture infant skin gently.",
     "volume": "15 g",
     "tags": [
@@ -3972,7 +3972,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 34,
     "image": "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Pediatrician-tested, tear-free, and hypoallergenic formula of Baby Dove Rich Moisture Sensitive Head to Toe Wash designed to nurture infant skin gently.",
     "volume": "400 ml",
     "tags": [
@@ -4003,7 +4003,7 @@ export const MOCK_PRODUCTS: Product[] = [
     "inStock": true,
     "stockQuantity": 36,
     "image": "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=700&q=80",
-    "hoverImage": "https://images.unsplash.com/photo-1608248597359-00994fa4e67a?auto=format&fit=crop&w=700&q=80",
+    "hoverImage": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80",
     "description": "Pediatrician-tested, tear-free, and hypoallergenic formula of Mustela Hydra Bebe Daily Soothing Baby Facial Cream designed to nurture infant skin gently.",
     "volume": "40 ml",
     "tags": [

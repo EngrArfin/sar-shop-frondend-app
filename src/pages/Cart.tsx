@@ -214,6 +214,11 @@ export const Cart: React.FC = () => {
                             src={item.image}
                             alt={item.name}
                             className="w-full h-full object-contain"
+                            onError={(e) => {
+                              const target = e.currentTarget;
+                              target.onerror = null;
+                              target.src = "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=700&q=80";
+                            }}
                           />
                         </Link>
 

@@ -228,6 +228,11 @@ export const ProductDetails: React.FC = () => {
                   alt="Name of the product"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 cursor-pointer"
                   onClick={() => setIsLightboxOpen(true)}
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    target.onerror = null;
+                    target.src = "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=700&q=80";
+                  }}
                 />
 
                 {/* Zoom Trigger */}
@@ -261,6 +266,11 @@ export const ProductDetails: React.FC = () => {
                         src={thumbImg}
                         alt={`Thumbnail ${num}`}
                         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          target.onerror = null;
+                          target.src = "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=700&q=80";
+                        }}
                       />
                     </button>
                   );
