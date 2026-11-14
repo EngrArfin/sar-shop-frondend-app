@@ -10,7 +10,7 @@ import FeaturedProductsCarousel from "@/components/Home/LandingPage/FeaturedProd
 import CustomerReviewsSection from "@/components/Home/LandingPage/CustomerReviewsSection";
 import NewsletterVIP from "@/components/Home/LandingPage/NewsletterVIP";
 import ProductQuickViewModal from "@/components/Shop/ProductQuickViewModal";
-import { Product } from "@/data/shopData";
+import { Product, FIGMA_CATEGORIES_ROW_1, FIGMA_CATEGORIES_ROW_2 } from "@/data/shopData";
 import { toast } from "sonner";
 
 const Home = () => {
@@ -37,11 +37,20 @@ const Home = () => {
       {/* 2. Brand Capsule Marquee directly beneath Hero */}
       <BrandMarquee />
 
-      {/* 3. Section 1: Jewellery & Accessories Category Stadium Pills */}
-      <BrandCategories title="Jewellery & Accessories" />
+      {/* 3. Section 1: Jewellery & Accessories Category Cards */}
+      <BrandCategories
+        title="Jewellery & Accessories"
+        subtitle="Explore our curated collection of authentic skincare, trending cosmetics, and everyday lifestyle essentials."
+        categories={FIGMA_CATEGORIES_ROW_1}
+      />
 
-      {/* 4. Section 2: Beauty & Personal Care Category Stadium Pills */}
-      <BrandCategories title="Beauty & Personal Care" className="border-t border-primary-border dark:border-gray-800" />
+      {/* 4. Section 2: Beauty & Personal Care Category Cards */}
+      <BrandCategories
+        title="Beauty & Personal Care"
+        subtitle="Discover top-rated Korean beauty formulations, gentle daily care solutions, and wellness picks."
+        categories={FIGMA_CATEGORIES_ROW_2}
+        className="border-t border-primary-border/60 dark:border-gray-800"
+      />
 
       {/* 5. Section 3: New Arrival 5-Col x 2-Row Product Grid + See All (Figma: top: 3052, height: 1171, white) */}
       <NewArrivalsSection

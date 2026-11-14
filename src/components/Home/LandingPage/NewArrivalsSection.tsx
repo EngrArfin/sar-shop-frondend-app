@@ -114,11 +114,25 @@ export const NewArrivalsSection: React.FC<{
   return (
     <section className="w-full bg-surface-page dark:bg-[#090D14] py-16 sm:py-20 md:py-24 transition-colors duration-200">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-8">
-        {/* Section Heading */}
-        <div className="text-center mb-10 sm:mb-12">
-          <h2 className="text-3xl sm:text-[42px] font-faustina font-bold text-black dark:text-white tracking-tight leading-tight">
-            New Arrival
-          </h2>
+        {/* Section Heading - Left Aligned with Subtitle in <p> tag */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-10 text-left">
+          <div>
+            <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-primary dark:text-primary-dark block mb-1 font-inter">
+              Just Landed
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-faustina font-bold text-black dark:text-white tracking-tight leading-tight">
+              New Arrival
+            </h2>
+            <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 font-inter mt-1.5 max-w-2xl leading-relaxed">
+              Freshly imported authentic Korean beauty formulations, newly launched serums, and trending skincare favorites.
+            </p>
+          </div>
+          <Link
+            to="/shop?sort=newest"
+            className="hidden sm:inline-flex items-center justify-center h-10 px-5 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs sm:text-sm font-inter font-semibold transition-all duration-200 shadow-xs shrink-0 self-start sm:self-auto"
+          >
+            See All New Arrivals
+          </Link>
         </div>
 
         {/* 5-Column x 2-Row Grid */}

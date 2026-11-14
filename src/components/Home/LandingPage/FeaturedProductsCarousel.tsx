@@ -17,11 +17,17 @@ export const FeaturedProductsCarousel: React.FC = () => {
   return (
     <section className="w-full bg-surface-tint dark:bg-[#0E131F] py-16 sm:py-20 overflow-hidden select-none transition-colors duration-200">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-8">
-        {/* Heading */}
-        <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-[42px] font-faustina font-bold text-black dark:text-white tracking-tight leading-tight">
+        {/* Heading - Left Aligned with Subtitle in <p> tag */}
+        <div className="text-left mb-8 sm:mb-12">
+          <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-primary dark:text-primary-dark block mb-1 font-inter">
+            Editor's Choice
+          </span>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-faustina font-bold text-black dark:text-white tracking-tight leading-tight">
             Featured Products
           </h2>
+          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 font-inter mt-1.5 max-w-2xl leading-relaxed">
+            Handpicked iconic Korean skincare innovations and viral beauty highlights chosen for exceptional results.
+          </p>
         </div>
 
         {/* 3D Perspective Card Stack Container */}

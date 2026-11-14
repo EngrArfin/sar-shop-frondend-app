@@ -165,8 +165,16 @@ export const TopSelling: React.FC = () => {
         {/* 3. NEW ARRIVAL 5-COL x 2-ROW GRID (10 Cards matching Figma)               */}
         {/* ========================================================================= */}
         <section className="w-full my-12 sm:my-16 pt-8 border-t border-gray-100 dark:border-gray-800">
-          <div className="text-center justify-center text-black dark:text-white text-4xl sm:text-5xl font-bold font-faustina font-['Faustina'] leading-[50.40px] mb-8 sm:mb-12">
-            New Arrival
+          <div className="text-left mb-8 sm:mb-10">
+            <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-primary dark:text-primary-dark block mb-1 font-inter">
+              Just Landed
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold font-faustina text-black dark:text-white tracking-tight leading-tight">
+              New Arrival
+            </h2>
+            <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 font-inter mt-1.5 max-w-2xl leading-relaxed">
+              Explore freshly imported authentic Korean formulations, viral beauty picks, and daily essentials.
+            </p>
           </div>
 
           {/* 5-Column x 2-Row Product Grid */}

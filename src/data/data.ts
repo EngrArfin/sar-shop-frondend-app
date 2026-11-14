@@ -4301,6 +4301,7 @@ export interface FigmaCategoryItem {
   image: string;
   bgColor: string;
   link: string;
+  subtitle?: string;
 }
 
 export const FIGMA_CATEGORIES_ROW_1: FigmaCategoryItem[] = [

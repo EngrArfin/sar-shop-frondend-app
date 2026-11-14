@@ -46,13 +46,20 @@ export const CustomerReviewsSection: React.FC = () => {
   return (
     <section className="w-full bg-surface-page dark:bg-[#090D14] py-14 sm:py-20 overflow-hidden transition-colors duration-200">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-8">
-        {/* Section Header with Left/Right Controls */}
-        <div className="flex items-center justify-between mb-8 sm:mb-10">
-          <div className="w-12 sm:w-20" /> {/* Spacer to balance header */}
-          <h2 className="text-3xl sm:text-[42px] font-faustina font-bold text-black dark:text-white tracking-tight leading-tight text-center">
-            Customer Reviews
-          </h2>
-          <div className="flex items-center gap-2">
+        {/* Section Header with Left-Aligned Title, Subtitle & Right Controls */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-10 text-left">
+          <div>
+            <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-primary dark:text-primary-dark block mb-1 font-inter">
+              Verified Feedback
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-faustina font-bold text-black dark:text-white tracking-tight leading-tight">
+              Customer Reviews
+            </h2>
+            <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 font-inter mt-1.5 max-w-2xl leading-relaxed">
+              Real stories and authentic experiences shared by verified shoppers across Bangladesh.
+            </p>
+          </div>
+          <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
             <button
               onClick={() => scroll("left")}
               className="w-9 h-9 rounded-full bg-[#1B1E23] dark:bg-gray-800 text-white dark:text-gray-200 flex items-center justify-center hover:bg-primary dark:hover:bg-primary transition-colors shadow-xs cursor-pointer active:scale-90"
