@@ -136,9 +136,8 @@ const NavBar: React.FC = () => {
     if (terms.length === 0) return [];
 
     return MOCK_PRODUCTS.filter((product) => {
-      const searchableText = `${product.name} ${product.brand} ${product.category} ${
-        product.subcategory || ""
-      } ${product.tags?.join(" ") || ""} ${product.description || ""}`.toLowerCase();
+      const searchableText = `${product.name} ${product.brand} ${product.category} ${product.subcategory || ""
+        } ${product.tags?.join(" ") || ""} ${product.description || ""}`.toLowerCase();
       return terms.every((term) => searchableText.includes(term));
     });
   }, [searchQuery]);
@@ -309,19 +308,17 @@ const NavBar: React.FC = () => {
           >
             <form onSubmit={handleSearchSubmit} className="w-full">
               <div
-                className={`w-full flex items-center bg-slate-100/90 dark:bg-slate-800/80 hover:bg-slate-150/90 dark:hover:bg-slate-800 rounded-full pl-4 pr-1.5 py-1.5 gap-2.5 transition-all duration-200 border ${
-                  isSearchFocused
+                className={`w-full flex items-center bg-slate-100/90 dark:bg-slate-800/80 hover:bg-slate-150/90 dark:hover:bg-slate-800 rounded-full pl-4 pr-1.5 py-1.5 gap-2.5 transition-all duration-200 border ${isSearchFocused
                     ? "bg-white dark:bg-[#0B1020] border-primary dark:border-primary-dark ring-2 ring-primary/15 shadow-md"
                     : "border-slate-200/90 dark:border-slate-700/80 shadow-2xs"
-                } group`}
+                  } group`}
               >
                 <Search
                   size={18}
-                  className={`shrink-0 transition-colors ${
-                    isSearchFocused
+                  className={`shrink-0 transition-colors ${isSearchFocused
                       ? "text-primary dark:text-primary-dark"
                       : "text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300"
-                  }`}
+                    }`}
                 />
                 <input
                   ref={searchInputRef}
@@ -409,6 +406,11 @@ const NavBar: React.FC = () => {
                               src={p.image}
                               alt={p.name}
                               className="w-12 h-12 rounded-lg object-contain bg-slate-50 dark:bg-slate-900 border border-slate-150 dark:border-slate-800 shrink-0"
+                              onError={(e) => {
+                                const target = e.currentTarget;
+                                target.onerror = null;
+                                target.src = "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=700&q=80";
+                              }}
                             />
                             <div className="min-w-0 flex-1">
                               <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block">
@@ -559,11 +561,10 @@ const NavBar: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 cursor-pointer shadow-2xs ${
-                  isUserMenuOpen
+                className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 cursor-pointer shadow-2xs ${isUserMenuOpen
                     ? "bg-primary text-white ring-2 ring-primary/30 dark:ring-primary-dark/40"
                     : "bg-slate-100/90 hover:bg-slate-200/80 dark:bg-slate-800/80 dark:hover:bg-slate-700/80 border border-slate-200/80 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-primary-dark"
-                }`}
+                  }`}
                 title="Account & Profile"
                 aria-label="User Account"
                 aria-expanded={isUserMenuOpen}
@@ -771,11 +772,10 @@ const NavBar: React.FC = () => {
                 <Link
                   key={idx}
                   to={item.path}
-                  className={`text-xs lg:text-[13px] font-['Inter'] whitespace-nowrap transition-all duration-200 px-3.5 py-1.5 rounded-full flex items-center gap-1.5 ${
-                    active
+                  className={`text-xs lg:text-[13px] font-['Inter'] whitespace-nowrap transition-all duration-200 px-3.5 py-1.5 rounded-full flex items-center gap-1.5 ${active
                       ? "bg-primary text-white font-bold shadow-xs dark:bg-primary-dark dark:text-slate-950"
                       : "text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary-dark hover:bg-white dark:hover:bg-slate-800 font-medium"
-                  }`}
+                    }`}
                 >
                   {isTopSelling && (
                     <Flame
@@ -797,22 +797,20 @@ const NavBar: React.FC = () => {
                   )}
                   {isNewest && (
                     <span
-                      className={`text-[9px] font-black uppercase px-1.5 py-0.5 rounded-full tracking-wider leading-none ${
-                        active
+                      className={`text-[9px] font-black uppercase px-1.5 py-0.5 rounded-full tracking-wider leading-none ${active
                           ? "bg-white text-primary dark:bg-slate-900 dark:text-primary-dark"
                           : "bg-blue-100 text-primary dark:bg-blue-950 dark:text-blue-300"
-                      }`}
+                        }`}
                     >
                       NEW
                     </span>
                   )}
                   {isFeatured && (
                     <span
-                      className={`text-[9px] font-black uppercase px-1.5 py-0.5 rounded-full tracking-wider leading-none ${
-                        active
+                      className={`text-[9px] font-black uppercase px-1.5 py-0.5 rounded-full tracking-wider leading-none ${active
                           ? "bg-white/20 text-white"
                           : "bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300"
-                      }`}
+                        }`}
                     >
                       VIP
                     </span>
@@ -949,6 +947,11 @@ const NavBar: React.FC = () => {
                       src={p.image}
                       alt={p.name}
                       className="w-9 h-9 rounded object-contain bg-slate-50 dark:bg-slate-800"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        target.onerror = null;
+                        target.src = "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=700&q=80";
+                      }}
                     />
                     <div className="min-w-0 flex-1">
                       <p className="text-xs font-semibold text-slate-800 dark:text-slate-200 truncate">
@@ -979,11 +982,10 @@ const NavBar: React.FC = () => {
                   key={idx}
                   to={item.path}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`flex items-center justify-between py-2.5 px-3.5 rounded-xl text-sm font-medium transition-colors ${
-                    active
+                  className={`flex items-center justify-between py-2.5 px-3.5 rounded-xl text-sm font-medium transition-colors ${active
                       ? "bg-primary text-white font-bold shadow-xs dark:bg-primary-dark dark:text-slate-950"
                       : "text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary-dark hover:bg-slate-100 dark:hover:bg-slate-800"
-                  }`}
+                    }`}
                 >
                   <div className="flex items-center gap-2">
                     {isTopSelling && (
@@ -1007,9 +1009,8 @@ const NavBar: React.FC = () => {
                   )}
                   {isNewest && (
                     <span
-                      className={`text-[9px] font-black uppercase px-2 py-0.5 rounded-full ${
-                        active ? "bg-white text-primary" : "bg-blue-100 text-primary"
-                      }`}
+                      className={`text-[9px] font-black uppercase px-2 py-0.5 rounded-full ${active ? "bg-white text-primary" : "bg-blue-100 text-primary"
+                        }`}
                     >
                       NEW
                     </span>

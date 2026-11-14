@@ -109,6 +109,11 @@ export const FeaturedProductsCarousel: React.FC = () => {
                     alt={item.title}
                     className="absolute inset-0 w-full h-full object-cover pointer-events-none"
                     loading="lazy"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      target.onerror = null;
+                      target.src = "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=700&q=80";
+                    }}
                   />
 
                   {/* Top Floating Glass Circle Button */}
@@ -124,6 +129,11 @@ export const FeaturedProductsCarousel: React.FC = () => {
                       src={item.thumb}
                       alt={item.title}
                       className="w-[66px] h-[66px] rounded-[8px] object-cover shrink-0"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        target.onerror = null;
+                        target.src = "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=700&q=80";
+                      }}
                     />
                     <div className="flex-1 min-w-0">
                       <h4 className="text-base sm:text-lg font-faustina font-semibold text-black dark:text-white truncate leading-snug">
