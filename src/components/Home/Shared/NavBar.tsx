@@ -217,7 +217,12 @@ const NavBar: React.FC = () => {
       return pathname === "/brands" || search.includes("filter=brands");
     }
     if (itemPath === "/track-order") {
-      return pathname === "/track-order";
+      return (
+        pathname === "/track-order" ||
+        pathname === "/order-tracking" ||
+        pathname === "/track" ||
+        pathname === "/tracking"
+      );
     }
     if (itemPath === "/#categories" || itemPath === "/categories") {
       return pathname === "/categories" || hash === "#categories";

@@ -16,6 +16,7 @@ import Terms from "@/pages/Terms";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import RefundPolicy from "@/pages/RefundPolicy";
 import DeliveryPolicy from "@/pages/DeliveryPolicy";
+import TrackOrder from "@/pages/TrackOrder";
 
 import AdminLayout from "@/Layout/AdminLayout";
 
@@ -132,6 +133,22 @@ const routes = createBrowserRouter([
       {
         path: "/delivery-policy",
         element: <DeliveryPolicy />,
+      },
+      {
+        path: "/track-order",
+        element: <TrackOrder />,
+      },
+      {
+        path: "/order-tracking",
+        element: <TrackOrder />,
+      },
+      {
+        path: "/track",
+        element: <TrackOrder />,
+      },
+      {
+        path: "/tracking",
+        element: <TrackOrder />,
       },
     ],
   },
