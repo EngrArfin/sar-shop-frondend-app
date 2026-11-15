@@ -214,7 +214,11 @@ const NavBar: React.FC = () => {
       return search.includes("filter=featured");
     }
     if (itemPath === "/brands") {
-      return pathname === "/brands" || search.includes("filter=brands");
+      return (
+        pathname === "/brands" ||
+        pathname === "/all-brands" ||
+        search.includes("filter=brands")
+      );
     }
     if (itemPath === "/track-order") {
       return (

@@ -17,6 +17,7 @@ import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import RefundPolicy from "@/pages/RefundPolicy";
 import DeliveryPolicy from "@/pages/DeliveryPolicy";
 import TrackOrder from "@/pages/TrackOrder";
+import Brands from "@/pages/Brands";
 
 import AdminLayout from "@/Layout/AdminLayout";
 
@@ -149,6 +150,14 @@ const routes = createBrowserRouter([
       {
         path: "/tracking",
         element: <TrackOrder />,
+      },
+      {
+        path: "/brands",
+        element: <Brands />,
+      },
+      {
+        path: "/all-brands",
+        element: <Brands />,
       },
     ],
   },

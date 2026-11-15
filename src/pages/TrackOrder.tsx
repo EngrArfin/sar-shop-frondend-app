@@ -4,12 +4,15 @@ import {
   Search,
   Package,
   Truck,
-  Clock,
   MapPin,
   Phone,
   Copy,
   Check,
   Printer,
+  ShieldCheck,
+  X,
+  FileText,
+  BadgeCheck,
 } from "lucide-react";
 import { toast } from "sonner";
 import { MOCK_PRODUCTS } from "@/data/shopData";
@@ -38,11 +41,14 @@ interface TrackedOrderItem {
 // Tracked order interface
 interface TrackedOrder {
   orderId: string;
+  invoiceNo: string;
   status: "Order Placed" | "Confirmed" | "Processing" | "Shipped" | "Delivered" | "Cancelled";
   statusColor: string;
+  progressPercent: number;
   placedDate: string;
   courierName: string;
   courierTrackingCode: string;
+  riderPhone: string;
   estimatedDelivery: string;
   paymentMethod: string;
   paymentStatus: "Paid" | "Cash on Delivery" | "Pending";
@@ -67,11 +73,14 @@ interface TrackedOrder {
 const SAMPLE_ORDERS: Record<string, TrackedOrder> = {
   "AG-2024-7890": {
     orderId: "AG-2024-7890",
+    invoiceNo: "INV-2024-7890",
     status: "Shipped",
-    statusColor: "bg-emerald-500",
+    statusColor: "bg-emerald-600",
+    progressPercent: 75,
     placedDate: "January 15, 2024",
     courierName: "Steadfast Express",
     courierTrackingCode: "ST-8829104",
+    riderPhone: "01711-998877",
     estimatedDelivery: "January 20, 2024",
     paymentMethod: "Cash on Delivery",
     paymentStatus: "Cash on Delivery",
@@ -150,11 +159,14 @@ const SAMPLE_ORDERS: Record<string, TrackedOrder> = {
   },
   "SAR-982145": {
     orderId: "SAR-982145",
+    invoiceNo: "INV-2024-9821",
     status: "Delivered",
     statusColor: "bg-emerald-600",
+    progressPercent: 100,
     placedDate: "February 02, 2024",
     courierName: "Pathao Courier",
     courierTrackingCode: "PT-7731920",
+    riderPhone: "01822-445566",
     estimatedDelivery: "February 04, 2024",
     paymentMethod: "bKash Online Payment",
     paymentStatus: "Paid",
@@ -223,11 +235,14 @@ const SAMPLE_ORDERS: Record<string, TrackedOrder> = {
   },
   "SAR-349012": {
     orderId: "SAR-349012",
+    invoiceNo: "INV-2024-3490",
     status: "Processing",
     statusColor: "bg-blue-600",
+    progressPercent: 45,
     placedDate: "February 12, 2024",
     courierName: "RedX Delivery",
     courierTrackingCode: "Pending Assignment",
+    riderPhone: "01933-556677",
     estimatedDelivery: "February 16, 2024",
     paymentMethod: "Cash on Delivery",
     paymentStatus: "Cash on Delivery",
@@ -255,7 +270,7 @@ const SAMPLE_ORDERS: Record<string, TrackedOrder> = {
       },
       {
         title: "Shipped",
-        description: "Will be dispatched via RedX",
+        description: "Will be dispatched via RedX Express",
         date: "2024-02-14",
         time: "Pending",
         status: "pending",
@@ -306,9 +321,9 @@ const SAMPLE_ORDERS: Record<string, TrackedOrder> = {
   },
 };
 
-// Generate dynamic order for any user input
-function generateDynamicOrder(id: string): TrackedOrder {
-  const cleanId = id.trim().toUpperCase();
+// Generate dynamic order for any user input or phone number
+function generateDynamicOrder(idOrPhone: string): TrackedOrder {
+  const cleanStr = idOrPhone.trim().toUpperCase();
   const sampleProducts = [
     MOCK_PRODUCTS[0] || {
       id: "prod-1",
@@ -328,13 +343,18 @@ function generateDynamicOrder(id: string): TrackedOrder {
     },
   ];
 
+  const generatedId = cleanStr.startsWith("01") ? `SAR-${Math.floor(100000 + Math.random() * 900000)}` : cleanStr;
+
   return {
-    orderId: cleanId,
+    orderId: generatedId,
+    invoiceNo: `INV-${Math.floor(100000 + Math.random() * 900000)}`,
     status: "Shipped",
-    statusColor: "bg-emerald-500",
+    statusColor: "bg-emerald-600",
+    progressPercent: 70,
     placedDate: "January 15, 2024",
     courierName: "Steadfast Express",
     courierTrackingCode: `ST-${Math.floor(1000000 + Math.random() * 9000000)}`,
+    riderPhone: "01700-000000",
     estimatedDelivery: "In 2-3 Business Days",
     paymentMethod: "Cash on Delivery",
     paymentStatus: "Cash on Delivery",
@@ -395,8 +415,8 @@ function generateDynamicOrder(id: string): TrackedOrder {
       city: "Dhaka 1230",
       division: "Dhaka",
       country: "Bangladesh",
-      phone: "+880 1700-000000",
-      email: "customer@example.com",
+      phone: cleanStr.startsWith("01") ? cleanStr : "+880 1700-000000",
+      email: "customer@sarshop.com",
     },
   };
 }
@@ -409,6 +429,7 @@ export const TrackOrder: React.FC = () => {
   const [activeOrder, setActiveOrder] = useState<TrackedOrder | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
+  const [isVoucherModalOpen, setIsVoucherModalOpen] = useState(false);
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [newsletterSuccess, setNewsletterSuccess] = useState(false);
 
@@ -422,20 +443,27 @@ export const TrackOrder: React.FC = () => {
   const handleSearch = (idToSearch?: string) => {
     const targetId = (idToSearch || orderIdInput).trim();
     if (!targetId) {
-      toast.error("Please enter a valid Order ID to track.");
+      toast.error("Please enter a valid Order ID or Phone number to track.");
       return;
     }
 
     setIsLoading(true);
-    // Smooth lookup animation
     setTimeout(() => {
       const upper = targetId.toUpperCase();
-      const matched = SAMPLE_ORDERS[upper] || SAMPLE_ORDERS[targetId] || generateDynamicOrder(targetId);
+      // Match by order ID or phone number
+      const matched =
+        SAMPLE_ORDERS[upper] ||
+        SAMPLE_ORDERS[targetId] ||
+        Object.values(SAMPLE_ORDERS).find(
+          (o) => o.shippingAddress.phone.includes(targetId) || o.shippingAddress.phone.replace(/[^0-9]/g, "").includes(targetId.replace(/[^0-9]/g, ""))
+        ) ||
+        generateDynamicOrder(targetId);
+
       setActiveOrder(matched);
       setIsLoading(false);
       setSearchParams({ orderId: targetId });
       toast.success(`Tracking details loaded for ${matched.orderId}`);
-    }, 450);
+    }, 400);
   };
 
   const handleCopyOrderId = () => {
@@ -447,6 +475,10 @@ export const TrackOrder: React.FC = () => {
   };
 
   const handlePrint = () => {
+    setIsVoucherModalOpen(true);
+  };
+
+  const handleTriggerPrint = () => {
     window.print();
   };
 
@@ -463,25 +495,58 @@ export const TrackOrder: React.FC = () => {
 
   return (
     <div className="w-full bg-[#F8FAFC] dark:bg-[#090D14] min-h-screen py-10 sm:py-16 transition-colors duration-200">
+      {/* Print Stylesheet injection to ensure ONLY the voucher prints cleanly */}
+      <style>{`
+        @media print {
+          body * {
+            visibility: hidden !important;
+          }
+          #printable-voucher-container, #printable-voucher-container * {
+            visibility: visible !important;
+          }
+          #printable-voucher-container {
+            position: absolute !important;
+            left: 0 !important;
+            top: 0 !important;
+            width: 100% !important;
+            margin: 0 !important;
+            padding: 20px !important;
+            background: white !important;
+            color: black !important;
+            box-shadow: none !important;
+            border: none !important;
+          }
+          .no-print {
+            display: none !important;
+          }
+        }
+      `}</style>
+
       <div className="max-w-[880px] mx-auto px-4 sm:px-6">
-        {/* Page Title & Subtitle (Exact Faustina Serif Heading) */}
+        {/* Page Title & Subtitle (Aligned with Faustina Serif & Brand Sapphire) */}
         <div className="text-center mb-8 sm:mb-10">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-soft dark:bg-[#182552] border border-primary-soft-border/70 dark:border-[#22336B] mb-2.5">
+            <ShieldCheck size={14} className="text-primary dark:text-primary-dark" />
+            <span className="text-[11px] font-bold uppercase tracking-wider text-primary-ink dark:text-[#93C5FD] font-inter">
+              Live Parcel Verification
+            </span>
+          </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-faustina font-bold text-gray-900 dark:text-white tracking-tight">
             Track Your Order
           </h1>
           <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400 font-inter mt-2 max-w-md mx-auto">
-            Enter your order details to check the current status
+            Enter your order ID or mobile number to check real-time dispatch and delivery status.
           </p>
         </div>
 
         {/* 1. FIND YOUR ORDER CARD */}
-        <div className="bg-white dark:bg-[#111726] rounded-[20px] p-6 sm:p-8 border border-gray-100 dark:border-gray-800 shadow-sm mb-6 transition-all">
+        <div className="bg-white dark:bg-[#111726] rounded-[20px] p-6 sm:p-8 border border-black/[0.08] dark:border-gray-800 shadow-xs mb-6 transition-all">
           <div className="mb-4">
             <h2 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white font-inter">
               Find Your Order
             </h2>
             <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 font-inter mt-0.5">
-              Enter your order ID to track your order
+              Enter your order ID or phone number to track your parcel
             </p>
           </div>
 
@@ -497,7 +562,7 @@ export const TrackOrder: React.FC = () => {
                 htmlFor="orderId"
                 className="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider mb-1.5 font-inter"
               >
-                Order ID:
+                Order ID or Phone Number:
               </label>
               <div className="relative">
                 <input
@@ -505,8 +570,8 @@ export const TrackOrder: React.FC = () => {
                   type="text"
                   value={orderIdInput}
                   onChange={(e) => setOrderIdInput(e.target.value)}
-                  placeholder="e.g. AG-2024-7890 or SAR-982145"
-                  className="w-full h-12 px-4 rounded-xl bg-gray-100/90 dark:bg-gray-800/80 border border-transparent focus:border-primary dark:focus:border-primary-dark focus:bg-white dark:focus:bg-[#0D1424] text-sm text-gray-900 dark:text-white placeholder:text-gray-400 transition-all outline-none font-inter"
+                  placeholder="e.g. AG-2024-7890 or 01700-000000"
+                  className="w-full h-12 px-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 focus:border-primary dark:focus:border-primary-dark focus:bg-white dark:focus:bg-[#0D1424] text-sm text-gray-900 dark:text-white placeholder:text-gray-400 transition-all outline-none font-inter"
                 />
                 {orderIdInput && (
                   <button
@@ -533,7 +598,7 @@ export const TrackOrder: React.FC = () => {
                   setOrderIdInput("AG-2024-7890");
                   handleSearch("AG-2024-7890");
                 }}
-                className="px-2.5 py-1 rounded-lg bg-gray-100 hover:bg-primary-soft dark:bg-gray-800 dark:hover:bg-[#182552] text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-dark font-medium transition-colors cursor-pointer border border-gray-200/70 dark:border-gray-700"
+                className="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-primary-soft dark:bg-slate-800 dark:hover:bg-[#182552] text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary-dark font-medium transition-colors cursor-pointer border border-slate-200/70 dark:border-slate-700"
               >
                 AG-2024-7890 (Shipped)
               </button>
@@ -543,7 +608,7 @@ export const TrackOrder: React.FC = () => {
                   setOrderIdInput("SAR-982145");
                   handleSearch("SAR-982145");
                 }}
-                className="px-2.5 py-1 rounded-lg bg-gray-100 hover:bg-primary-soft dark:bg-gray-800 dark:hover:bg-[#182552] text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-dark font-medium transition-colors cursor-pointer border border-gray-200/70 dark:border-gray-700"
+                className="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-primary-soft dark:bg-slate-800 dark:hover:bg-[#182552] text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary-dark font-medium transition-colors cursor-pointer border border-slate-200/70 dark:border-slate-700"
               >
                 SAR-982145 (Delivered)
               </button>
@@ -553,18 +618,18 @@ export const TrackOrder: React.FC = () => {
                   setOrderIdInput("SAR-349012");
                   handleSearch("SAR-349012");
                 }}
-                className="px-2.5 py-1 rounded-lg bg-gray-100 hover:bg-primary-soft dark:bg-gray-800 dark:hover:bg-[#182552] text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-dark font-medium transition-colors cursor-pointer border border-gray-200/70 dark:border-gray-700"
+                className="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-primary-soft dark:bg-slate-800 dark:hover:bg-[#182552] text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary-dark font-medium transition-colors cursor-pointer border border-slate-200/70 dark:border-slate-700"
               >
                 SAR-349012 (Processing)
               </button>
             </div>
 
-            {/* Track Order Button */}
+            {/* Track Order Button (Royal Sapphire Navy) */}
             <div>
               <button
                 type="submit"
                 disabled={isLoading}
-                className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl bg-primary hover:bg-primary-hover active:scale-[0.98] text-white font-inter font-semibold text-sm transition-all duration-200 shadow-sm cursor-pointer disabled:opacity-60"
+                className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl bg-primary hover:bg-primary-hover active:scale-[0.98] text-white font-inter font-semibold text-sm transition-all duration-200 shadow-xs cursor-pointer disabled:opacity-60"
               >
                 <Search size={16} />
                 <span>{isLoading ? "Locating Parcel..." : "Track Order"}</span>
@@ -577,64 +642,92 @@ export const TrackOrder: React.FC = () => {
         {activeOrder && (
           <div className="space-y-6 animate-in fade-in slide-in-from-bottom-3 duration-300">
             {/* 2. ORDER HEADER SUMMARY CARD */}
-            <div className="bg-white dark:bg-[#111726] rounded-[20px] p-5 sm:p-6 border border-gray-100 dark:border-gray-800 shadow-sm">
+            <div className="bg-white dark:bg-[#111726] rounded-[20px] p-5 sm:p-6 border border-black/[0.08] dark:border-gray-800 shadow-xs">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
                   <div className="flex items-center gap-2.5 flex-wrap">
                     <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white font-inter">
                       Order {activeOrder.orderId}
                     </h2>
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold text-white bg-emerald-600 shadow-xs">
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold text-white bg-emerald-600 shadow-2xs">
                       {activeOrder.status}
                     </span>
                     <button
                       type="button"
                       onClick={handleCopyOrderId}
-                      className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors p-1"
+                      className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors p-1 cursor-pointer"
                       title="Copy Order ID"
                     >
                       {isCopied ? <Check size={14} className="text-emerald-500" /> : <Copy size={14} />}
                     </button>
                   </div>
                   <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 font-inter mt-1">
-                    Placed on {activeOrder.placedDate} • {activeOrder.items.length} {activeOrder.items.length === 1 ? "Item" : "Items"}
+                    Placed on {activeOrder.placedDate} • {activeOrder.items.length}{" "}
+                    {activeOrder.items.length === 1 ? "Item" : "Items"} • Invoice: #{activeOrder.invoiceNo}
                   </p>
                 </div>
 
-                {/* Print / Action Buttons */}
+                {/* Print Voucher Action Button (Opens Official Voucher Preview) */}
                 <div className="flex items-center gap-2 self-start sm:self-auto">
                   <button
                     type="button"
                     onClick={handlePrint}
-                    className="inline-flex items-center gap-1.5 h-9 px-3.5 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700/80 text-xs font-semibold text-gray-700 dark:text-gray-200 transition-colors shadow-2xs cursor-pointer"
+                    className="inline-flex items-center gap-1.5 h-10 px-4 rounded-xl bg-primary-soft hover:bg-primary-soft-hover dark:bg-[#182552] dark:hover:bg-[#1E2D63] text-primary-ink dark:text-[#93C5FD] border border-primary-soft-border dark:border-[#22336B] text-xs font-bold transition-all shadow-2xs cursor-pointer active:scale-95"
                   >
-                    <Printer size={14} />
-                    <span>Print Invoice</span>
+                    <FileText size={15} />
+                    <span>Print Voucher</span>
                   </button>
                 </div>
               </div>
 
-              {/* Courier info pill banner */}
-              <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-800/80 flex flex-wrap items-center justify-between gap-3 text-xs text-gray-600 dark:text-gray-300">
-                <div className="flex items-center gap-2">
-                  <Truck size={15} className="text-primary dark:text-primary-dark" />
-                  <span>
-                    Courier: <strong className="text-gray-900 dark:text-white">{activeOrder.courierName}</strong>
-                  </span>
-                  <span className="text-gray-300 dark:text-gray-700">•</span>
-                  <span>
-                    Tracking: <strong className="font-mono text-gray-900 dark:text-white">{activeOrder.courierTrackingCode}</strong>
-                  </span>
+              {/* Progress Bar & Courier info banner */}
+              <div className="mt-5 pt-4 border-t border-gray-100 dark:border-gray-800/80 space-y-3">
+                {/* Visual Progress Bar */}
+                <div>
+                  <div className="flex items-center justify-between text-xs font-semibold mb-1.5">
+                    <span className="text-primary dark:text-primary-dark font-inter">
+                      Delivery Progress ({activeOrder.progressPercent}%)
+                    </span>
+                    <span className="text-gray-500 dark:text-gray-400">
+                      Est. Arrival: {activeOrder.estimatedDelivery}
+                    </span>
+                  </div>
+                  <div className="w-full h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+                    <div
+                      className="h-full bg-gradient-to-r from-primary to-emerald-500 rounded-full transition-all duration-700"
+                      style={{ width: `${activeOrder.progressPercent}%` }}
+                    />
+                  </div>
                 </div>
-                <div className="flex items-center gap-1.5 text-gray-500 dark:text-gray-400">
-                  <Clock size={14} />
-                  <span>Est. Delivery: {activeOrder.estimatedDelivery}</span>
+
+                {/* Courier info pill banner */}
+                <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-gray-600 dark:text-gray-300 pt-1">
+                  <div className="flex items-center gap-2">
+                    <Truck size={15} className="text-primary dark:text-primary-dark" />
+                    <span>
+                      Courier: <strong className="text-gray-900 dark:text-white">{activeOrder.courierName}</strong>
+                    </span>
+                    <span className="text-gray-300 dark:text-gray-700">•</span>
+                    <span>
+                      Consignment:{" "}
+                      <strong className="font-mono text-gray-900 dark:text-white">
+                        {activeOrder.courierTrackingCode}
+                      </strong>
+                    </span>
+                  </div>
+                  <a
+                    href={`tel:${activeOrder.riderPhone}`}
+                    className="inline-flex items-center gap-1 text-primary dark:text-primary-dark hover:underline font-semibold"
+                  >
+                    <Phone size={13} />
+                    <span>Call Rider ({activeOrder.riderPhone})</span>
+                  </a>
                 </div>
               </div>
             </div>
 
-            {/* 3. ORDER TIMELINE CARD (Exact Matching Stepper) */}
-            <div className="bg-white dark:bg-[#111726] rounded-[20px] p-6 sm:p-8 border border-gray-100 dark:border-gray-800 shadow-sm">
+            {/* 3. ORDER TIMELINE CARD (Vertical Stepper) */}
+            <div className="bg-white dark:bg-[#111726] rounded-[20px] p-6 sm:p-8 border border-black/[0.08] dark:border-gray-800 shadow-xs">
               <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white font-inter mb-6">
                 Order Timeline
               </h3>
@@ -689,7 +782,7 @@ export const TrackOrder: React.FC = () => {
                             {step.title}
                           </h4>
                           {isCurrent && (
-                            <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-indigo-600 text-white">
+                            <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-indigo-600 text-white shadow-2xs">
                               Current
                             </span>
                           )}
@@ -708,7 +801,7 @@ export const TrackOrder: React.FC = () => {
             </div>
 
             {/* 4. ORDER ITEMS CARD */}
-            <div className="bg-white dark:bg-[#111726] rounded-[20px] p-6 sm:p-8 border border-gray-100 dark:border-gray-800 shadow-sm">
+            <div className="bg-white dark:bg-[#111726] rounded-[20px] p-6 sm:p-8 border border-black/[0.08] dark:border-gray-800 shadow-xs">
               <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white font-inter mb-4 sm:mb-5">
                 Order Items
               </h3>
@@ -719,7 +812,7 @@ export const TrackOrder: React.FC = () => {
                     {/* Item Image with Fallback */}
                     <Link
                       to={`/product/${item.slug}`}
-                      className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl bg-gray-50 dark:bg-gray-800/80 p-1.5 shrink-0 border border-gray-100 dark:border-gray-700 flex items-center justify-center overflow-hidden hover:opacity-90 transition-opacity"
+                      className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl bg-slate-50 dark:bg-slate-900 p-1.5 shrink-0 border border-slate-200/80 dark:border-slate-800 flex items-center justify-center overflow-hidden hover:opacity-90 transition-opacity"
                     >
                       <img
                         src={item.image}
@@ -728,7 +821,8 @@ export const TrackOrder: React.FC = () => {
                         onError={(e) => {
                           const target = e.currentTarget;
                           target.onerror = null;
-                          target.src = "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=700&q=80";
+                          target.src =
+                            "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=700&q=80";
                         }}
                       />
                     </Link>
@@ -755,7 +849,7 @@ export const TrackOrder: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* Item Price */}
+                    {/* Item Price (Electric Orange Highlight) */}
                     <div className="text-right shrink-0">
                       <span className="text-sm sm:text-base font-bold text-gray-900 dark:text-white font-inter">
                         ৳{item.price.toLocaleString()}
@@ -765,19 +859,39 @@ export const TrackOrder: React.FC = () => {
                 ))}
               </div>
 
-              {/* Order Items Footer Summary */}
-              <div className="pt-4 mt-2 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between text-xs sm:text-sm font-semibold text-gray-600 dark:text-gray-300">
-                <span>
-                  {activeOrder.items.length} {activeOrder.items.length === 1 ? "item" : "items"}
-                </span>
-                <span className="text-base sm:text-lg font-bold text-gray-900 dark:text-white">
-                  Total: ৳{activeOrder.total.toLocaleString()}
-                </span>
+              {/* Order Items Financial Breakdown */}
+              <div className="pt-4 mt-2 border-t border-gray-100 dark:border-gray-800 space-y-1.5 text-xs text-gray-600 dark:text-gray-300">
+                <div className="flex justify-between">
+                  <span>Subtotal:</span>
+                  <span className="font-semibold text-gray-900 dark:text-white">
+                    ৳{activeOrder.subtotal.toLocaleString()}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Delivery Fee:</span>
+                  <span className="text-emerald-600 font-semibold">
+                    {activeOrder.deliveryFee === 0 ? "FREE Express Delivery" : `৳${activeOrder.deliveryFee}`}
+                  </span>
+                </div>
+                {activeOrder.discount > 0 && (
+                  <div className="flex justify-between text-[#F85606]">
+                    <span>Promotional Discount:</span>
+                    <span>-৳{activeOrder.discount}</span>
+                  </div>
+                )}
+                <div className="flex justify-between pt-2 border-t border-gray-100 dark:border-gray-800 text-sm sm:text-base font-bold text-gray-900 dark:text-white">
+                  <span>
+                    Total Amount ({activeOrder.items.length} {activeOrder.items.length === 1 ? "item" : "items"}):
+                  </span>
+                  <span className="text-primary dark:text-primary-dark">
+                    ৳{activeOrder.total.toLocaleString()}
+                  </span>
+                </div>
               </div>
             </div>
 
             {/* 5. SHIPPING ADDRESS CARD */}
-            <div className="bg-white dark:bg-[#111726] rounded-[20px] p-6 sm:p-8 border border-gray-100 dark:border-gray-800 shadow-sm">
+            <div className="bg-white dark:bg-[#111726] rounded-[20px] p-6 sm:p-8 border border-black/[0.08] dark:border-gray-800 shadow-xs">
               <div className="flex items-center gap-2 text-gray-900 dark:text-white mb-4">
                 <MapPin size={18} className="text-primary dark:text-primary-dark" />
                 <h3 className="text-base sm:text-lg font-bold font-inter">
@@ -800,41 +914,41 @@ export const TrackOrder: React.FC = () => {
           </div>
         )}
 
-        {/* 6. NEED HELP WITH YOUR ORDER? CARD (Exact from screenshot) */}
-        <div className="bg-white dark:bg-[#111726] rounded-[20px] p-6 sm:p-8 border border-gray-100 dark:border-gray-800 shadow-sm my-6 text-center">
+        {/* 6. NEED HELP WITH YOUR ORDER? CARD (Harmonious brand palette) */}
+        <div className="bg-white dark:bg-[#111726] rounded-[20px] p-6 sm:p-8 border border-black/[0.08] dark:border-gray-800 shadow-xs my-6 text-center">
           <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white font-inter">
             Need Help with Your Order?
           </h3>
           <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 font-inter mt-1 max-w-md mx-auto">
-            Our support team is here to help you with any questions
+            Our specialized customer care team is available 7 days a week to assist with dispatch inquiries.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3 mt-4">
             <Link
               to="/contact"
-              className="inline-flex items-center justify-center h-10 px-5 rounded-xl bg-primary-soft hover:bg-primary-soft-hover dark:bg-[#182552] dark:hover:bg-[#1E2D63] text-primary-ink dark:text-[#93C5FD] border border-primary-soft-border/80 dark:border-[#22336B] text-xs sm:text-sm font-semibold transition-all shadow-2xs"
+              className="inline-flex items-center justify-center h-10 px-5 rounded-xl bg-primary hover:bg-primary-hover active:scale-[0.98] text-white text-xs sm:text-sm font-semibold transition-all shadow-xs"
             >
               Contact Support
             </Link>
             <a
               href="tel:01700000000"
-              className="inline-flex items-center gap-1.5 h-10 px-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-200 transition-colors shadow-2xs"
+              className="inline-flex items-center gap-1.5 h-10 px-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200 transition-colors shadow-2xs"
             >
-              <Phone size={14} />
+              <Phone size={14} className="text-primary dark:text-primary-dark" />
               <span>01700-000000</span>
             </a>
           </div>
         </div>
 
-        {/* 7. GET NOTIFIED / NEWSLETTER BOTTOM BANNER (Exact from screenshot) */}
-        <div className="rounded-[20px] p-6 sm:p-8 bg-pink-50/70 dark:bg-[#141C2E] border border-pink-100 dark:border-gray-800 mt-10 transition-colors">
+        {/* 7. GET NOTIFIED / NEWSLETTER BOTTOM BANNER (Aligned with Brand Sapphire Tint) */}
+        <div className="rounded-[20px] p-6 sm:p-8 bg-gradient-to-r from-primary-soft/70 via-white to-primary-soft/50 dark:from-[#111726] dark:via-[#182552]/40 dark:to-[#111726] border border-primary/20 dark:border-gray-800 mt-10 transition-colors">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="max-w-md">
               <h3 className="text-lg sm:text-xl font-faustina font-bold text-gray-900 dark:text-white">
-                Get notified when we launch
+                Get notified when we launch new brands
               </h3>
               <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 font-inter mt-1 leading-relaxed">
-                Stay up to date with the latest news, announcements, and articles.
+                Stay up to date with verified Korean imports, exclusive flash sales, and shipment notices.
               </p>
             </div>
 
@@ -853,11 +967,11 @@ export const TrackOrder: React.FC = () => {
                   value={newsletterEmail}
                   onChange={(e) => setNewsletterEmail(e.target.value)}
                   placeholder="Enter your email"
-                  className="h-11 px-4 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-xs sm:text-sm text-gray-900 dark:text-white placeholder:text-gray-400 focus:outline-none focus:border-primary dark:focus:border-primary-dark w-full md:w-64 shadow-2xs"
+                  className="h-11 px-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm text-gray-900 dark:text-white placeholder:text-gray-400 focus:outline-none focus:border-primary dark:focus:border-primary-dark w-full md:w-64 shadow-2xs"
                 />
                 <button
                   type="submit"
-                  className="h-11 px-6 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs sm:text-sm font-semibold transition-all shrink-0 cursor-pointer shadow-xs active:scale-95"
+                  className="h-11 px-6 rounded-xl bg-primary hover:bg-primary-hover active:scale-95 text-white text-xs sm:text-sm font-semibold transition-all shrink-0 cursor-pointer shadow-xs"
                 >
                   Subscribe
                 </button>
@@ -866,6 +980,225 @@ export const TrackOrder: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* 8. OFFICIAL PRINTABLE TAX INVOICE & DELIVERY VOUCHER MODAL */}
+      {isVoucherModalOpen && activeOrder && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200">
+          <div className="relative w-full max-w-[820px] max-h-[92vh] overflow-y-auto bg-white dark:bg-[#0D1424] rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-800 flex flex-col">
+            {/* Modal Top Control Bar (Hidden on print) */}
+            <div className="no-print sticky top-0 z-20 flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-900 border-b border-gray-200 dark:border-gray-800">
+              <div className="flex items-center gap-2">
+                <FileText size={18} className="text-primary dark:text-primary-dark" />
+                <span className="font-bold text-sm text-gray-900 dark:text-white font-inter">
+                  Delivery Voucher Preview
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={handleTriggerPrint}
+                  className="inline-flex items-center gap-1.5 h-9 px-4 rounded-lg bg-primary hover:bg-primary-hover text-white text-xs font-bold transition-all shadow-xs cursor-pointer active:scale-95"
+                >
+                  <Printer size={14} />
+                  <span>Print (A4)</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsVoucherModalOpen(false)}
+                  className="w-9 h-9 rounded-lg flex items-center justify-center text-gray-500 hover:text-gray-800 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors cursor-pointer"
+                  title="Close"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+            </div>
+
+            {/* Printable Voucher Paper Canvas */}
+            <div
+              id="printable-voucher-container"
+              className="p-6 sm:p-10 bg-white text-gray-900 font-inter text-xs leading-normal"
+            >
+              {/* Voucher Header: Company Brand & Official Invoice Title */}
+              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 pb-6 border-b-2 border-primary">
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-2xl font-black tracking-tight font-faustina text-primary">
+                      SAR SHOP
+                    </span>
+                    <span className="px-2 py-0.5 text-[9px] font-black uppercase tracking-wider bg-primary/10 text-primary rounded">
+                      Official Tax Invoice
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-gray-500">
+                    Premier Authentic South Korean Cosmetics &amp; Skincare
+                  </p>
+                  <p className="text-[11px] text-gray-500 mt-0.5">
+                    House 24, Road 11, Dhanmondi, Dhaka-1205, Bangladesh
+                  </p>
+                  <p className="text-[11px] text-gray-500">
+                    Helpline: <strong>01700-000000</strong> • orders@sarshop.com.bd
+                  </p>
+                </div>
+
+                <div className="text-left sm:text-right">
+                  <span className="inline-block px-3 py-1 bg-slate-100 rounded text-xs font-mono font-bold text-gray-800">
+                    {activeOrder.invoiceNo}
+                  </span>
+                  <div className="mt-2 space-y-0.5 text-[11px] text-gray-600">
+                    <p>
+                      Order ID: <strong>{activeOrder.orderId}</strong>
+                    </p>
+                    <p>Date: {activeOrder.placedDate}</p>
+                    <p>
+                      Status:{" "}
+                      <span className="font-bold text-emerald-700">
+                        {activeOrder.status.toUpperCase()}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Two-Column Billing & Shipping Details */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 py-6 border-b border-gray-200">
+                {/* Billed & Shipped to */}
+                <div>
+                  <h4 className="text-[11px] font-bold uppercase tracking-wider text-primary mb-2">
+                    Customer Information (Deliver To)
+                  </h4>
+                  <div className="space-y-1 text-gray-700">
+                    <p className="font-bold text-sm text-gray-900">
+                      {activeOrder.shippingAddress.fullName}
+                    </p>
+                    <p>{activeOrder.shippingAddress.street}</p>
+                    <p>{activeOrder.shippingAddress.city}</p>
+                    <p>{activeOrder.shippingAddress.country}</p>
+                    <p className="pt-1 font-mono text-xs">
+                      Phone: <strong>{activeOrder.shippingAddress.phone}</strong>
+                    </p>
+                  </div>
+                </div>
+
+                {/* Logistics & Payment Information */}
+                <div>
+                  <h4 className="text-[11px] font-bold uppercase tracking-wider text-primary mb-2">
+                    Shipping &amp; Payment Logistics
+                  </h4>
+                  <div className="space-y-1 text-gray-700">
+                    <p>
+                      Courier Partner: <strong>{activeOrder.courierName}</strong>
+                    </p>
+                    <p>
+                      Consignment Code:{" "}
+                      <strong className="font-mono">{activeOrder.courierTrackingCode}</strong>
+                    </p>
+                    <p>
+                      Delivery Rider: <strong>{activeOrder.riderPhone}</strong>
+                    </p>
+                    <p className="pt-1">
+                      Payment Mode:{" "}
+                      <span className="font-bold text-primary">
+                        {activeOrder.paymentMethod} ({activeOrder.paymentStatus})
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Itemized Products Table */}
+              <div className="py-6">
+                <table className="w-full text-left border-collapse">
+                  <thead>
+                    <tr className="border-b-2 border-slate-200 bg-slate-50 text-[11px] font-bold uppercase text-gray-700">
+                      <th className="py-2.5 px-3 w-10">#</th>
+                      <th className="py-2.5 px-3">Item Description</th>
+                      <th className="py-2.5 px-3 w-28">Brand</th>
+                      <th className="py-2.5 px-3 w-16 text-center">Qty</th>
+                      <th className="py-2.5 px-3 w-24 text-right">Unit Price</th>
+                      <th className="py-2.5 px-3 w-28 text-right">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200">
+                    {activeOrder.items.map((item, idx) => (
+                      <tr key={item.id} className="text-gray-800">
+                        <td className="py-3 px-3 font-mono text-gray-500">{idx + 1}</td>
+                        <td className="py-3 px-3">
+                          <p className="font-bold text-gray-900">{item.name}</p>
+                          {item.volume && (
+                            <p className="text-[10px] text-gray-500">Volume: {item.volume}</p>
+                          )}
+                        </td>
+                        <td className="py-3 px-3 text-gray-600 font-semibold">{item.brand}</td>
+                        <td className="py-3 px-3 text-center font-mono">{item.quantity}</td>
+                        <td className="py-3 px-3 text-right font-mono">
+                          ৳{item.price.toLocaleString()}
+                        </td>
+                        <td className="py-3 px-3 text-right font-mono font-bold text-gray-900">
+                          ৳{(item.price * item.quantity).toLocaleString()}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Financial Summary Calculation Table */}
+              <div className="flex flex-col sm:flex-row justify-between items-start gap-6 pt-4 border-t border-gray-200">
+                {/* 100% Authenticity Guarantee Badge */}
+                <div className="max-w-xs space-y-1.5 p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <div className="flex items-center gap-1.5 text-primary font-bold text-xs">
+                    <BadgeCheck size={16} />
+                    <span>Official Authenticity Guarantee</span>
+                  </div>
+                  <p className="text-[10px] text-gray-500 leading-relaxed">
+                    100% genuine South Korean imported batch. Retain this invoice and unopened seals for 7-day hassle-free exchange.
+                  </p>
+                </div>
+
+                {/* Totals */}
+                <div className="w-full sm:w-64 space-y-1.5 text-xs text-gray-700">
+                  <div className="flex justify-between">
+                    <span>Subtotal:</span>
+                    <span className="font-mono font-semibold">
+                      ৳{activeOrder.subtotal.toLocaleString()}
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Delivery Fee:</span>
+                    <span className="font-mono text-emerald-700">
+                      {activeOrder.deliveryFee === 0 ? "৳0 (Free)" : `৳${activeOrder.deliveryFee}`}
+                    </span>
+                  </div>
+                  {activeOrder.discount > 0 && (
+                    <div className="flex justify-between text-[#F85606]">
+                      <span>Discount:</span>
+                      <span className="font-mono">-৳{activeOrder.discount}</span>
+                    </div>
+                  )}
+                  <div className="flex justify-between pt-2 border-t-2 border-primary text-sm font-bold text-gray-900">
+                    <span>Total Payable:</span>
+                    <span className="font-mono text-primary text-base">
+                      ৳{activeOrder.total.toLocaleString()}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Signatures & Seal Lines */}
+              <div className="grid grid-cols-2 gap-10 pt-12 mt-6 border-t border-dashed border-gray-300 text-center text-[11px] text-gray-500">
+                <div>
+                  <div className="w-40 mx-auto border-b border-gray-400 mb-1" />
+                  <p>Customer Signature</p>
+                </div>
+                <div>
+                  <div className="w-40 mx-auto border-b border-gray-400 mb-1" />
+                  <p>Authorized SAR Shop Dispatch Officer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
